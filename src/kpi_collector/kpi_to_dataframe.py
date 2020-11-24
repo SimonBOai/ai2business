@@ -6,7 +6,8 @@ def main():
     pytrend = TrendReq()
     pytrend.build_payload(["Blockchain", "Apple","S&P500"], timeframe='today 5-y')
     df = pytrend.interest_over_time()
-    df.plot()
+    #df.plot()
+    print(df['Blockchain'].values)
 
 if __name__ == '__main__':
     main()
