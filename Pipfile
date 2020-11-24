@@ -8,6 +8,7 @@ pandas = "*"
 pytrends = "*"
 scholarly = "*"
 yfinance = "*"
+matplotlib = "*"
 
 [dev-packages]
 
