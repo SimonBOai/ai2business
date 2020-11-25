@@ -11,6 +11,11 @@ yfinance = "*"
 matplotlib = "*"
 
 [dev-packages]
+flake8 = "*"
+black = "*"
+isort = "*"
+mypy = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.9"
