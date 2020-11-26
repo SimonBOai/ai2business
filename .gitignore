@@ -1,2 +1,5 @@
 .dccache
+.mypy_cache
 Pipfile.lock
+.idea
+settings.json
