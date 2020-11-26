@@ -3,3 +3,4 @@
 Pipfile.lock
 .idea
 settings.json
+.DS_Store
