@@ -47,7 +47,7 @@ class BuilderTrendsCollector(ABC):
         pass
 
     @abstractmethod
-    def category(self) -> None:
+    def categories(self) -> None:
         pass
 
     # @abstractmethod
@@ -58,7 +58,7 @@ class BuilderTrendsCollector(ABC):
 class DesignerTrendsCollector(BuilderTrendsCollector):
     def __init__(
         self,
-        key_word_list: list,
+        key_word_list: list =["pizza", "bagel"],
         timeframe: str = "today 5-y",
         language: str = "en-US",
         category: int = 0,
@@ -115,6 +115,9 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
         for keyword in self.key_word_list:
             self.dict[keyword] = self.pytrends.suggestions(keyword=keyword)
 
+    def categories(self) -> None:
+        self.dict = self.pytrends.categories()
+        
     @property
     def return_dataframe(self) -> pd.DataFrame:
         return self.df
@@ -143,8 +146,8 @@ class TrendsCollector:
 if __name__ == "__main__":
 
     trends = TrendsCollector()
-    builder = DesignerTrendsCollector(["pizza", "bagel"])
+    builder = DesignerTrendsCollector()
     trends.builder = builder
     trends.find_interest_over_time()
-    print(builder.return_dataframe)
+    print(type(builder.return_dataframe) == type(pd.DataFrame()))
     
