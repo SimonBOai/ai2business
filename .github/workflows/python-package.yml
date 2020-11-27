@@ -31,7 +31,7 @@ jobs:
       - name: Lint with black and isort
         run: |
           isort --version-number
-          isort --check-only --quiet
+          isort --check --diff --quiet .
           black --version
           black --check .
       - name: Test with pytest and generate coverage report
