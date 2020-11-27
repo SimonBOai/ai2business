@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod, abstractproperty
-from pytrends.request import TrendReq
+
 import pandas as pd
+from pytrends.request import TrendReq
 
 
 class BuilderTrendsCollector(ABC):
@@ -31,7 +32,7 @@ class BuilderTrendsCollector(ABC):
         pass
 
     @abstractmethod
-    def top_chart(self) -> None:
+    def top_charts(self) -> None:
         pass
 
     @abstractmethod
@@ -58,7 +59,7 @@ class BuilderTrendsCollector(ABC):
 class DesignerTrendsCollector(BuilderTrendsCollector):
     def __init__(
         self,
-        key_word_list: list =["pizza", "bagel"],
+        key_word_list: list,
         timeframe: str = "today 5-y",
         language: str = "en-US",
         category: int = 0,
@@ -91,18 +92,18 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
     def interest_over_time(self) -> None:
         self.df = self.pytrends.interest_over_time()
 
-    def interest_by_region(self, resolution: str = "COUNTRY", **kwargs) -> None:
+    def interest_by_region(self, resolution: str, **kwargs) -> None:
         self.df = self.pytrends.interest_by_region(resolution=resolution, **kwargs)
 
-    def trending_searches(self) -> None:
-        self.df = self.pytrends.trending_searches(pn=self.country)
+    def trending_searches(self, trend_country: str = "united_states") -> None:
+        self.df = self.pytrends.trending_searches(pn=trend_country)
 
-    def today_searches(self) -> None:
-        self.df = self.pytrends.today_searches(pn=self.country)
+    def today_searches(self, today_country: str) -> None:
+        self.df = self.pytrends.today_searches(pn=today_country)
 
-    def top_chart(self, date: str) -> None:
-        self.df = self.pytrends.top_chart(
-            date, hl=self.language, tz=self.timezone, geo=self.country
+    def top_charts(self, date: int, top_country: str) -> None:
+        self.df = self.pytrends.top_charts(
+            date, hl=self.language, tz=self.timezone, geo=top_country
         )
 
     def related_topics(self) -> None:
@@ -117,7 +118,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
 
     def categories(self) -> None:
         self.dict = self.pytrends.categories()
-        
+
     @property
     def return_dataframe(self) -> pd.DataFrame:
         return self.df
@@ -142,12 +143,43 @@ class TrendsCollector:
     def find_interest_over_time(self) -> None:
         self.builder.interest_over_time()
 
+    def find_interest_by_region(self, resolution: str = "COUNTRY", **kwargs) -> None:
+        self.builder.interest_by_region(resolution=resolution, **kwargs)
+
+    def find_trending_searches(self, trend_country: str = "united_states") -> None:
+        self.builder.trending_searches(trend_country=trend_country)
+
+    def find_today_searches(self, today_country: str = "US") -> None:
+        self.builder.today_searches(today_country=today_country)
+
+    def find_top_charts(self, date: int, top_country: str = "GLOBAL") -> None:
+        self.builder.top_charts(date=date, top_country=top_country)
+
+    def find_related_topics(self) -> None:
+        self.builder.related_topics()
+
+    def find_related_queries(self) -> None:
+        self.builder.related_queries()
+
+    def find_suggestions(self) -> None:
+        self.builder.suggestions()
+
+    def find_categories(self) -> None:
+        self.builder.categories()
+
+    # def find_interest_over_time(self) -> None:
+    #    self.builder.interest_over_time()
+
 
 if __name__ == "__main__":
 
     trends = TrendsCollector()
-    builder = DesignerTrendsCollector()
+    builder = DesignerTrendsCollector(["Pizza", "Baggel"])
     trends.builder = builder
-    trends.find_interest_over_time()
-    print(type(builder.return_dataframe) == type(pd.DataFrame()))
-    
+    trends.find_trending_searches()
+    print(builder.return_dataframe.head())
+    trends.find_today_searches()
+    print(builder.return_dataframe.head())
+    trends.find_top_charts(2018)
+    print(builder.return_dataframe.head())
+    # print(type(builder.return_dataframe) == type(pd.DataFrame()))
