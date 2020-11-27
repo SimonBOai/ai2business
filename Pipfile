@@ -4,9 +4,21 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pytrends = "*"
+scholarly = "*"
+yfinance = "*"
+numpy = "==1.18.0"
 pandas = "*"
+matplotlib = "*"
 
 [dev-packages]
+isort = "*"
+flake8 = "*"
+mypy = "*"
+pytest = "*"
+update = "*"
+black = "==20.8b1"
+pytest-cov = "*"
 
 [requires]
-python_version = "3.9"
+python_version = "3.8"

@@ -1,0 +1,11 @@
+.dccache
+.mypy_cache
+Pipfile.lock
+.idea
+settings.json
+.DS_Store
+__pycache__
+dummy.py
+ai2business.egg-info
+.coverage
+.pytest_cache
