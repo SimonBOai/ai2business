@@ -8,3 +8,4 @@ __pycache__
 dummy.py
 ai2business.egg-info
 .coverage
+.pytest_cache
