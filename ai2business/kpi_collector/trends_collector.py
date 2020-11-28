@@ -51,9 +51,9 @@ class BuilderTrendsCollector(ABC):
     def categories(self) -> None:
         pass
 
-    # @abstractmethod
-    # def get_historical_interest(self):
-    #    pass
+    @abstractmethod
+    def get_historical_interest(self):
+        pass
 
 
 class DesignerTrendsCollector(BuilderTrendsCollector):
@@ -66,7 +66,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
         timezone: int = 360,
         country: str = "",
         property_filter="",
-        **kwargs
+        **kwargs,
     ) -> None:
 
         self.key_word_list = key_word_list
@@ -84,7 +84,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
             timeframe=self.timeframe,
             geo=self.country,
             gprop=self.property_filter,
-            **kwargs
+            **kwargs,
         )
         self.df = pd.DataFrame()
         self.dict = dict()
@@ -118,6 +118,32 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
 
     def categories(self) -> None:
         self.dict = self.pytrends.categories()
+
+    def get_historical_interest(
+        self,
+        year_start,
+        month_start,
+        day_start,
+        hour_start,
+        year_end,
+        day_end,
+        hour_end,
+        **kwargs,
+    ) -> None:
+        self.df = self.pytrends.get_historical_interest(
+            keywords=self.key_word_list,
+            year_start=year_start,
+            month_start=month_start,
+            day_start=day_start,
+            hour_start=hour_start,
+            year_end=year_end,
+            day_end=day_end,
+            hour_end=hour_end,
+            cat=self.category,
+            geo=self.country,
+            gprop=self.property_filter,
+            **kwargs,
+        )
 
     @property
     def return_dataframe(self) -> pd.DataFrame:
@@ -153,7 +179,11 @@ class TrendsCollector:
         self.builder.today_searches(today_country=today_country)
 
     def find_top_charts(self, date: int, top_country: str = "GLOBAL") -> None:
-        self.builder.top_charts(date=date, top_country=top_country)
+        try:
+            self.builder.top_charts(date=date, top_country=top_country)
+        except IndexError as exc:
+            print(f"ERROR: {exc} -> Date is illegal!")
+            pass
 
     def find_related_topics(self) -> None:
         self.builder.related_topics()
@@ -167,19 +197,28 @@ class TrendsCollector:
     def find_categories(self) -> None:
         self.builder.categories()
 
-    # def find_interest_over_time(self) -> None:
-    #    self.builder.interest_over_time()
-
-
-if __name__ == "__main__":
-
-    trends = TrendsCollector()
-    builder = DesignerTrendsCollector(["Pizza", "Baggel"])
-    trends.builder = builder
-    trends.find_trending_searches()
-    print(builder.return_dataframe.head())
-    trends.find_today_searches()
-    print(builder.return_dataframe.head())
-    trends.find_top_charts(2018)
-    print(builder.return_dataframe.head())
-    # print(type(builder.return_dataframe) == type(pd.DataFrame()))
+    def find_historical_interest(
+        self,
+        year_start,
+        month_start,
+        day_start,
+        hour_start,
+        year_end,
+        day_end,
+        hour_end,
+        **kwargs,
+    ) -> None:
+        try:
+            self.builder.get_historical_interest(
+                year_start=year_start,
+                month_start=month_start,
+                day_start=day_start,
+                hour_start=hour_start,
+                year_end=year_end,
+                day_end=day_end,
+                hour_end=hour_end,
+                **kwargs,
+            )
+        except ValueError as exc:
+            print(f"ERROR: {exc} -> Date is illegal!")
+            pass
