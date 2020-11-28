@@ -37,6 +37,11 @@ def test_dataframes_6():
     assert type(builder.return_dataframe) == type(pd.DataFrame())
 
 
+def test_dataframes_6_failed():
+    trends.find_top_charts(2020)
+    assert type(builder.return_dataframe) == type(pd.DataFrame())
+
+
 def test_datadict_7():
     trends.find_related_topics()
     assert type(builder.return_dict) == type(dict())
@@ -55,3 +60,31 @@ def test_datadict_9():
 def test_datadict_10():
     trends.find_categories()
     assert type(builder.return_dict) == type(dict())
+
+
+def test_dataframes_11():
+    trends.find_historical_interest(
+        year_start=2018,
+        month_start=1,
+        day_start=1,
+        hour_start=0,
+        year_end=2018,
+        month_end=2,
+        day_end=1,
+        hour_end=0,
+    )
+    assert type(builder.return_dataframe) == type(pd.DataFrame())
+
+
+def test_dataframes_11_failed():
+    trends.find_historical_interest(
+        year_start=2018,
+        month_start=1,
+        day_start=1,
+        hour_start=0,
+        year_end=2018,
+        month_end=2,
+        day_end=30,
+        hour_end=0,
+    )
+    assert type(builder.return_dataframe) == type(pd.DataFrame())
