@@ -384,7 +384,7 @@ class FinanceCollector:
         self.builder.get_quarterly_cashflow()
 
     def find_sustainability(self) -> None:
-        self.builder.get_sustainability
+        self.builder.get_sustainability()
 
     def find_options(self) -> None:
         self.builder.get_options()
