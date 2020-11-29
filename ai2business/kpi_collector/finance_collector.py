@@ -246,7 +246,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         self.dict = self.all_trickers(
             tickers=self.tickers,
             key_word_list=self.key_word_list,
-            func="quartly_earnings",
+            func="quarterly_earnings",
         )
 
     def get_financials(self) -> None:
