@@ -17,24 +17,9 @@ def test_find_isin_code():
     assert type(builder.return_dict) == type(dict())
 
 
-def test_dict_as_dataframe_true():
-    ticker.find_isin_code()
-    assert type(builder.return_dict) == type(dict())
-
-
-def test_dict_as_dataframe_false():
-    ticker.find_isin_code()
-    assert builder.return_dict_as_dataframe == None
-
-
 def test_find_major_holders_dict():
     ticker.find_major_holders()
     assert type(builder.return_dict) == type(dict())
-
-
-def test_find_major_holders_df():
-    ticker.find_major_holders()
-    assert type(builder.return_dict_as_dataframe) == type(pd.DataFrame())
 
 
 def test_find_institutional_holders():
@@ -102,7 +87,7 @@ def test_find_quarterly_balancesheet():
     assert type(builder.return_dict) == type(dict())
 
 
-def test_find_cashflows():
+def test_find_cashflow():
     ticker.find_cashflow()
     assert type(builder.return_dict) == type(dict())
 

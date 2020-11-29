@@ -15,10 +15,6 @@ class BuilderFinanceCollector(ABC):
     def return_dict(self) -> None:
         pass
 
-    @abstractproperty
-    def return_dict_as_dataframe(self) -> None:
-        pass
-
     @abstractstaticmethod
     def all_trickers(self) -> None:
         pass
@@ -122,20 +118,6 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
     @property
     def return_dict(self) -> dict:
         return self.dict
-
-    @property
-    def return_dict_as_dataframe(self) -> pd.DataFrame:
-        try:
-            return pd.concat(
-                self.dict.values(),
-                keys=self.dict.keys,
-                axis=1,
-            )
-        except TypeError as exc:
-            print(
-                f"ERROR: {exc} -> {self.dict} cannot be transformed into a structured dataframe!"
-            )
-            pass
 
     @staticmethod
     def all_trickers(
