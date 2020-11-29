@@ -125,9 +125,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
     ) -> pd.DataFrame:
         _dict = dict()
         for key_word in key_word_list:
-            _dict[key_word.upper()] = getattr(
-                getattr(tickers.tickers, key_word.upper()), func
-            )
+            _dict[key_word] = getattr(getattr(tickers.tickers, key_word), func)
         return _dict
 
     def get_chart_history(
