@@ -94,7 +94,7 @@ def test_find_quarterly_financials():
 
 def test_find_balancesheet():
     ticker.find_balancesheet()
-    assert type(builder.return_dict) == type()
+    assert type(builder.return_dict) == type(dict())
 
 
 def test_find_quarterly_balancesheet():
@@ -107,8 +107,8 @@ def test_find_cashflows():
     assert type(builder.return_dict) == type(dict())
 
 
-def test_find_quarterly_cashflows():
-    ticker.find_quarterly_cashflows()
+def test_find_quarterly_cashflow():
+    ticker.find_quarterly_cashflow()
     assert type(builder.return_dict) == type(dict())
 
 

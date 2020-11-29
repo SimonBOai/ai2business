@@ -396,8 +396,8 @@ class FinanceCollector:
     def find_quarterly_balancesheet(self) -> None:
         self.builder.get_quarterly_balancesheet()
 
-    def find_cashflows(self) -> None:
-        self.builder.get_cashflows()
+    def find_cashflow(self) -> None:
+        self.builder.get_cashflow()
 
     def find_quarterly_cashflows(self) -> None:
         self.builder.get_quarterly_cashflow()
