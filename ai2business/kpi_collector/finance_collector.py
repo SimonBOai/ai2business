@@ -4,7 +4,6 @@ from abc import ABC, abstractmethod, abstractproperty, abstractstaticmethod
 
 import pandas as pd
 import yfinance as yf
-from yfinance.ticker import Ticker
 
 
 class BuilderFinanceCollector(ABC):
@@ -225,7 +224,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
 
     def get_calendar(self) -> None:
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="calender"
+            tickers=self.tickers, key_word_list=self.key_word_list, func="calendar"
         )
 
     def get_recommendations(self) -> None:
