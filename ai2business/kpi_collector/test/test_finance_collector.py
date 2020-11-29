@@ -57,6 +57,11 @@ def test_find_calendar():
     assert type(builder.return_dict) == type(dict())
 
 
+def test_find_recommendation():
+    ticker.find_recommendations()
+    assert type(builder.return_dict) == type(dict())
+
+
 def test_find_earnings():
     ticker.find_earnings()
     assert type(builder.return_dict) == type(dict())
