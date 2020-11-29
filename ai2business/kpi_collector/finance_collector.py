@@ -399,7 +399,7 @@ class FinanceCollector:
     def find_cashflow(self) -> None:
         self.builder.get_cashflow()
 
-    def find_quarterly_cashflows(self) -> None:
+    def find_quarterly_cashflow(self) -> None:
         self.builder.get_quarterly_cashflow()
 
     def find_sustainability(self) -> None:
@@ -407,17 +407,3 @@ class FinanceCollector:
 
     def find_options(self) -> None:
         self.builder.get_options()
-
-
-if __name__ == "__main__":
-    ticker = FinanceCollector()
-    builder = DesignerFinanceCollector(["SPY", "AAPL", "MSFT"])
-    ticker.builder = builder
-
-    # ticker.find_chart_histogram()
-    ticker.find_major_holders()
-    print(builder.return_dict)
-    # ticker.find__major_holders()
-    # print(type(builder.return_dataframe))
-    # print(builder.return_dataframe)
-    # print(builder.return_dict_as_dataframe==None)
