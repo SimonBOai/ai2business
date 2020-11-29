@@ -10,6 +10,7 @@ yfinance = "*"
 numpy = "==1.18.0"
 pandas = "*"
 matplotlib = "*"
+install = "*"
 
 [dev-packages]
 isort = "*"

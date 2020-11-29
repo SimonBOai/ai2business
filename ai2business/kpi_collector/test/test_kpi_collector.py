@@ -7,62 +7,57 @@ builder = tdc.DesignerTrendsCollector(["AI", "Business", "AI2Business"])
 trends.builder = builder
 
 
-def test_dataframes_1():
+def test_interest_over_time() -> None:
     trends.find_interest_over_time()
     assert type(builder.return_dataframe) == type(pd.DataFrame())
 
 
-def test_dataframes_2():
-    trends.find_interest_over_time()
+def test_interest_by_region() -> None:
+    trends.find_interest_by_region()
     assert type(builder.return_dataframe) == type(pd.DataFrame())
 
 
-def test_dataframes_3():
-    trends.find_interest_over_time()
-    assert type(builder.return_dataframe) == type(pd.DataFrame())
-
-
-def test_dataframes_4():
+def test_trending_searches() -> None:
     trends.find_trending_searches()
     assert type(builder.return_dataframe) == type(pd.DataFrame())
 
 
-def test_dataseries_5():
+def test_today_searches() -> None:
     trends.find_today_searches()
     assert type(builder.return_dataframe) == type(pd.Series(dtype=object))
 
 
-def test_dataframes_6():
+def test_top_charts_true() -> None:
     trends.find_top_charts(2018)
     assert type(builder.return_dataframe) == type(pd.DataFrame())
 
 
-def test_dataframes_6_failed():
+def test_top_charts_failed() -> None:
     trends.find_top_charts(2020)
     assert type(builder.return_dataframe) == type(pd.DataFrame())
 
 
-def test_datadict_7():
+def test_related_topics() -> None:
     trends.find_related_topics()
     assert type(builder.return_dict) == type(dict())
 
 
-def test_datadict_8():
+def test_related_queries() -> None:
     trends.find_related_queries()
     assert type(builder.return_dict) == type(dict())
 
 
-def test_datadict_9():
+def test_suggestions() -> None:
     trends.find_suggestions()
     assert type(builder.return_dict) == type(dict())
 
 
-def test_datadict_10():
+def test_categories() -> None:
     trends.find_categories()
     assert type(builder.return_dict) == type(dict())
 
 
-def test_dataframes_11():
+def test_historical_interest_true() -> None:
     trends.find_historical_interest(
         year_start=2018,
         month_start=1,
@@ -76,7 +71,7 @@ def test_dataframes_11():
     assert type(builder.return_dataframe) == type(pd.DataFrame())
 
 
-def test_dataframes_11_failed():
+def test_historical_interest_failed() -> None:
     trends.find_historical_interest(
         year_start=2018,
         month_start=1,
