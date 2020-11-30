@@ -21,4 +21,4 @@ nav:
 
 ## Python-Function test
 
-::ai2business.kpi_collector
+:::ai2business.kpi_collector
