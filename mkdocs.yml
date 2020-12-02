@@ -1,7 +1,45 @@
-site_name: My Docs
+site_name: AI2Business
+#site_url: coming soon
+site_description: Smart solutions for Business with AI.
+site_author: AI2Business & coworkers
+
+
+repo_url: https://github.com/AI2Business/ai2business
+repo_name: AI2Business
+edit_uri: edit/main
+
+# Copyright
+copyright: Copyright &copy; 2020 - AI2Business
+
 theme:
   name: "material"
-
+  font:
+    text: Roboto
+    code: Roboto Mono
+  icon:
+    logo: material/calculator
+    repo: fontawesome/brands/github
+  favicon: assets/favicon.png
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+  static_templates:
+    - 404.html
+  
 plugins:
   - search
   - mkdocstrings
+  - git-revision-date:
+      enabled_if_env: CI
+  - exclude:
+      glob:
+        - exclude/this/path/*
+        - "*.tmp"
+        - "*.pdf"
+        - "*.gz"
+  - macros
+  #- mkdocs-versioning:
+  #    version: "0.1.0"

@@ -1,5 +1,8 @@
-# from __future__ import annotations
+""" [summary]
 
+[extended_summary]
+
+"""
 from abc import ABC, abstractmethod, abstractproperty, abstractstaticmethod
 
 import pandas as pd
