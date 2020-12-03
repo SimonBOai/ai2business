@@ -1,2 +1,4 @@
-# KPI and
-:::ai2business.kpi_collector
+# Key Performance Indicator Collections
+---
+
+:::ai2business.kpi_collector.finance_collector
