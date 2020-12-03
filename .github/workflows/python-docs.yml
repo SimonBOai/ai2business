@@ -2,6 +2,8 @@ name: Python docs
 on:
   push:
     branches: [master, main, docs]
+  pull_request:
+    branches: [master, main, docs]
 
 jobs:
   documentation:
@@ -14,8 +16,11 @@ jobs:
           python-version: 3.x
       - name: Install dependencies
         run: |
-          pip install -r dev-requirements.txt
-          pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f dev-requirements.txt ]; then pip install -r dev-requirements.txt; fi
+      - name: Install AI2Business
+        run: |
           pip install -e .
       - name: Deploy documentation
         run: |
