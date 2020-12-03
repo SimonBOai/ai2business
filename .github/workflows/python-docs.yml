@@ -1,7 +1,7 @@
 name: Python docs
 on:
   push:
-    branches: [master, main]
+    branches: [master, main, docs]
 
 jobs:
   documentation:
