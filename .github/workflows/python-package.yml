@@ -11,13 +11,17 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: Python ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }} - ${{ github.event_name }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         fail-fast: false
-        name: Python ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }} - ${{ github.event_name }}
         runs-on: ${{ matrix.os }}
-        python-version: [3.6, 3.7, 3.8, 3.9]
+        python-version:
+          - 3.6
+          - 3.7
+          - 3.8
+          - 3.9
         os:
           - ubuntu-latest
           #- macOS-latest
