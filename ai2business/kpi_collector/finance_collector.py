@@ -19,7 +19,7 @@ class BuilderFinanceCollector(ABC):
         pass
 
     @abstractstaticmethod
-    def all_trickers(self) -> None:
+    def all_trickers() -> None:
         pass
 
     @abstractmethod
