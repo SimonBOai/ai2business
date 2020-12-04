@@ -34,6 +34,8 @@ mkdocs-exclude = "*"
 mkdocs-macros-plugin = "*"
 mkdocs-versioning = "*"
 mkdocs-material = "*"
+mkdocs-minify-plugin = "*"
+mkdocs-redirects = "*"
 mkdocs-git-revision-date-plugin = "*"
 mike = "*"
 
