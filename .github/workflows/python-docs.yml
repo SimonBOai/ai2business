@@ -27,9 +27,9 @@ jobs:
            git config --local user.email "action@github.com"
            git config --local user.name "GitHub Action"
       - name: Deploy documentation develops
-        if: contains(github.ref, 'refs/heads/main')
+        if: contains(github.ref, 'refs/heads/docs')
         run: |
-           mike deploy --push main
+           mike deploy --push docs
       - name: Get the release version
         if: contains(github.ref, 'refs/tags/v')
         id: get_version
