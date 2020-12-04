@@ -13,6 +13,19 @@ copyright: Copyright &copy; 2020 - AI2Business
 
 theme:
   name: "material"
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
   font:
     text: Roboto
     code: Roboto Mono
@@ -41,8 +54,3 @@ plugins:
         - "*.pdf"
         - "*.gz"
   - macros
-  #- mkdocs-versioning:
-  #    version: "0.1.0"
-extra:
-  version:
-    method: mike
