@@ -22,7 +22,22 @@ jobs:
       - name: Install AI2Business
         run: |
           pip install -e .
-      - name: Deploy documentation
+      - name: Set git config
         run: |
-          mkdocs gh-deploy --force
-          mkdocs --version
+           git config --local user.email "action@github.com"
+           git config --local user.name "GitHub Action"
+      - name: Deploy documentation develops
+        if: contains(github.ref, 'refs/heads/main')
+        run: |
+           mike deploy --push main
+      - name: Get the release version
+        if: contains(github.ref, 'refs/tags/v')
+        id: get_version
+        run: |
+          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+      - name: Deploy documentation new release
+        if: contains(github.ref, 'refs/tags/v')
+        run: |
+           mike deploy --push --update-aliases ${{ steps.get_version.outputs.VERSION }} latest
+           mike set-default --push ${{ steps.get_version.outputs.VERSION }}

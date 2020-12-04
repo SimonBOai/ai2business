@@ -54,3 +54,8 @@ plugins:
         - "*.pdf"
         - "*.gz"
   - macros
+  #- mkdocs-versioning:
+  #    version: "0.1.0"
+extra:
+  version:
+    method: mike
