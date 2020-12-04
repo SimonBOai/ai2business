@@ -24,5 +24,4 @@ jobs:
           pip install -e .
       - name: Deploy documentation
         run: |
-          mike set-default --push latest
           mike deploy --push --update-aliases 0.1 latest
