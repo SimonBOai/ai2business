@@ -29,7 +29,8 @@ jobs:
       - name: Deploy documentation develops
         #if: contains(github.ref, 'refs/heads/docs')
         run: |
-           mike deploy --push docs
+           mike delete dev || true
+           mike deploy --push dev
       - name: Get the release version
         if: contains(github.ref, 'refs/tags/v')
         id: get_version
