@@ -24,5 +24,5 @@ jobs:
           pip install -e .
       - name: Deploy documentation
         run: |
-          mkdocs gh-deploy --force
-          mkdocs --version
+          mike set-default --push latest
+          mike deploy --push --update-aliases 0.1 latest
