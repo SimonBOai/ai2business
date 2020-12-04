@@ -30,7 +30,7 @@ jobs:
         #if: contains(github.ref, 'refs/heads/docs')
         run: |
            mike delete dev || true
-           mike deploy --push dev
+           mike deploy --push dev --force
       - name: Get the release version
         if: contains(github.ref, 'refs/tags/v')
         id: get_version
