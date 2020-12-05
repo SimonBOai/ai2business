@@ -87,7 +87,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
             **kwargs,
         )
         self.df = pd.DataFrame()
-        self.dict = dict()
+        self.dict = {}
 
     @property
     def return_dataframe(self) -> pd.DataFrame:
@@ -183,7 +183,6 @@ class TrendsCollector:
             self.builder.get_top_charts(date=date, top_country=top_country)
         except IndexError as exc:
             print(f"ERROR: {exc} -> Date is illegal!")
-            pass
 
     def find_related_topics(self) -> None:
         self.builder.get_related_topics()
@@ -221,4 +220,3 @@ class TrendsCollector:
             )
         except ValueError as exc:
             print(f"ERROR: {exc} -> Date is illegal!")
-            pass
