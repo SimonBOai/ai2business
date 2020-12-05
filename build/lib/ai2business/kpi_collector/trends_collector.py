@@ -19,50 +19,62 @@ class BuilderTrendsCollector(ABC):
     @abstractproperty
     def return_dataframe(self) -> None:
         """Abstract property of return_dataframe."""
+        pass
 
     @abstractproperty
     def return_dict(self) -> None:
         """Abstract property of return_dict."""
+        pass
 
     @abstractmethod
     def get_interest_over_time(self) -> None:
         """Abstract method of get_interest_over_time."""
+        pass
 
     @abstractmethod
     def get_interest_by_region(self) -> None:
         """Abstract method of get_interest_by_region."""
+        pass
 
     @abstractmethod
     def get_trending_searches(self) -> None:
         """Abstract method of get_trending_searches."""
+        pass
 
     @abstractmethod
     def get_today_searches(self) -> None:
         """Abstract method of get_today_searches."""
+        pass
 
     @abstractmethod
     def get_top_charts(self) -> None:
         """Abstract method of get_top_charts."""
+        pass
 
     @abstractmethod
     def get_related_topics(self) -> None:
         """Abstract method of get_related_topics."""
+        pass
 
     @abstractmethod
     def get_related_queries(self) -> None:
         """Abstract extended_summary of get_related_queries."""
+        pass
 
     @abstractmethod
     def get_suggestions(self) -> None:
         """Abstract method of get_suggestions."""
+        pass
 
     @abstractmethod
     def get_categories(self) -> None:
         """Abstract method of get_categories."""
+        pass
 
     @abstractmethod
     def get_historical_interest(self):
         """Abstract method of get_historical_interest."""
+        pass
 
 
 class DesignerTrendsCollector(BuilderTrendsCollector):

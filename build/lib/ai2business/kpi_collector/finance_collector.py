@@ -19,58 +19,72 @@ class BuilderFinanceCollector(ABC):
     @abstractproperty
     def return_dataframe(self) -> None:
         """Abstract property of return_dataframe."""
+        
 
     @abstractproperty
     def return_dict(self) -> None:
         """Abstract property of return_dict."""
+        
 
     @abstractstaticmethod
     def all_trickers() -> None:
         """Abstract staticmethod of all_tickers."""
+        
 
     @abstractmethod
     def get_chart_history(self) -> None:
         """Abstract method of get_chart_history."""
+        
 
     @abstractmethod
     def get_isin_code(self) -> None:
         """Abstract method of get_isin_code."""
+        
 
     @abstractmethod
     def get_major_holders(self) -> None:
         """Abstract method of get_major_holders."""
+        
 
     @abstractmethod
     def get_institutional_holders(self) -> None:
         """Abstract method of get_institutional_holders."""
+        
 
     @abstractmethod
     def get_mutualfund_holders(self) -> None:
         """Abstract method of get_mutualfund_holders."""
+        
 
     @abstractmethod
     def get_dividends(self) -> None:
         """Abstract method of get_dividends."""
+        
 
     @abstractmethod
     def get_splits(self) -> None:
         """Abstract method of get_splits."""
+        
 
     @abstractmethod
     def get_actions(self) -> None:
         """Abstract property of get_actions."""
+        
 
     @abstractmethod
     def get_info(self) -> None:
         """Abstract method of get_info."""
+        
 
     @abstractmethod
     def get_calendar(self) -> None:
         """Abstract method of get_calendar."""
+        
 
     @abstractmethod
     def get_recommendations(self) -> None:
         """Abstract method of get_recommendations."""
+        
 
     @abstractmethod
     def get_earnings(self) -> None:
@@ -79,38 +93,47 @@ class BuilderFinanceCollector(ABC):
     @abstractmethod
     def get_quarterly_earnings(self) -> None:
         """Abstract method of get_quarterly_earnings."""
+        
 
     @abstractmethod
     def get_financials(self) -> None:
         """Abstract method of get_financials."""
+        
 
     @abstractmethod
     def get_quarterly_financials(self) -> None:
         """Abstract method of get_quarterly_financials."""
+        
 
     @abstractmethod
     def get_balancesheet(self) -> None:
         """Abstract method of get_balancesheet."""
+        
 
     @abstractmethod
     def get_quarterly_balancesheet(self) -> None:
         """Abstract method of get_quarterly_balancesheet."""
+        
 
     @abstractmethod
     def get_cashflow(self) -> None:
         """Abstract method of get_cashflow."""
+        
 
     @abstractmethod
     def get_quarterly_cashflow(self) -> None:
         """Abstract method of get_quarterly_cashflow."""
+        
 
     @abstractmethod
     def get_sustainability(self) -> None:
         """Abstract method of get_sustainability."""
+        
 
     @abstractmethod
     def get_options(self) -> None:
         """Abstract method of get_options."""
+        
 
 
 class DesignerFinanceCollector(BuilderFinanceCollector):
