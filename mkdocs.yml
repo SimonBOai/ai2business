@@ -63,8 +63,8 @@ markdown_extensions:
           lang: php
           options:
             startinline: true
-        - name: pycon3
-          lang: pycon
+        - name: python
+          lang: python
           options:
             python3: true
       linenums_style: pymdownx-inline
@@ -96,7 +96,7 @@ markdown_extensions:
   - pymdownx.mark:
   - pymdownx.striphtml:
   - pymdownx.snippets:
-      base_path: docs/src/markdown/_snippets
+      base_path: docs/_snippets
   - pymdownx.keys:
       separator: "\uff0b"
   - pymdownx.details:
@@ -106,16 +106,16 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/facelessuser
-    - icon: fontawesome/brands/discord
-      link: https://discord.gg/TWs8Tgr
+      link: https://github.com/ai2business
+    #- icon: fontawesome/brands/discord
+    #  link: https://discord.gg/TWs8Tgr
   version:
     method: mike
 
-extra_css:
-  - assets/pymdownx-extras/extra.css
-extra_javascript:
-  - assets/pymdownx-extras/extra-uml.js
+#extra_css:
+#  - assets/pymdownx-extras/extra.css
+#extra_javascript:
+#  - assets/pymdownx-extras/extra-uml.js
 
 plugins:
   - search
@@ -124,7 +124,7 @@ plugins:
       enabled_if_env: CI
   - exclude:
       glob:
-        - test/*
+        - "test/*"
         - "*.tmp"
         - "*.pdf"
         - "*.gz"
