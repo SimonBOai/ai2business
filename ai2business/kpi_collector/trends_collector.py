@@ -12,8 +12,7 @@ class BuilderTrendsCollector(ABC):
     different parts of the `DesignerTrendsCollector` objects.
 
     Args:
-        ABC (class): Helper class that provides a standard way to create an ABC using
-        inheritance.
+        ABC (class): Helper class that provides a standard way to create an ABC using inheritance.
     """
 
     @abstractproperty
@@ -73,8 +72,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
     `BuilderTrendsCollector` based on the external library `pytrends`.
 
     Args:
-        BuilderTrendsCollector (class): Abstract class that provides the implementations
-        of the properties and methods.
+        BuilderTrendsCollector (class): Abstract class that provides the implementations of the properties and methods.
     """
 
     def __init__(
@@ -95,13 +93,10 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
             timeframe (str, optional): Time frame, respectively, period to search for.
             Defaults to "today 5-y".
             language (str, optional): Search language. Defaults to "en-US".
-            category (int, optional): Define a specific [search category](https://github.com/pat310/google-trends-api/wiki/Google-Trends-Categories).
-            Defaults to 0.
-            timezone (int, optional): [Search timezone](https://developers.google.com/maps/documentation/timezone/overview).
-            Defaults to 360.
+            category (int, optional): Define a specific [search category](https://github.com/pat310/google-trends-api/wiki/Google-Trends-Categories). Defaults to 0.
+            timezone (int, optional): [Search timezone](https://developers.google.com/maps/documentation/timezone/overview). Defaults to 360.
             country (str, optional): The country, where to search for. Defaults to "".
-            property_filter (str, optional): Property filer of the search; only in news,
-            images, YouTube, shopping. Defaults to "".
+            property_filter (str, optional): Property filer of the search; only in news, images, YouTube, shopping. Defaults to "".
         """
         self.key_word_list = key_word_list
         self.timeframe = timeframe
@@ -128,8 +123,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
         """Return the search results as dataframe.
 
         Returns:
-            pd.DataFrame: Two-dimensional, size-mutable, homogenous tabular data,
-            which contains the trend-search results as time-series.
+            pd.DataFrame: Two-dimensional, size-mutable, homogenous tabular data, which contains the trend-search results as time-series.
         """
         return self.df
 
@@ -138,8 +132,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
         """Return the search results as dictionary.
 
         Returns:
-            dict: Multi-dimensional, size-mutable, mainly heterogeneous data as
-            dictionary, which contains the `clustered` or `nested` trend-search results.
+            dict: Multi-dimensional, size-mutable, mainly heterogeneous data as dictionary, which contains the `clustered` or `nested` trend-search results.
         """
         return self.dict
 
@@ -159,8 +152,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
         """Request data from a search by country.
 
         Args:
-            trend_country (str, optional): Name of the country of intrest. Defaults to
-            "united_states".
+            trend_country (str, optional): Name of the country of intrest. Defaults to "united_states".
         """
         self.df = self.pytrends.trending_searches(pn=trend_country)
 
@@ -257,8 +249,7 @@ class TrendsCollector:
         """Builder as a property with value None.
 
         Returns:
-            BuilderTrendsCollector: A builder class, that contains the abstract
-            properties and methods.
+            BuilderTrendsCollector: A builder class, that contains the abstract properties and methods.
         """
         return self._builder
 
@@ -267,8 +258,7 @@ class TrendsCollector:
         """Sets the builder according to BuilderTrendsCollector.
 
         Args:
-            builder (BuilderTrendsCollector): A builder class, that contains the
-            abstract properties and methods.
+            builder (BuilderTrendsCollector): A builder class, that contains the abstract properties and methods.
 
         Returns:
             property: A method or property of `BuilderTrendsCollector`.
@@ -291,8 +281,7 @@ class TrendsCollector:
         """Performa a search trend analysis.
 
         Args:
-            trend_country (str, optional): Name of the country of intrest. Defaults to
-            "united_states".
+            trend_country (str, optional): Name of the country of intrest. Defaults to "united_states".
         """
         self.builder.get_trending_searches(trend_country=trend_country)
 
@@ -300,8 +289,7 @@ class TrendsCollector:
         """Perform a search analysis about today's hot topics.
 
         Args:
-            today_country (str, optional): Name of the country of intrest. Defaults to
-            "US".
+            today_country (str, optional): Name of the country of intrest. Defaults to "US".
         """
         self.builder.get_today_searches(today_country=today_country)
 
@@ -309,7 +297,7 @@ class TrendsCollector:
         """Perform a search chart analysis.
 
         Args:
-            date (int): [description]
+            date (int): Year
             top_country (str, optional): [description]. Defaults to "GLOBAL".
         """
         try:

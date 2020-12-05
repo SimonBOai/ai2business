@@ -26,8 +26,12 @@ jobs:
         run: |
            git config --local user.email "action@github.com"
            git config --local user.name "GitHub Action"
+      - name: Build documentation
+        run: |
+           mike install-extras
+           mike deploy dev
       - name: Deploy documentation develops
-        #if: contains(github.ref, 'refs/heads/docs')
+        if: contains(github.ref, 'refs/heads/main')
         run: |
            mike delete dev || true
            mike deploy --push dev --force
