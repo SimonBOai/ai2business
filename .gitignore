@@ -12,3 +12,4 @@ ai2business.egg-info
 .vscode
 dist/ai2business-0.1.0-py3-none-any.whl
 dist/ai2business-0.1.0.tar.gz
+dist/ai2business-0.1.0-py3.9.egg

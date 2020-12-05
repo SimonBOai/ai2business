@@ -297,7 +297,7 @@ class TrendsCollector:
         """Perform a search chart analysis.
 
         Args:
-            date (int): Year 
+            date (int): Year
             top_country (str, optional): [description]. Defaults to "GLOBAL".
         """
         try:
