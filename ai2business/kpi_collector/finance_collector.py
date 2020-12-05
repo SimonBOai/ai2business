@@ -23,12 +23,12 @@ class BuilderFinanceCollector(ABC):
 
     @abstractproperty
     def return_dict(self) -> None:
-         """Abstract property of return_dict."""
+        """Abstract property of return_dict."""
         pass
 
     @abstractstaticmethod
     def all_trickers() -> None:
-         """Abstract staticmethod of all_tickers."""
+        """Abstract staticmethod of all_tickers."""
         pass
 
     @abstractmethod
@@ -172,11 +172,11 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
     @property
     def return_dict(self) -> dict:
         """Return the search results as dictionary.
-        
+
         Note:
         ---
         `return_dict` is especially useful for getting analysis reports of tickers,
-        market changes, or institutional forecasts. 
+        market changes, or institutional forecasts.
 
         Returns:
             dict: Multi-dimensional, size-mutable, mainly heterogeneous data as
@@ -195,7 +195,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         Args:
             tickers (yf.Tickers): Finance market data downloader.
             key_word_list (list): Keyword-list with the tickers to search for.
-            func (str): Specific class as string. 
+            func (str): Specific class as string.
 
         Returns:
             pd.DataFrame: Two-dimensional, size-mutable, heterogenous (table in a table)
@@ -554,21 +554,21 @@ class FinanceCollector:
         self.builder.get_balancesheet()
 
     def find_quarterly_balancesheet(self) -> None:
-        """Perform a search for the quarterly balancesheet of the ticker.""" 
+        """Perform a search for the quarterly balancesheet of the ticker."""
         self.builder.get_quarterly_balancesheet()
 
     def find_cashflow(self) -> None:
-        """Perform a search for the yearly cashflow of the ticker.""" 
+        """Perform a search for the yearly cashflow of the ticker."""
         self.builder.get_cashflow()
 
     def find_quarterly_cashflow(self) -> None:
-        """Perform a search for the quarterly cashflow of the ticker.""" 
+        """Perform a search for the quarterly cashflow of the ticker."""
         self.builder.get_quarterly_cashflow()
 
     def find_sustainability(self) -> None:
-        """Perform a search for the sustainability of the ticker.""" 
+        """Perform a search for the sustainability of the ticker."""
         self.builder.get_sustainability()
 
     def find_options(self) -> None:
-        """Perform a search for the options of the ticker.""" 
+        """Perform a search for the options of the ticker."""
         self.builder.get_options()
