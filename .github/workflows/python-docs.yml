@@ -29,7 +29,7 @@ jobs:
       - name: Build documention
         run: |
            mike install-extras
-           mike build
+           mike deploy
       - name: Deploy documentation develops
         if: contains(github.ref, 'refs/heads/main')
         run: |
