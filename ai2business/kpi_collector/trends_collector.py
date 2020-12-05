@@ -11,8 +11,6 @@ from pytrends.request import TrendReq
 class BuilderTrendsCollector(ABC):
     """BuilderTrendsCollector [summary]
 
-    [extended_summary]
-
     Args:
         ABC ([type]): [description]
     """

@@ -19,6 +19,4 @@ nav:
         index.md  # The documentation homepage.
         ...       # Other markdown pages, images and other files.
 
-## Python-Function test
 
-[Key-Performance-Indicator (KPI) Collector](src/kpi_collector.md)

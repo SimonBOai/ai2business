@@ -139,3 +139,10 @@ plugins:
   - git-revision-date-localized
   - minify:
       minify_html: true
+
+# Page tree
+nav:
+  - Home: index.md
+  - API:
+    - Key Performance Collector:
+      - Financial: api/kpi_collector.md
