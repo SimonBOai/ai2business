@@ -1,7 +1,4 @@
-""" [summary]
-
-    [extended_summary]
-"""
+"""Trends Collection Module: Collecting Search Trends via http-API"""
 from abc import ABC, abstractmethod, abstractproperty
 
 import pandas as pd
@@ -333,19 +330,19 @@ class TrendsCollector:
             print(f"ERROR: {exc} -> Date is illegal!")
 
     def find_related_topics(self) -> None:
-        """Find the related topics to a keyword."""
+        """Perform a search about the related topics to a keyword."""
         self.builder.get_related_topics()
 
     def find_related_queries(self) -> None:
-        """Find the related queries to a keyword."""
+        """Perform a search about the related queries to a keyword."""
         self.builder.get_related_queries()
 
     def find_suggestions(self) -> None:
-        """Find suggestions for a given keyword."""
+        """Perform a search about suggestions for a given keyword."""
         self.builder.get_suggestions()
 
     def find_categories(self) -> None:
-        """Find the current search categories."""
+        """Perform a search about the current search categories."""
         self.builder.get_categories()
 
     def find_historical_interest(

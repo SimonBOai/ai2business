@@ -147,5 +147,5 @@ nav:
     - KPI-Collectors: docs/kpi_collector.md
   - API:
     - Key Performance Collector:
-      - Finance-Trend: api/finance_collector.md
-      - Search-Trend: api/trends_collector.md
+      - Finance-Collector: api/finance_collector.md
+      - Trends-Collector: api/trends_collector.md
