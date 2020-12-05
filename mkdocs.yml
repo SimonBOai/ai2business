@@ -143,6 +143,9 @@ plugins:
 # Page tree
 nav:
   - Home: index.md
+  - Usage: 
+    - KPI-Collectors: docs/kpi_collector.md
   - API:
     - Key Performance Collector:
-      - Financial: api/kpi_collector.md
+      - Finance-Trend: api/finance_trend_collector.md
+      - Search-Trend: api/search_trend_collector.md

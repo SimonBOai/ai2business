@@ -17,6 +17,7 @@ class BuilderFinanceCollector(ABC):
     Args:
         ABC ([type]): [description]
     """
+
     @abstractproperty
     def return_dataframe(self) -> None:
         """return_dataframe [summary]
@@ -158,7 +159,7 @@ class BuilderFinanceCollector(ABC):
         """get_quarterly_financials [summary]
 
         [extended_summary]
-        """        
+        """
         pass
 
     @abstractmethod
@@ -218,6 +219,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
     Args:
         BuilderFinanceCollector ([type]): [description]
     """
+
     def __init__(self, key_word_list: list) -> None:
         """__init__ [summary]
 
@@ -239,7 +241,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
 
         Returns:
             pd.DataFrame: [description]
-        """        
+        """
         return self.df
 
     @property
@@ -250,7 +252,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
 
         Returns:
             dict: [description]
-        """        
+        """
         return self.dict
 
     @staticmethod
@@ -268,7 +270,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
 
         Returns:
             pd.DataFrame: [description]
-        """       
+        """
         return {
             key_word: getattr(getattr(tickers.tickers, key_word), func)
             for key_word in key_word_list
@@ -305,7 +307,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
             threads (bool): [description]
             group_by (str): [description]
             progress (bool): [description]
-        """       
+        """
         self.df = self.tickers.history(
             period=period,
             interval=interval,
@@ -325,7 +327,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """get_isin_code [summary]
 
         [extended_summary]
-        """        
+        """
         self.dict = self.all_trickers(
             tickers=self.tickers, key_word_list=self.key_word_list, func="isin"
         )
@@ -529,10 +531,11 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
 
 
 class FinanceCollector:
-    """ [summary]
+    """[summary]
 
     [extended_summary]
     """
+
     def __init__(self) -> None:
         """__init__ [summary]
 
