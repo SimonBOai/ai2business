@@ -14,9 +14,18 @@ copyright: Copyright &copy; 2020 - AI2Business
 theme:
   name: "material"
   palette:
-    scheme: dracula
-    primary: deep purple
-    accent: deep purple
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
   font:
     text: Roboto
     code: Roboto Mono
