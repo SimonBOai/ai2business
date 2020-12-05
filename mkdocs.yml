@@ -14,15 +14,15 @@ copyright: Copyright &copy; 2020 - AI2Business
 theme:
   name: "material"
   palette:
-    - scheme: default
+    - scheme: dracula
       primary: indigo
-      accent: indigo
+      accent: blue
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
-    - scheme: slate
+    - scheme: dracula
       primary: blue
-      accent: blue
+      accent: light blue
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
@@ -87,8 +87,8 @@ markdown_extensions:
       repo_url_shorthand: true
       social_url_shorthand: true
       social_url_shortener: true
-      user: facelessuser
-      repo: pymdown-extensions
+      user: AI2Business
+      repo: ai2business
   - pymdownx.tilde:
   - pymdownx.caret:
   - pymdownx.smartsymbols:
@@ -116,8 +116,6 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/ai2business
-    #- icon: fontawesome/brands/discord
-    #  link: https://discord.gg/TWs8Tgr
   version:
     method: mike
 
