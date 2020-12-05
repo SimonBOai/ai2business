@@ -1,0 +1,1 @@
+:::ai2business.kpi_collector.trends_collector
