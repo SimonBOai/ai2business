@@ -39,6 +39,8 @@ mkdocs-redirects = "*"
 mkdocs-git-revision-date-plugin = "*"
 mike = "*"
 pymdown-extensions = "*"
+pip = "*"
+mkdocs-git-revision-date-localized-plugin = "*"
 
 [requires]
 python_version = "3.8"
