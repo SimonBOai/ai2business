@@ -12,8 +12,7 @@ class BuilderFinanceCollector(ABC):
     different parts of the `DesignerFinanceCollector` objects.
 
     Args:
-        ABC (class): Helper class that provides a standard way to create an ABC using
-        inheritance.
+        ABC (class): Helper class that provides a standard way to create an ABC using inheritance.
     """
 
     @abstractproperty
@@ -121,8 +120,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
     `BuilderFinanceCollector` based on the external library `yfinance`.
 
     Args:
-        BuilderFinanceCollector (class): Abstract class that provides the implementations
-        of the properties and methods.
+        BuilderFinanceCollector (class): Abstract class that provides the implementations of the properties and methods.
     """
 
     def __init__(self, key_word_list: list) -> None:
@@ -141,8 +139,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Return the ticker results as dataframe.
 
         Returns:
-            pd.DataFrame: Two-dimensional, size-mutable, homogenous tabular data,
-            which contains the ticker results as time-series.
+            pd.DataFrame: Two-dimensional, size-mutable, homogenous tabular data, which contains the ticker results as time-series.
         """
         return self.df
 
@@ -152,12 +149,10 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
 
         Note:
         ---
-        `return_dict` is especially useful for getting analysis reports of tickers,
-        market changes, or institutional forecasts.
+        `return_dict` is especially useful for getting analysis reports of tickers, market changes, or institutional forecasts.
 
         Returns:
-            dict: Multi-dimensional, size-mutable, mainly heterogeneous data as
-            dictionary, which contains the `clustered` or `nested` ticker results.
+            dict: Multi-dimensional, size-mutable, mainly heterogeneous data as dictionary, which contains the `clustered` or `nested` ticker results.
         """
         return self.dict
 
@@ -175,8 +170,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
             func (str): Specific class as string.
 
         Returns:
-            pd.DataFrame: Two-dimensional, size-mutable, heterogenous (table in a table)
-            tabular data, which contains the ticker results of different companies.
+            pd.DataFrame: Two-dimensional, size-mutable, heterogenous (table in a table) tabular data, which contains the ticker results of different companies.
         """
         return {
             key_word: getattr(getattr(tickers.tickers, key_word), func)
@@ -201,12 +195,8 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request the history of the chart for given tickers.
 
         Args:
-            period (str): Period of the chart history; valid options: `1d`, `5d`, `1mo`,
-            `3mo`, `6mo`, `1y`, `2y`, `5y`, `10y`, or `ytd,max`. It can either be used
-            the `period`-parameter or the combination of `start`- and `end`-parameter.
-            interval (str): Interval, respectively, time step in the period; valid
-            options: `1m`, `2m`, `5m`, `15m`, `30m`, `60m`, `90m`, `1h`, `1d`, `5d`,
-            `1wk`, `1mo`, or `3mo`. The intraday data cannot extend last 60 days.
+            period (str): Period of the chart history; valid options: `1d`, `5d`, `1mo`, `3mo`, `6mo`, `1y`, `2y`, `5y`, `10y`, or `ytd,max`. It can either be used the `period`-parameter or the combination of `start`- and `end`-parameter.
+            interval (str): Interval, respectively, time step in the period; valid options: `1m`, `2m`, `5m`, `15m`, `30m`, `60m`, `90m`, `1h`, `1d`, `5d`, `1wk`, `1mo`, or `3mo`. The intraday data cannot extend last 60 days.
             start (str): Download start date string (YYYY-MM-DD) or _datetime.
             end (str): Download end date string (YYYY-MM-DD) or _datetime.
             prepost (bool): Group by 'ticker' or 'column'.
@@ -395,8 +385,7 @@ class FinanceCollector:
         """Builder as a property with value None.
 
         Returns:
-            BuilderFinanceCollector: A builder class, that contains the abstract
-            properties and methods.
+            BuilderFinanceCollector: A builder class, that contains the abstract properties and methods.
         """
         return self._builder
 
@@ -405,8 +394,7 @@ class FinanceCollector:
         """Sets the builder according to BuilderFinanceCollector.
 
         Args:
-            builder (BuilderFinanceCollector): A builder class, that contains the
-            abstract properties and methods.
+            builder (BuilderFinanceCollector): A builder class, that contains the abstract properties and methods.
 
         Returns:
             property: A method or property of `BuilderFinanceCollector`.
@@ -431,27 +419,16 @@ class FinanceCollector:
         """Performa a search about the history charts of the tickers.
 
         Args:
-            period (str, optional): Period of the chart history; valid options: `1d`, `5d`, `1mo`,
-            `3mo`, `6mo`, `1y`, `2y`, `5y`, `10y`, or `ytd,max`. It can either be used
-            the `period`-parameter or the combination of `start`- and `end`-parameter.
-            Defaults to "1mo".
+            period (str, optional): Period of the chart history; valid options: `1d`, `5d`, `1mo`, `3mo`, `6mo`, `1y`, `2y`, `5y`, `10y`, or `ytd,max`. It can either be used the `period`-parameter or the combination of `start`- and `end`-parameter. Defaults to "1mo".
             interval (str, optional): Interval, respectively, time step in the period; valid
-            options: `1m`, `2m`, `5m`, `15m`, `30m`, `60m`, `90m`, `1h`, `1d`, `5d`,
-            `1wk`, `1mo`, or `3mo`. The intraday data cannot extend last 60 days.
-            Defaults to "1d".
-            start (str, optional): Download start date string (YYYY-MM-DD) or _datetime.
-            Defaults to None.
-            end (str, optional): Download end date string (YYYY-MM-DD) or _datetime.
-            Defaults to None.
+            options: `1m`, `2m`, `5m`, `15m`, `30m`, `60m`, `90m`, `1h`, `1d`, `5d`, `1wk`, `1mo`, or `3mo`. The intraday data cannot extend last 60 days. Defaults to "1d".
+            start (str, optional): Download start date string (YYYY-MM-DD) or _datetime. Defaults to None.
+            end (str, optional): Download end date string (YYYY-MM-DD) or _datetime. Defaults to None.
             prepost (bool, optional):  Group by 'ticker' or 'column'. Defaults to False.
-            actions (bool, optional):  Including Pre and Post market data in results.
-            Defaults to True.
-            auto_adjust (bool, optional): Adjusting all OHLC automatically.
-            Defaults to True.
-            proxy (str, optional): Downloading the dividend plus stock splits data.
-            Defaults to None.
-            threads (bool, optional): Specifying the number of download threads.
-            Defaults to True.
+            actions (bool, optional):  Including Pre and Post market data in results. Defaults to True.
+            auto_adjust (bool, optional): Adjusting all OHLC automatically. Defaults to True.
+            proxy (str, optional): Downloading the dividend plus stock splits data. Defaults to None.
+            threads (bool, optional): Specifying the number of download threads. Defaults to True.
             group_by (str, optional): Grouping by ticker or column.Defaults to "column".
             progress (bool, optional): Showing progress bar. Defaults to True.
         """
