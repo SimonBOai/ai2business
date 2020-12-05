@@ -109,6 +109,9 @@ extra:
       link: https://github.com/facelessuser
     - icon: fontawesome/brands/discord
       link: https://discord.gg/TWs8Tgr
+  version:
+    method: mike
+
 extra_css:
   - assets/pymdownx-extras/extra.css
 extra_javascript:
@@ -129,6 +132,3 @@ plugins:
   - git-revision-date-localized
   - minify:
       minify_html: true
-extra:
-  version:
-    method: mike
