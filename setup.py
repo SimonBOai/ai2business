@@ -4,7 +4,7 @@ import setuptools
 
 with open("requirements.txt") as f:
     required = f.read().splitlines()
-
+print(required)
 setup(
     name="ai2business",
     version="0.1.0",
