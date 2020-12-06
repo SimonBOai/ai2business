@@ -102,3 +102,12 @@ def test_wordcloud() -> None:
     trends.builder = builder
     trends.make_wordcloud()
     assert type(builder.trends.return_product) == type(dict())
+
+
+def test_part_list():
+    # Have to initial new to avoid time out error
+    trends = tdc.TrendsCollector()
+    builder = tdc.DesignerTrendsCollector(["test", "wordcloud"])
+    trends.builder = builder
+    trends.find_related_queries()
+    assert builder.trends.list_product_parts == "Product parts: related_queries"
