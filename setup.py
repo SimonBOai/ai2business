@@ -2,6 +2,9 @@ from distutils.core import setup
 
 import setuptools
 
+with open("requirements.txt") as f:
+    required = f.read().splitlines()
+
 setup(
     name="ai2business",
     version="0.1.0",
@@ -10,5 +13,6 @@ setup(
     license="Apache License 2.0",
     author="ai2business",
     author_email="ai2business@protonmail.com",
-    description="",
+    description="Smart Solutions for Business with AI",
+    install_requires=required,
 )
