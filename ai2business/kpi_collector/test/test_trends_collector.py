@@ -104,7 +104,7 @@ def test_wordcloud() -> None:
     assert type(builder.trends.return_product) == type(dict())
 
 
-def test_part_list():
+def test_part_list() -> None:
     # Have to initial new to avoid time out error
     trends = tdc.TrendsCollector()
     builder = tdc.DesignerTrendsCollector(["test", "wordcloud"])
