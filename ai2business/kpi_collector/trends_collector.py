@@ -1,5 +1,6 @@
 """Trends Collection Module: Collecting Search Trends via http-API"""
 from abc import ABC, abstractmethod, abstractproperty
+from typing import Callable
 
 import pandas as pd
 from pytrends.request import TrendReq
@@ -15,13 +16,13 @@ class BuilderTrendsCollector(ABC):
         ABC (class): Helper class that provides a standard way to create an ABC using inheritance.
     """
 
-    @abstractproperty
-    def return_dataframe(self) -> None:
-        """Abstract property of return_dataframe."""
+    @abstractmethod
+    def reset(self) -> None:
+        """Abstract method of reset."""
 
     @abstractproperty
-    def return_dict(self) -> None:
-        """Abstract property of return_dict."""
+    def trends(self) -> None:
+        """Abstract property of trends."""
 
     @abstractmethod
     def get_interest_over_time(self) -> None:
@@ -64,6 +65,32 @@ class BuilderTrendsCollector(ABC):
         """Abstract method of get_historical_interest."""
 
 
+class TrendProduct:
+    """TrendProduct contains the dictionary and the return value of it."""
+
+    def __init__(self) -> None:
+        """Initialization of TrendProduct"""
+        self.product_parts = {}
+
+    def add_product(self, key: Callable, value: pd.DataFrame or dict) -> None:
+        """Add the components of the trend search to the dictionary.
+
+        Args:
+            key (Callable): Used trend search function
+            value (pd.DataFrame or dict): Return value as dataframe or dictionary of the function.
+        """
+        self.product_parts[key.__name__] = value
+
+    @property
+    def list_product_parts(self) -> str:
+        """List of the product parts in the dictionary."""
+        return f"Product parts: {', '.join(self.product_parts)}"
+
+    @property
+    def return_product(self) -> dict:
+        return self.product_parts
+
+
 class DesignerTrendsCollector(BuilderTrendsCollector):
     """DesignerTrendsCollector contains the specific implementation of
     `BuilderTrendsCollector`.
@@ -77,7 +104,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
 
     def __init__(
         self,
-        key_word_list: list,
+        keyword_list: list,
         timeframe: str = "today 5-y",
         language: str = "en-US",
         category: int = 0,
@@ -89,7 +116,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
         """Initialization of DesignerTrendsCollector
 
         Args:
-            key_word_list (list): Keyword-list with the items to search for.
+            keyword_list (list): Keyword-list with the items to search for.
             timeframe (str, optional): Time frame, respectively, period to search for.
             Defaults to "today 5-y".
             language (str, optional): Search language. Defaults to "en-US".
@@ -98,7 +125,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
             country (str, optional): The country, where to search for. Defaults to "".
             property_filter (str, optional): Property filer of the search; only in news, images, YouTube, shopping. Defaults to "".
         """
-        self.key_word_list = key_word_list
+        self.keyword_list = keyword_list
         self.timeframe = timeframe
         self.language = language
         self.category = category
@@ -108,37 +135,36 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
 
         self.pytrends = TrendReq(hl=self.language, tz=self.timezone, **kwargs)
         self.pytrends.build_payload(
-            kw_list=self.key_word_list,
+            kw_list=self.keyword_list,
             cat=self.category,
             timeframe=self.timeframe,
             geo=self.country,
             gprop=self.property_filter,
             **kwargs,
         )
-        self.df = pd.DataFrame()
-        self.dict = {}
+        self.reset()
+
+    def reset(self) -> None:
+        """Reset the product to empty."""
+        self._product = TrendProduct()
 
     @property
-    def return_dataframe(self) -> pd.DataFrame:
-        """Return the search results as dataframe.
+    def trends(self) -> TrendProduct:
+        """Return the trend results.
 
         Returns:
-            pd.DataFrame: Two-dimensional, size-mutable, homogenous tabular data, which contains the trend-search results as time-series.
+            TrendProduct: (class) TrendProduct contains the dictionary and the return value of it.
         """
-        return self.df
-
-    @property
-    def return_dict(self) -> dict:
-        """Return the search results as dictionary.
-
-        Returns:
-            dict: Multi-dimensional, size-mutable, mainly heterogeneous data as dictionary, which contains the `clustered` or `nested` trend-search results.
-        """
-        return self.dict
+        product = self._product
+        self.reset()
+        return product
 
     def get_interest_over_time(self) -> None:
         """Request data from a interest over time search."""
-        self.df = self.pytrends.interest_over_time()
+        self._product.add_product(
+            key=self.pytrends.interest_over_time,
+            value=self.pytrends.interest_over_time(),
+        )
 
     def get_interest_by_region(self, resolution: str, **kwargs) -> None:
         """Request data from a interest by region search.
@@ -146,7 +172,11 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
         Args:
             resolution (str): The resolution of the subregion.
         """
-        self.df = self.pytrends.interest_by_region(resolution=resolution, **kwargs)
+        # self.df = self.pytrends.interest_by_region(resolution=resolution, **kwargs)
+        self._product.add_product(
+            key=self.pytrends.interest_by_region,
+            value=self.pytrends.interest_by_region(resolution=resolution, **kwargs),
+        )
 
     def get_trending_searches(self, trend_country: str = "united_states") -> None:
         """Request data from a search by country.
@@ -154,7 +184,11 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
         Args:
             trend_country (str, optional): Name of the country of intrest. Defaults to "united_states".
         """
-        self.df = self.pytrends.trending_searches(pn=trend_country)
+        # self.df = self.pytrends.trending_searches(pn=trend_country)
+        self._product.add_product(
+            key=self.pytrends.trending_searches,
+            value=self.pytrends.trending_searches(pn=trend_country),
+        )
 
     def get_today_searches(self, today_country: str) -> None:
         """Request data from the daily search trends.
@@ -162,7 +196,10 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
         Args:
             today_country (str): Name of the country of intrest.
         """
-        self.df = self.pytrends.today_searches(pn=today_country)
+        self._product.add_product(
+            key=self.pytrends.today_searches,
+            value=self.pytrends.today_searches(pn=today_country),
+        )
 
     def get_top_charts(self, date: int, top_country: str) -> None:
         """Request data from a top charts search.
@@ -171,26 +208,42 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
             date (int): Year
             top_country (str): Name of the country of intrest.
         """
-        self.df = self.pytrends.top_charts(
-            date, hl=self.language, tz=self.timezone, geo=top_country
+        self._product.add_product(
+            key=self.pytrends.top_charts,
+            value=self.pytrends.top_charts(
+                date, hl=self.language, tz=self.timezone, geo=top_country
+            ),
         )
 
     def get_related_topics(self) -> None:
         """Request data of a related topics based on the keyword."""
-        self.dict = self.pytrends.related_topics()
+        self._product.add_product(
+            key=self.pytrends.related_topics, value=self.pytrends.related_topics()
+        )
 
     def get_related_queries(self) -> None:
         """Request data of a related queries based on the keyword."""
-        self.dict = self.pytrends.related_queries()
+        self._product.add_product(
+            key=self.pytrends.related_queries,
+            value=self.pytrends.related_queries(),
+        )
 
     def get_suggestions(self) -> None:
         """Request data from keyword suggestion dropdown search."""
-        for keyword in self.key_word_list:
-            self.dict[keyword] = self.pytrends.suggestions(keyword=keyword)
+        self._product.add_product(
+            key=self.pytrends.suggestions,
+            value={
+                keyword: self.pytrends.suggestions(keyword=keyword)
+                for keyword in self.keyword_list
+            },
+        )
 
     def get_categories(self) -> None:
         """Request available categories data for the current search."""
-        self.dict = self.pytrends.categories()
+        self._product.add_product(
+            key=self.pytrends.categories,
+            value=self.pytrends.categories(),
+        )
 
     def get_historical_interest(
         self,
@@ -216,20 +269,23 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
             day_end (int): Final day
             hour_end (int): Final hour
         """
-        self.df = self.pytrends.get_historical_interest(
-            keywords=self.key_word_list,
-            year_start=year_start,
-            month_start=month_start,
-            day_start=day_start,
-            hour_start=hour_start,
-            year_end=year_end,
-            month_end=month_end,
-            day_end=day_end,
-            hour_end=hour_end,
-            cat=self.category,
-            geo=self.country,
-            gprop=self.property_filter,
-            **kwargs,
+        self._product.add_product(
+            key=self.pytrends.get_historical_interest,
+            value=self.pytrends.get_historical_interest(
+                keywords=self.keyword_list,
+                year_start=year_start,
+                month_start=month_start,
+                day_start=day_start,
+                hour_start=hour_start,
+                year_end=year_end,
+                month_end=month_end,
+                day_end=day_end,
+                hour_end=hour_end,
+                cat=self.category,
+                geo=self.country,
+                gprop=self.property_filter,
+                **kwargs,
+            ),
         )
 
 
@@ -359,3 +415,20 @@ class TrendsCollector:
             )
         except ValueError as exc:
             print(f"ERROR: {exc} -> Date is illegal!")
+
+    def find_categories(self) -> None:
+        """Perform a search about the current search categories."""
+        self.builder.get_categories()
+
+    def make_wordcloud(self) -> None:
+        """Make a worldcloud of related words and their suggestions.
+
+        Note:
+        ---
+
+        The summation of different search engines can cause timeout errors due to lenght of the search.
+        """
+        self.builder.get_related_topics()
+        self.builder.get_related_queries()
+        self.builder.get_suggestions()
+        self.builder.get_categories()
