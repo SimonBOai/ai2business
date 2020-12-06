@@ -172,7 +172,6 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
         Args:
             resolution (str): The resolution of the subregion.
         """
-        # self.df = self.pytrends.interest_by_region(resolution=resolution, **kwargs)
         self._product.add_product(
             key=self.pytrends.interest_by_region,
             value=self.pytrends.interest_by_region(resolution=resolution, **kwargs),
@@ -184,7 +183,6 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
         Args:
             trend_country (str, optional): Name of the country of intrest. Defaults to "united_states".
         """
-        # self.df = self.pytrends.trending_searches(pn=trend_country)
         self._product.add_product(
             key=self.pytrends.trending_searches,
             value=self.pytrends.trending_searches(pn=trend_country),
