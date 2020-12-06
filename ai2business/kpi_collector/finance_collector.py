@@ -123,14 +123,14 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         BuilderFinanceCollector (class): Abstract class that provides the implementations of the properties and methods.
     """
 
-    def __init__(self, key_word_list: list) -> None:
+    def __init__(self, keyword_list: list) -> None:
         """Initialization of DesignerFinanceCollector
 
         Args:
-            key_word_list (list): Keyword-list with the tickers to search for.
+            keyword_list (list): Keyword-list with the tickers to search for.
         """
-        self.key_word_list = key_word_list
-        self.tickers = yf.Tickers(" ".join(self.key_word_list))
+        self.keyword_list = keyword_list
+        self.tickers = yf.Tickers(" ".join(self.keyword_list))
         self.df = pd.DataFrame()
         self.dict = {}
 
@@ -158,7 +158,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
 
     @staticmethod
     def all_trickers(
-        tickers: yf.Tickers, key_word_list: list, func: str
+        tickers: yf.Tickers, keyword_list: list, func: str
     ) -> pd.DataFrame:
         """all_trickers [summary]
 
@@ -166,15 +166,15 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
 
         Args:
             tickers (yf.Tickers): Finance market data downloader.
-            key_word_list (list): Keyword-list with the tickers to search for.
+            keyword_list (list): Keyword-list with the tickers to search for.
             func (str): Specific class as string.
 
         Returns:
             pd.DataFrame: Two-dimensional, size-mutable, heterogenous (table in a table) tabular data, which contains the ticker results of different companies.
         """
         return {
-            key_word: getattr(getattr(tickers.tickers, key_word), func)
-            for key_word in key_word_list
+            keyword: getattr(getattr(tickers.tickers, keyword), func)
+            for keyword in keyword_list
         }
 
     def get_chart_history(
@@ -225,20 +225,20 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
     def get_isin_code(self) -> None:
         """Request for the International Securities Identification Number (ISIN)."""
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="isin"
+            tickers=self.tickers, keyword_list=self.keyword_list, func="isin"
         )
 
     def get_major_holders(self) -> None:
         """Request for the major holders of the ticker."""
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="major_holders"
+            tickers=self.tickers, keyword_list=self.keyword_list, func="major_holders"
         )
 
     def get_institutional_holders(self) -> None:
         """Request for the institutional holders of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="institutional_holders",
         )
 
@@ -246,45 +246,45 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the mutualfund holders of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="mutualfund_holders",
         )
 
     def get_dividends(self) -> None:
         """Request for the dividend of the ticker."""
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="dividends"
+            tickers=self.tickers, keyword_list=self.keyword_list, func="dividends"
         )
 
     def get_splits(self) -> None:
         """Request for the splits of the ticker."""
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="splits"
+            tickers=self.tickers, keyword_list=self.keyword_list, func="splits"
         )
 
     def get_actions(self) -> None:
         """Request for the dividends and splits of the ticker together."""
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="actions"
+            tickers=self.tickers, keyword_list=self.keyword_list, func="actions"
         )
 
     def get_info(self) -> None:
         """Request for information about the ticker."""
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="info"
+            tickers=self.tickers, keyword_list=self.keyword_list, func="info"
         )
 
     def get_calendar(self) -> None:
         """Request for information about upcoming events of the ticker."""
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="calendar"
+            tickers=self.tickers, keyword_list=self.keyword_list, func="calendar"
         )
 
     def get_recommendations(self) -> None:
         """Request for the analyst recommendations for the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="recommendations",
         )
 
@@ -292,7 +292,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the yearly earnings of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="earnings",
         )
 
@@ -300,7 +300,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the yearly quarterly of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="quarterly_earnings",
         )
 
@@ -308,7 +308,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the yearly financial information of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="financials",
         )
 
@@ -316,7 +316,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the quarterly financial information of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="quarterly_financials",
         )
 
@@ -324,7 +324,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the yearly balancesheet of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="balancesheet",
         )
 
@@ -332,7 +332,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the quarterly balancesheet of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="quarterly_balancesheet",
         )
 
@@ -340,7 +340,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the yearly cashflow of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="cashflow",
         )
 
@@ -348,7 +348,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the quarterly cashflow of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="quarterly_cashflow",
         )
 
@@ -356,7 +356,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for information about the sustainability of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="sustainability",
         )
 
@@ -364,7 +364,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for information about the options of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="options",
         )
 
