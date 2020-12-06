@@ -140,7 +140,6 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
             timeframe=self.timeframe,
             geo=self.country,
             gprop=self.property_filter,
-            **kwargs,
         )
         self.reset()
 
