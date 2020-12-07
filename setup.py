@@ -1,3 +1,4 @@
+"""Setup.py for AI2Business"""
 from distutils.core import setup
 
 import setuptools
