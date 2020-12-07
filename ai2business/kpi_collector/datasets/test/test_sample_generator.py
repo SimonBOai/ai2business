@@ -39,4 +39,4 @@ def test_load_default() -> None:
 
 
 def test_load_failed() -> None:
-    assert sample_generator.stock_market("STOCK") == None
+    assert sample_generator.stock_market("STOCK") is None
