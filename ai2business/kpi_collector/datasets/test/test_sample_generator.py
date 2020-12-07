@@ -16,7 +16,7 @@ ref_DOW = {
     "Johnson & Johnson": "JNJ",
     "Coca-Cola Co": "KO",
     "JPMorgan Chase & Co": "JPM",
-    "McDonald’s Corp": "MCD",
+    "McDonald's Corp": "MCD",
     "3M Co": "MMM",
     "Merck & Co Inc": "MRK",
     "Microsoft Corp": "MSFT",
@@ -34,7 +34,7 @@ ref_DOW = {
 }
 
 
-def test_load_DOW() -> None:
+def test_load_default() -> None:
     assert sample_generator.stock_market() == ref_DOW
 
 

@@ -1,5 +1,5 @@
 site_name: AI2Business
-#site_url: coming soon
+site_url: https://ai2business.github.io/ai2business/dev/
 site_description: Smart solutions for Business with AI.
 site_author: AI2Business & coworkers
 
@@ -30,7 +30,7 @@ theme:
     text: Roboto
     code: Roboto Mono
   icon:
-    logo: material/calculator
+    logo: material/library
     repo: material/github
   favicon: assets/favicon.png
   features:
@@ -82,8 +82,8 @@ markdown_extensions:
   - pymdownx.caret:
   - pymdownx.smartsymbols:
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+     # emoji_index: !!python/name:materialx.emoji.twemoji
+     # emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.escapeall:
       hardbreak: True
       nbsp: True
@@ -136,3 +136,4 @@ nav:
     - Key Performance Collector:
       - Finance-Collector: api/finance_collector.md
       - Trends-Collector: api/trends_collector.md
+      - Datasets: api/datasets.md

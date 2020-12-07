@@ -61,7 +61,7 @@ python-dateutil==2.8.1; python_version >= '2.7' and python_version not in '3.0, 
 pytkdocs==0.9.0; python_version >= '3.6' and python_version < '4'
 pytz==2020.4
 pyyaml==5.3.1
-regex==2020.11.13
+regex==2020.11.1MkDocs encountered as error parsing the configuration file: could not determine a constructor for the tag '!!python/name:materialx.emoji.twemoji'3
 requests[security]==2.25.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'
 ruamel.yaml.clib==0.2.2; python_version < '3.9' and platform_python_implementation == 'CPython'
 ruamel.yaml==0.16.12
