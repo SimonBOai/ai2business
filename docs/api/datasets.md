@@ -1,2 +1,5 @@
 
-:::ai2business.kpi_collector.datasets.sample_generator
+## API of the Datsets Tools
+---
+
+:::ai2business.datasets.sample_generator
