@@ -1,2 +1,1 @@
 """ Abstract """
-from . import *
