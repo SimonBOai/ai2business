@@ -16,4 +16,5 @@ setup(
     author_email="ai2business@protonmail.com",
     description="Smart Solutions for Business with AI",
     install_requires=required,
+    include_package_data=True,
 )

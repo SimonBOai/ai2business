@@ -23,7 +23,7 @@ def test_interest_by_region() -> None:
 
 
 def test_trending_searches() -> None:
-    trends.find_trending_searches()
+    trends.find_trending_searches("japan")
     assert type(builder.trends.return_product["trending_searches"]) == type(
         pd.DataFrame()
     )
