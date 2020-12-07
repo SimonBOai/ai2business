@@ -88,6 +88,11 @@ class TrendProduct:
 
     @property
     def return_product(self) -> dict:
+        """Returns the product as a dictionary
+
+        Returns:
+            dict: The product dictionary contains the product and ist function name as `key`.
+        """
         return self.product_parts
 
 
@@ -412,10 +417,6 @@ class TrendsCollector:
             )
         except ValueError as exc:
             print(f"ERROR: {exc} -> Date is illegal!")
-
-    def find_categories(self) -> None:
-        """Perform a search about the current search categories."""
-        self.builder.get_categories()
 
     def make_wordcloud(self) -> None:
         """Make a worldcloud of related words and their suggestions.
