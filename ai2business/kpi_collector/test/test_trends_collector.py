@@ -1,3 +1,4 @@
+"""Test-Enviroment for trends_collector.py"""
 import pandas as pd
 
 from ai2business.kpi_collector import trends_collector as tdc
