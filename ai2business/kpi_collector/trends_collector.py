@@ -335,7 +335,7 @@ class TrendsCollector:
         """
         self.builder.get_interest_by_region(resolution=resolution, **kwargs)
 
-    def find_trending_searches(self, trend_country: str = "US") -> None:
+    def find_trending_searches(self, trend_country: str = "united_states") -> None:
         """Performa a search trend analysis.
 
         Args:
