@@ -1,4 +1,4 @@
-from ai2business.kpi_collector.datasets import sample_generator
+from ai2business.datasets import sample_generator
 
 ref_DOW = {
     "American Express Co": "AXP",

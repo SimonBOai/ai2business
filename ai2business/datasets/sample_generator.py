@@ -3,7 +3,7 @@ __all__ = ["stock_market"]
 import json
 from pathlib import Path
 
-__cwd__ = Path("ai2business/kpi_collector/datasets/data/")
+__cwd__ = Path("ai2business/datasets/data/")
 
 
 def load_json(database: str) -> dict:
