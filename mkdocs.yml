@@ -1,0 +1,139 @@
+site_name: AI2Business
+site_url: https://ai2business.github.io/ai2business/dev/
+site_description: Smart solutions for Business with AI.
+site_author: AI2Business & coworkers
+
+
+repo_url: https://github.com/AI2Business/ai2business
+repo_name: AI2Business
+edit_uri: edit/main/docs
+
+# Copyright
+copyright: Copyright &copy; 2020 - AI2Business
+
+theme:
+  name: "material"
+  palette:
+    - scheme: dracula
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+    - scheme: dracula
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  icon:
+    logo: material/library
+    repo: material/github
+  favicon: assets/favicon.png
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+  static_templates:
+    - 404.html
+
+
+markdown_extensions:
+  - markdown.extensions.toc:
+  - markdown.extensions.admonition:
+  - markdown.extensions.smarty:
+  - pymdownx.betterem:
+  - markdown.extensions.attr_list:
+  - markdown.extensions.def_list:
+  - markdown.extensions.tables:
+  - markdown.extensions.abbr:
+  - markdown.extensions.footnotes:
+  - markdown.extensions.md_in_html:
+  - pymdownx.superfences:
+      preserve_tabs: true
+  - pymdownx.highlight:
+      extend_pygments_lang:
+        - name: php-inline
+          lang: php
+          options:
+            startinline: true
+        - name: python
+          lang: python
+          options:
+            python3: true
+      linenums_style: pymdownx-inline
+  - pymdownx.inlinehilite:
+      custom_inline:
+        - name: math
+          class: arithmatex
+  - pymdownx.magiclink:
+      repo_url_shortener: true
+      repo_url_shorthand: true
+      social_url_shorthand: true
+      social_url_shortener: true
+      user: AI2Business
+      repo: ai2business
+  - pymdownx.tilde:
+  - pymdownx.caret:
+  - pymdownx.smartsymbols:
+  - pymdownx.emoji:
+     # emoji_index: !!python/name:materialx.emoji.twemoji
+     # emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.escapeall:
+      hardbreak: True
+      nbsp: True
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.progressbar:
+  - pymdownx.arithmatex:
+  - pymdownx.mark:
+  - pymdownx.striphtml:
+  - pymdownx.snippets:
+  - pymdownx.keys:
+  - pymdownx.details:
+  - pymdownx.tabbed:
+  - pymdownx.saneheaders:
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ai2business
+  version:
+    method: mike
+
+#extra_css:
+#  - assets/pymdownx-extras/extra.css
+#extra_javascript:
+#  - assets/pymdownx-extras/extra-uml.js
+
+plugins:
+  - search
+  - mkdocstrings
+  - git-revision-date:
+      enabled_if_env: CI
+  - exclude:
+      glob:
+        - "test/*"
+        - "*.tmp"
+        - "*.pdf"
+        - "*.gz"
+  - macros
+  - git-revision-date-localized
+  - minify:
+      minify_html: true
+
+# Page tree
+nav:
+  - Home: index.md
+  - Usage: 
+    - KPI-Collectors: docs/kpi_collector.md
+  - API:
+    - Key Performance Collector:
+      - Finance-Collector: api/finance_collector.md
+      - Trends-Collector: api/trends_collector.md
+      - Datasets: api/datasets.md

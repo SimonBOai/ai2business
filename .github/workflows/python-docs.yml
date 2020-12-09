@@ -1,0 +1,48 @@
+name: Python docs
+on:
+  push:
+    branches: [master, main, docs]
+  pull_request:
+    branches: [master, main, docs]
+
+jobs:
+  documentation:
+    name: Build documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f dev-requirements.txt ]; then pip install -r dev-requirements.txt; fi
+      - name: Install AI2Business
+        run: |
+          pip install -e .
+      - name: Set git config
+        run: |
+           git config --local user.email "action@github.com"
+           git config --local user.name "GitHub Action"
+      - name: Build documentation
+        run: |
+           mike install-extras
+           mike deploy dev
+      - name: Deploy documentation develops
+        if: contains(github.ref, 'refs/heads/main')
+        run: |
+           mike delete dev || true
+           mike deploy --push dev --force
+      - name: Get the release version
+        if: contains(github.ref, 'refs/tags/v')
+        id: get_version
+        run: |
+          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+      - name: Deploy documentation new release
+        if: contains(github.ref, 'refs/tags/v')
+        run: |
+           mike deploy --push --update-aliases ${{ steps.get_version.outputs.VERSION }} latest
+           mike set-default --push ${{ steps.get_version.outputs.VERSION }}

@@ -9,3 +9,6 @@ dummy.py
 ai2business.egg-info
 .coverage
 .pytest_cache
+.vscode
+dist/
+build/
