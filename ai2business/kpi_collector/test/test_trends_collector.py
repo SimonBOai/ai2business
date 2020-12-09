@@ -42,7 +42,7 @@ def test_top_charts_true() -> None:
 
 
 def test_top_charts_failed() -> None:
-    trends.find_top_charts(2020)
+    trends.find_top_charts(2022)
     assert builder.trends.return_product == {}
 
 
