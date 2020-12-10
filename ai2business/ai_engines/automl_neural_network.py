@@ -24,6 +24,7 @@ class AutoMLNeuralNetwork:
         clf = ak.TextClassifier(
         overwrite=True,
         max_trials=1)
+        clf.fit(x_train, y_train, epochs=10)
 
     def text_regression():
         reg = ak.TextRegressor(
@@ -34,8 +35,14 @@ class AutoMLNeuralNetwork:
         clf = ak.StructuredDataClassifier(
         overwrite=True,
         max_trials=1)
+        clf.fit(x_train, y_train, epochs=10)
 
     def data_regression():
         reg = ak.StructuredDataRegressor(
         overwrite=True,
         max_trials=1)
+        reg.fit(x_train, y_train, epochs=10)
+
+    def timeseries_forecaster():
+        reg = ak.TimeseriesForecaster()
+        
