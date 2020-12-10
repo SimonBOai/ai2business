@@ -21,6 +21,8 @@ scikit-learn = "*"
 tpot = "*"
 yellowbrick = "*"
 imbalanced-learn = "*"
+xgboost = "*"
+ai2business = {path = "."}
 
 [dev-packages]
 isort = "*"
