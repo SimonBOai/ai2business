@@ -14,7 +14,7 @@ class AutoMLModels:
         overwrite: bool = False,
         project_name: str = "AutoML_DeepLearning",
         max_model_size: int = None,
-        max_trials: int = 100,
+        max_trials: int = 1,
         metrics: str = None,
         seed: int = None,
         tuner: str = None,
@@ -46,12 +46,17 @@ class AutoMLModels:
 
     def image_classification(
         self, num_classes: int = None, multi_label: bool = False, **kwargs
-    ):
-        """[summary]
+    ) -> ak.ImageClassifier:
+        """image_classification [summary]
+
+        [extended_summary]
 
         Args:
             num_classes (int, optional): [description]. Defaults to None.
             multi_label (bool, optional): [description]. Defaults to False.
+
+        Returns:
+            ak.ImageClassifier: [description]
         """
         return ak.ImageClassifier(
             num_classes=num_classes,
@@ -69,7 +74,7 @@ class AutoMLModels:
             **kwargs,
         )
 
-    def image_regression(self, output_dim: int = None, **kwargs):
+    def image_regression(self, output_dim: int = None, **kwargs) -> ak.ImageRegressor:
         """[summary]
 
         Args:
@@ -92,7 +97,7 @@ class AutoMLModels:
 
     def text_classification(
         self, num_classes: int = None, multi_label: bool = False, **kwargs
-    ):
+    ) -> ak.TextClassifier:
         """[summary]
 
         Args:
@@ -115,7 +120,7 @@ class AutoMLModels:
             **kwargs,
         )
 
-    def text_regression(self, output_dim: int = None, **kwargs):
+    def text_regression(self, output_dim: int = None, **kwargs) -> ak.TextRegressor:
         """[summary]
 
         Args:
@@ -143,7 +148,7 @@ class AutoMLModels:
         num_classes: int = None,
         multi_label: bool = False,
         **kwargs,
-    ):
+    ) -> ak.StructuredDataClassifier:
         """[summary]
 
         Args:
@@ -176,7 +181,7 @@ class AutoMLModels:
         column_types: dict = None,
         output_dim: int = None,
         **kwargs,
-    ):
+    ) -> ak.StructuredDataRegressor:
         """[summary]
 
         Args:
@@ -210,7 +215,7 @@ class AutoMLModels:
         predict_from: int = 1,
         predict_until: int = None,
         **kwargs,
-    ):
+    ) -> ak.TimeseriesForecaster:
         """[summary]
 
         Args:
@@ -241,7 +246,7 @@ class AutoMLModels:
             **kwargs,
         )
 
-    def multi_model(self, inputs: list, outputs: list, **kwargs) -> None:
+    def multi_model(self, inputs: list, outputs: list, **kwargs) -> ak.AutoModel:
 
         return ak.AutoModel(
             inputs=inputs,
@@ -284,29 +289,29 @@ class AutoMLRoutines:
 
     def fit_model(
         self,
-        X: Any = None,
-        y: Any = None,
+        X_train: Any,
+        y_train: Any,
         batch_size: int = 32,
         epochs: int = None,
         callbacks: list = None,
         validation_split: float = 0.2,
         validation_data: Any = None,
         **kwargs,
-    ):
+    ) -> None:
         """[summary]
 
         Args:
-            X (Any, optional): [description]. Defaults to None.
-            y (Any, optional): [description]. Defaults to None.
+            X_train (Any): [description]. Defaults to None.
+            y_train (Any): [description]. Defaults to None.
             batch_size (int, optional): [description]. Defaults to 32.
             epochs (int, optional): [description]. Defaults to None.
             callbacks (list, optional): [description]. Defaults to None.
             validation_split (float, optional): [description]. Defaults to 0.2.
             validation_data (Any, optional): [description]. Defaults to None.
         """
-        self.model = self.model.fit(
-            x=X,
-            y=y,
+        self.model.fit(
+            x=X_train,
+            y=y_train,
             batch_size=batch_size,
             epochs=epochs,
             callbacks=callbacks,
@@ -314,166 +319,203 @@ class AutoMLRoutines:
             validation_data=validation_data,
             **kwargs,
         )
+        return self.model
 
     def predict_model(
         self,
-        X,
+        X_train: Any,
         batch_size: int = 32,
         **kwargs,
-    ):
-        """[summary]
+    ) -> None:
+        """predict_model [summary]
+
+        [extended_summary]
 
         Args:
-            X ([type]): [description]
+            X_train (Any): [description]
             batch_size (int, optional): [description]. Defaults to 32.
         """
-        self.model = self.model.predict(
-            x=X,
+        return self.model.predict(
+            x=X_train,
             batch_size=batch_size,
             **kwargs,
         )
 
-    def evaluate_model(self, X: Any, y: Any = None, batch_size: int = 32, **kwargs):
+    def evaluate_model(
+        self, X_test: Any, y_test: Any = None, batch_size: int = 32, **kwargs
+    ) -> None:
         """[summary]
 
         Args:
-            X (Any): [description]
-            y (Any, optional): [description]. Defaults to None.
+            X_test (Any): [description]
+            y_test (Any, optional): [description]. Defaults to None.
             batch_size (int, optional): [description]. Defaults to 32.
         """
-        self.model = self.model.evaluate(X=X, y=y, batch_size=batch_size, **kwargs)
+        return self.model.evaluate(x=X_test, y=y_test, batch_size=batch_size, **kwargs)
 
 
 class AutoMLPipeline:
-    def __init__(self, train):
+    def __init__(self, train: Any) -> None:
 
         self._train = train
-        self.trainset = None
+        self.automl_model = {"model": None, "prediction": None, "evaluation": None}
 
     @property
-    def train(self):
+    def train(self) -> Any:
 
         return self._train
 
     @train.setter
-    def train(self, train):
-        # self.trainset = self._train
+    def train(self, train: Any) -> None:
         self._train = train
 
     def run_automl(self):
 
-        self.trainset = self._train.do_algorithm(self.trainset)
+        self.automl_model = self._train.perform_job(self.automl_model)
+
+    @property
+    def return_automl(self) -> dict:
+        return self.automl_model
 
 
 class Procedure(ABC):
     @abstractmethod
-    def do_algorithm(self):
+    def perform_job(self):
         pass
 
 
 class ImageClassification(Procedure):
-    def do_algorithm(self, trainset):
-        _ = trainset
+    def perform_job(self, automl_model: dict):
+        _ = automl_model
         model = AutoMLModels().image_classification()
-        return AutoMLRoutines(model)
+        return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
 class ImageRegression(Procedure):
-    def do_algorithm(self, trainset):
-        _ = trainset
+    def perform_job(self, automl_model: dict):
+        _ = automl_model
         model = AutoMLModels().image_regression()
-        return AutoMLRoutines(model)
+        return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
 class TextClassification(Procedure):
-    def do_algorithm(self, trainset):
-        _ = trainset
+    def perform_job(self, automl_model: dict):
+        _ = automl_model
         model = AutoMLModels().text_classification()
-        return AutoMLRoutines(model)
+        return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
 class TextRegression(Procedure):
-    def do_algorithm(self, trainset):
-        _ = trainset
+    def perform_job(self, automl_model: dict):
+        _ = automl_model
         model = AutoMLModels().text_regression()
-        return AutoMLRoutines(model)
+        return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
 class DataClassification(Procedure):
-    def do_algorithm(self, trainset):
-        _ = trainset
+    def perform_job(self, automl_model: dict):
+        _ = automl_model
         model = AutoMLModels().data_classification()
-        return AutoMLRoutines(model)
+        return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
 class DataRegression(Procedure):
-    def do_algorithm(self, trainset):
-        _ = trainset
+    def perform_job(self, automl_model: dict):
+        _ = automl_model
         model = AutoMLModels().data_regression()
-        return AutoMLRoutines(model)
+        return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
 class TimeseriesForecaster(Procedure):
-    def do_algorithm(self, trainset):
-        _ = trainset
+    def perform_job(self, automl_model: dict):
+        _ = automl_model
         model = AutoMLModels().timeseries_forecaster()
-        return AutoMLRoutines(model)
+        return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
 class MultiModel(Procedure):
-    def do_algorithm(self, trainset):
-        _ = trainset
+    def perform_job(self, automl_model: dict):
+        _ = automl_model
         model = AutoMLModels().multi_model()
-        return AutoMLRoutines(model)
+        return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
-class ConcreteStrategyB(Procedure):
-    def __init__(self, x_train, y_train, x_test, y_test):
-        self.x_train = x_train
+class AutoMLFit(Procedure):
+    def __init__(
+        self,
+        X_train: Any,
+        y_train: Any,
+        batch_size: int = 32,
+        epochs: int = None,
+        callbacks: list = None,
+        validation_split: float = 0.2,
+        validation_data: Any = None,
+        **kwargs,
+    ) -> None:
+        self.X_train = X_train
         self.y_train = y_train
-        self.x_test = x_test
+        self.batch_size = batch_size
+        self.epochs = epochs
+        self.callbacks = callbacks
+        self.validation_split = validation_split
+        self.validation_data = validation_data
+        self.kwargs = kwargs
+
+    def perform_job(self, automl_model: dict):
+
+        return {
+            "model": automl_model["model"].fit_model(
+                X_train=self.X_train,
+                y_train=self.y_train,
+                epochs=self.epochs,
+                callbacks=self.callbacks,
+                validation_split=self.validation_split,
+                validation_data=self.validation_data,
+                **self.kwargs,
+            ),
+            "prediction": None,
+            "evaluation": None,
+        }
+
+
+class AutoMLPredict(Procedure):
+    def __init__(
+        self,
+        X_train: Any,
+        batch_size: int = 32,
+        **kwargs,
+    ) -> None:
+        self.X_train = X_train
+        self.batch_size = batch_size
+        self.kwargs = kwargs
+
+    def perform_job(self, automl_model: dict):
+        return {
+            "model": automl_model["model"],
+            "prediction": automl_model["model"].predict(
+                x=self.X_train, batch_size=self.batch_size, **self.kwargs
+            ),
+            "evaluation": automl_model["evaluation"],
+        }
+
+
+class AutoMLEvaluate(Procedure):
+    def __init__(
+        self, X_test: Any, y_test: Any = None, batch_size: int = 32, **kwargs
+    ) -> None:
+        self.X_test = X_test
         self.y_test = y_test
+        self.batch_size = batch_size
+        self.kwargs = kwargs
 
-    def do_algorithm(self, trainset):
-
-        trainset.fit_model(self.x_train, self.y_train)
-        predicted_y = self.trainset.predict_model(self.x_test)
-
-        print(self.trainset.evaluate_model(self.x_test, self.y_test))
-
-
-if __name__ == "__main__":
-    import os
-    import numpy as np
-    import tensorflow as tf
-    from tensorflow.keras.datasets import imdb
-    from sklearn.datasets import load_files
-
-    dataset = tf.keras.utils.get_file(
-        fname="aclImdb.tar.gz",
-        origin="http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz",
-        extract=True,
-    )
-
-    # set path to dataset
-    IMDB_DATADIR = os.path.join(os.path.dirname(dataset), "aclImdb")
-
-    classes = ["pos", "neg"]
-    train_data = load_files(
-        os.path.join(IMDB_DATADIR, "train"), shuffle=True, categories=classes
-    )
-    test_data = load_files(
-        os.path.join(IMDB_DATADIR, "test"), shuffle=False, categories=classes
-    )
-
-    x_train = np.array(train_data.data)
-    y_train = np.array(train_data.target)
-    x_test = np.array(test_data.data)
-    y_test = np.array(test_data.target)
-
-    context = AutoMLPipeline(TextClassifiction())
-    print(type(context))
-    # context.run_automl()
-
-    # context.train = ConcreteStrategyB(x_train, y_train, x_test, y_test)
-    # context.run_automl()
+    def perform_job(self, automl_model: dict):
+        return {
+            "model": automl_model["model"],
+            "prediction": automl_model["prediction"],
+            "evaluation": automl_model["model"].evaluate(
+                x=self.X_test,
+                y=self.y_test,
+                batch_size=self.batch_size,
+                **self.kwargs,
+            ),
+        }
