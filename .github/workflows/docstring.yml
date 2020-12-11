@@ -17,8 +17,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Get paths
+      - name: Set git config and get paths
         run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git show --pretty="" --name-only ${{ github.sha }} > PATHS_TO_CHANGED_FILES.txt
       - uses: ponicode/docstrings-action@master
         with:
@@ -27,7 +29,7 @@ jobs:
           all_repo: True
         # Creates pull request with all changes in file
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v2
+        uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "[ponicode-pull-request] Ponicode wrote new docstrings!"
