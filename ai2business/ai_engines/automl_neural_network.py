@@ -371,11 +371,15 @@ class Procedure(ABC):
         pass
 
 
-class ConcreteStrategyA(Procedure):
+
+
+class TextClassifiction(Procedure):
     def do_algorithm(self,trainset):
         _ = trainset 
         model = AutoMLModels().text_classification()
         return AutoMLRoutines(model)
+
+    
 
 
 class ConcreteStrategyB(Procedure):
@@ -389,7 +393,7 @@ class ConcreteStrategyB(Procedure):
         
         trainset.fit_model(self.x_train, self.y_train)
         predicted_y = self.trainset.predict_model(self.x_test)
-        # Evaluate the best model with testing data.
+    
         print(self.trainset.evaluate_model(self.x_test, self.y_test))
 
 
@@ -422,8 +426,9 @@ if __name__ == "__main__":
     x_test = np.array(test_data.data)
     y_test = np.array(test_data.target)
 
-    context = AutoMLPipeline(ConcreteStrategyA())
-    context.run_automl()
+    context = AutoMLPipeline(TextClassifiction())
+    print(type(context))
+    #context.run_automl()
 
-    context.train = ConcreteStrategyB(x_train, y_train, x_test, y_test)
-    context.run_automl()
+    #context.train = ConcreteStrategyB(x_train, y_train, x_test, y_test)
+    #context.run_automl()
