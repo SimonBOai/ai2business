@@ -257,7 +257,7 @@ class AutoMLModels:
         )
 
     @staticmethod
-    def load_model(model_name: str = "model_autokeras") -> None:
+    def load_model(model_name: str = "model_autokeras"):
         """[summary]
 
         Args:
@@ -357,7 +357,7 @@ class AutoMLPipeline:
 
     @train.setter
     def train(self, train):
-        #self.trainset = self._train
+        # self.trainset = self._train
         self._train = train
 
     def run_automl(self):
@@ -371,15 +371,60 @@ class Procedure(ABC):
         pass
 
 
+class ImageClassification(Procedure):
+    def do_algorithm(self, trainset):
+        _ = trainset
+        model = AutoMLModels().image_classification()
+        return AutoMLRoutines(model)
 
 
-class TextClassifiction(Procedure):
-    def do_algorithm(self,trainset):
-        _ = trainset 
+class ImageRegression(Procedure):
+    def do_algorithm(self, trainset):
+        _ = trainset
+        model = AutoMLModels().image_regression()
+        return AutoMLRoutines(model)
+
+
+class TextClassification(Procedure):
+    def do_algorithm(self, trainset):
+        _ = trainset
         model = AutoMLModels().text_classification()
         return AutoMLRoutines(model)
 
-    
+
+class TextRegression(Procedure):
+    def do_algorithm(self, trainset):
+        _ = trainset
+        model = AutoMLModels().text_regression()
+        return AutoMLRoutines(model)
+
+
+class DataClassification(Procedure):
+    def do_algorithm(self, trainset):
+        _ = trainset
+        model = AutoMLModels().data_classification()
+        return AutoMLRoutines(model)
+
+
+class DataRegression(Procedure):
+    def do_algorithm(self, trainset):
+        _ = trainset
+        model = AutoMLModels().data_regression()
+        return AutoMLRoutines(model)
+
+
+class TimeseriesForecaster(Procedure):
+    def do_algorithm(self, trainset):
+        _ = trainset
+        model = AutoMLModels().timeseries_forecaster()
+        return AutoMLRoutines(model)
+
+
+class MultiModel(Procedure):
+    def do_algorithm(self, trainset):
+        _ = trainset
+        model = AutoMLModels().multi_model()
+        return AutoMLRoutines(model)
 
 
 class ConcreteStrategyB(Procedure):
@@ -388,12 +433,12 @@ class ConcreteStrategyB(Procedure):
         self.y_train = y_train
         self.x_test = x_test
         self.y_test = y_test
-        
+
     def do_algorithm(self, trainset):
-        
+
         trainset.fit_model(self.x_train, self.y_train)
         predicted_y = self.trainset.predict_model(self.x_test)
-    
+
         print(self.trainset.evaluate_model(self.x_test, self.y_test))
 
 
@@ -428,7 +473,7 @@ if __name__ == "__main__":
 
     context = AutoMLPipeline(TextClassifiction())
     print(type(context))
-    #context.run_automl()
+    # context.run_automl()
 
-    #context.train = ConcreteStrategyB(x_train, y_train, x_test, y_test)
-    #context.run_automl()
+    # context.train = ConcreteStrategyB(x_train, y_train, x_test, y_test)
+    # context.run_automl()
