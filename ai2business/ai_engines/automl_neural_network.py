@@ -7,7 +7,7 @@
 5. Mixture Models like Text + Images
 """
 from abc import ABC, abstractmethod
-from typing import Any
+from typing import Any, Callable
 
 import autokeras as ak
 from tensorflow.keras.models import load_model
@@ -266,7 +266,7 @@ class AutoMLModels:
             ak.TimeseriesForecaster: AutoKERAS timeseries forecast class.
         """
         return ak.TimeseriesForecaster(
-            olumn_names=column_names,
+            column_names=column_names,
             column_types=column_types,
             output_dim=output_dim,
             lookback=lookback,
