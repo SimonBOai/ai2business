@@ -120,7 +120,7 @@ plugins:
         - "*.tmp"
         - "*.pdf"
         - "*.gz"
-  - macros
+  #- macros
   - git-revision-date-localized
   - minify:
       minify_html: true
