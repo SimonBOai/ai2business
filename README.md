@@ -2,3 +2,8 @@
 
 # AI2Business
 ---
+
+## Installation
+
+---
+To install the package, please use the `pip` installation as follows:
