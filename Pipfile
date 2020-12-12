@@ -22,6 +22,7 @@ tpot = "*"
 yellowbrick = "*"
 imbalanced-learn = "*"
 xgboost = "*"
+pyyaml = "==3.13"
 
 [dev-packages]
 isort = "*"
