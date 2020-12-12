@@ -12,3 +12,5 @@ ai2business.egg-info
 .vscode
 dist/
 build/
+dependencies.txt
+#.github/workflows/docstring.yml
