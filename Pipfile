@@ -21,6 +21,7 @@ scikit-learn = "*"
 tpot = "*"
 yellowbrick = "*"
 imbalanced-learn = "*"
+xgboost = "*"
 
 [dev-packages]
 isort = "*"
@@ -31,7 +32,6 @@ update = "*"
 black = "==20.8b1"
 pytest-cov = "*"
 codecov = "*"
-pylint = "*"
 pycodestyle = "*"
 pylama = "*"
 click-man = "*"
@@ -48,6 +48,12 @@ mike = "*"
 pymdown-extensions = "*"
 pip = "*"
 mkdocs-git-revision-date-localized-plugin = "*"
+pytest-sugar = "*"
+pytest-clarity = "==0.3.0a0"
+pylint = "*"
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true

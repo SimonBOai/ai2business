@@ -25,4 +25,4 @@ jobs:
         pip install -e .
     - name: Analysing the code with pylint
       run: |
-        pylint ai2business -E --enable=missing-docstring --ignore-patterns='test_.*py'
+        pylint ai2business --disable=all --enable=missing-docstring --ignore-patterns='test_.*py'
