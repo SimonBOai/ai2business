@@ -1,15 +1,22 @@
-name: DocString
-
+name: Ponicode DogString
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
   push:
-    branches: [master, main, docs]
+    branches:
+      - master
+      - main
+      - UpdateML
   pull_request:
-    branches: [master, main, docs]
+    branches:
+      - master
+      - main
+      - UpdateML
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # This workflow contains a single job called “build”
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -17,12 +24,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Set git config and get paths
+      - name: Get paths
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git show --pretty="" --name-only ${{ github.sha }} > PATHS_TO_CHANGED_FILES.txt
-      - uses: ponicode/docstrings-action@master
+          git show --pretty=“” --name-only ${{ github.sha }} > PATHS_TO_CHANGED_FILES.txt
+      - uses: ponicode/dogstring-action@master
         with:
           repo_path: ./
           auth_token: ${{ secrets.PONICODE_TOKEN }}
@@ -32,15 +37,15 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "[ponicode-pull-request] Ponicode wrote new docstrings!"
+          commit-message: “[ponicode-pull-request] Ponicode wrote new docstrings!”
           branch: ponicode-docstring
-          title: "[Ponicode] Docstrings created"
+          title: “[Ponicode] Docstrings created”
           body: |
-            ## ⭐️ Ponicode report ⭐️
+            ## :star:️ Ponicode report :star:️
             Ponicode found **undocumented functions** in your code, and auto-generated docstrings for you.
             </br>
-            ### 🦄 We'd love to hear your feedback!🦄 
+            ### :unicorn_face: We’d love to hear your feedback!:unicorn_face:
             Send us an email at <feedback@ponicode.com>, open an issue on our Action, or join us on the [Ponicode Community Slack](https://ponicode-community.slack.com/join/shared_invite/zt-fiq4fhkg-DE~a_FkJ7xtiZxW7efyA4Q#/).
-            Visit **[ponicode.com](https://ponicode.com)** to find out more about what we do.
+            Visit **[ponicode.com](https://www.google.com)** to find out more about what we do.
             </br>
-            <img alt="Ponicode Logo" src="https://avatars0.githubusercontent.com/u/49948625?s=200&v=4=200zx" width="100"/>
+            <img alt=“Ponicode Logo” src=“https://avatars0.githubusercontent.com/u/49948625?s=200&v=4=200zx” width=“100”/>
