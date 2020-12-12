@@ -3,7 +3,6 @@ site_url: https://ai2business.github.io/ai2business/dev/
 site_description: Smart solutions for Business with AI.
 site_author: AI2Business & coworkers
 
-
 repo_url: https://github.com/AI2Business/ai2business
 repo_name: AI2Business
 edit_uri: edit/main/docs
@@ -41,7 +40,6 @@ theme:
     - search.highlight
   static_templates:
     - 404.html
-
 
 markdown_extensions:
   - markdown.extensions.toc:
@@ -82,8 +80,8 @@ markdown_extensions:
   - pymdownx.caret:
   - pymdownx.smartsymbols:
   - pymdownx.emoji:
-      emoji_index: "!!python/name:materialx.emoji.twemoji"
-      emoji_generator: "!!python/name:materialx.emoji.to_svg"
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.escapeall:
       hardbreak: True
       nbsp: True
@@ -130,11 +128,11 @@ plugins:
 # Page tree
 nav:
   - Home: index.md
-  - Usage: 
-    - KPI-Collectors: docs/kpi_collector.md
+  - Usage:
+      - KPI-Collectors: docs/kpi_collector.md
   - API:
-    - Key Performance Collector:
-      - Finance-Collector: api/finance_collector.md
-      - Trends-Collector: api/trends_collector.md
-      - Datasets: api/datasets.md
-      - AutML: api/automl.md
+      - Key Performance Collector:
+          - Finance-Collector: api/finance_collector.md
+          - Trends-Collector: api/trends_collector.md
+          - Datasets: api/datasets.md
+          - AutML: api/automl.md
