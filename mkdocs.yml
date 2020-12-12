@@ -137,3 +137,4 @@ nav:
       - Finance-Collector: api/finance_collector.md
       - Trends-Collector: api/trends_collector.md
       - Datasets: api/datasets.md
+      - AutML: api/autml.md
