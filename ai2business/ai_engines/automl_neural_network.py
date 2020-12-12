@@ -519,3 +519,15 @@ class AutoMLEvaluate(Procedure):
                 **self.kwargs,
             ),
         }
+
+
+class AutoMLSave(Procedure):
+    def __init__(self, model_name: str) -> None:
+        self.model_name = model_name
+
+    def perform_job(self, automl_model: dict):
+        _model = automl_model.export_model()
+        try:
+            _model.save(f"{self.model_name}", save_format="tf")
+        except:
+            _model.save(f"{self.model_name}.h5")
