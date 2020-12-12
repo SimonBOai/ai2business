@@ -12,79 +12,64 @@ class BuilderFinanceCollector(ABC):
     different parts of the `DesignerFinanceCollector` objects.
 
     Args:
-        ABC (class): Helper class that provides a standard way to create an ABC using
-        inheritance.
+        ABC (class): Helper class that provides a standard way to create an ABC using inheritance.
     """
 
     @abstractproperty
     def return_dataframe(self) -> None:
         """Abstract property of return_dataframe."""
-        pass
 
     @abstractproperty
     def return_dict(self) -> None:
         """Abstract property of return_dict."""
-        pass
 
     @abstractstaticmethod
     def all_trickers() -> None:
         """Abstract staticmethod of all_tickers."""
-        pass
 
     @abstractmethod
     def get_chart_history(self) -> None:
         """Abstract method of get_chart_history."""
-        pass
 
     @abstractmethod
     def get_isin_code(self) -> None:
         """Abstract method of get_isin_code."""
-        pass
 
     @abstractmethod
     def get_major_holders(self) -> None:
         """Abstract method of get_major_holders."""
-        pass
 
     @abstractmethod
     def get_institutional_holders(self) -> None:
         """Abstract method of get_institutional_holders."""
-        pass
 
     @abstractmethod
     def get_mutualfund_holders(self) -> None:
         """Abstract method of get_mutualfund_holders."""
-        pass
 
     @abstractmethod
     def get_dividends(self) -> None:
         """Abstract method of get_dividends."""
-        pass
 
     @abstractmethod
     def get_splits(self) -> None:
         """Abstract method of get_splits."""
-        pass
 
     @abstractmethod
     def get_actions(self) -> None:
         """Abstract property of get_actions."""
-        pass
 
     @abstractmethod
     def get_info(self) -> None:
         """Abstract method of get_info."""
-        pass
 
     @abstractmethod
     def get_calendar(self) -> None:
         """Abstract method of get_calendar."""
-        pass
 
     @abstractmethod
     def get_recommendations(self) -> None:
         """Abstract method of get_recommendations."""
-        pass
 
     @abstractmethod
     def get_earnings(self) -> None:
@@ -93,47 +78,38 @@ class BuilderFinanceCollector(ABC):
     @abstractmethod
     def get_quarterly_earnings(self) -> None:
         """Abstract method of get_quarterly_earnings."""
-        pass
 
     @abstractmethod
     def get_financials(self) -> None:
         """Abstract method of get_financials."""
-        pass
 
     @abstractmethod
     def get_quarterly_financials(self) -> None:
         """Abstract method of get_quarterly_financials."""
-        pass
 
     @abstractmethod
     def get_balancesheet(self) -> None:
         """Abstract method of get_balancesheet."""
-        pass
 
     @abstractmethod
     def get_quarterly_balancesheet(self) -> None:
         """Abstract method of get_quarterly_balancesheet."""
-        pass
 
     @abstractmethod
     def get_cashflow(self) -> None:
         """Abstract method of get_cashflow."""
-        pass
 
     @abstractmethod
     def get_quarterly_cashflow(self) -> None:
         """Abstract method of get_quarterly_cashflow."""
-        pass
 
     @abstractmethod
     def get_sustainability(self) -> None:
         """Abstract method of get_sustainability."""
-        pass
 
     @abstractmethod
     def get_options(self) -> None:
         """Abstract method of get_options."""
-        pass
 
 
 class DesignerFinanceCollector(BuilderFinanceCollector):
@@ -144,18 +120,17 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
     `BuilderFinanceCollector` based on the external library `yfinance`.
 
     Args:
-        BuilderFinanceCollector (class): Abstract class that provides the implementations
-        of the properties and methods.
+        BuilderFinanceCollector (class): Abstract class that provides the implementations of the properties and methods.
     """
 
-    def __init__(self, key_word_list: list) -> None:
+    def __init__(self, keyword_list: list) -> None:
         """Initialization of DesignerFinanceCollector
 
         Args:
-            key_word_list (list): Keyword-list with the tickers to search for.
+            keyword_list (list): Keyword-list with the tickers to search for.
         """
-        self.key_word_list = key_word_list
-        self.tickers = yf.Tickers(" ".join(self.key_word_list))
+        self.keyword_list = keyword_list
+        self.tickers = yf.Tickers(" ".join(self.keyword_list))
         self.df = pd.DataFrame()
         self.dict = {}
 
@@ -164,8 +139,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Return the ticker results as dataframe.
 
         Returns:
-            pd.DataFrame: Two-dimensional, size-mutable, homogenous tabular data,
-            which contains the ticker results as time-series.
+            pd.DataFrame: Two-dimensional, size-mutable, homogenous tabular data, which contains the ticker results as time-series.
         """
         return self.df
 
@@ -175,18 +149,16 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
 
         Note:
         ---
-        `return_dict` is especially useful for getting analysis reports of tickers,
-        market changes, or institutional forecasts.
+        `return_dict` is especially useful for getting analysis reports of tickers, market changes, or institutional forecasts.
 
         Returns:
-            dict: Multi-dimensional, size-mutable, mainly heterogeneous data as
-            dictionary, which contains the `clustered` or `nested` ticker results.
+            dict: Multi-dimensional, size-mutable, mainly heterogeneous data as dictionary, which contains the `clustered` or `nested` ticker results.
         """
         return self.dict
 
     @staticmethod
     def all_trickers(
-        tickers: yf.Tickers, key_word_list: list, func: str
+        tickers: yf.Tickers, keyword_list: list, func: str
     ) -> pd.DataFrame:
         """all_trickers [summary]
 
@@ -194,16 +166,15 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
 
         Args:
             tickers (yf.Tickers): Finance market data downloader.
-            key_word_list (list): Keyword-list with the tickers to search for.
+            keyword_list (list): Keyword-list with the tickers to search for.
             func (str): Specific class as string.
 
         Returns:
-            pd.DataFrame: Two-dimensional, size-mutable, heterogenous (table in a table)
-            tabular data, which contains the ticker results of different companies.
+            pd.DataFrame: Two-dimensional, size-mutable, heterogenous (table in a table) tabular data, which contains the ticker results of different companies.
         """
         return {
-            key_word: getattr(getattr(tickers.tickers, key_word), func)
-            for key_word in key_word_list
+            keyword: getattr(getattr(tickers.tickers, keyword), func)
+            for keyword in keyword_list
         }
 
     def get_chart_history(
@@ -224,12 +195,8 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request the history of the chart for given tickers.
 
         Args:
-            period (str): Period of the chart history; valid options: `1d`, `5d`, `1mo`,
-            `3mo`, `6mo`, `1y`, `2y`, `5y`, `10y`, or `ytd,max`. It can either be used
-            the `period`-parameter or the combination of `start`- and `end`-parameter.
-            interval (str): Interval, respectively, time step in the period; valid
-            options: `1m`, `2m`, `5m`, `15m`, `30m`, `60m`, `90m`, `1h`, `1d`, `5d`,
-            `1wk`, `1mo`, or `3mo`. The intraday data cannot extend last 60 days.
+            period (str): Period of the chart history; valid options: `1d`, `5d`, `1mo`, `3mo`, `6mo`, `1y`, `2y`, `5y`, `10y`, or `ytd,max`. It can either be used the `period`-parameter or the combination of `start`- and `end`-parameter.
+            interval (str): Interval, respectively, time step in the period; valid options: `1m`, `2m`, `5m`, `15m`, `30m`, `60m`, `90m`, `1h`, `1d`, `5d`, `1wk`, `1mo`, or `3mo`. The intraday data cannot extend last 60 days.
             start (str): Download start date string (YYYY-MM-DD) or _datetime.
             end (str): Download end date string (YYYY-MM-DD) or _datetime.
             prepost (bool): Group by 'ticker' or 'column'.
@@ -258,20 +225,20 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
     def get_isin_code(self) -> None:
         """Request for the International Securities Identification Number (ISIN)."""
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="isin"
+            tickers=self.tickers, keyword_list=self.keyword_list, func="isin"
         )
 
     def get_major_holders(self) -> None:
         """Request for the major holders of the ticker."""
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="major_holders"
+            tickers=self.tickers, keyword_list=self.keyword_list, func="major_holders"
         )
 
     def get_institutional_holders(self) -> None:
         """Request for the institutional holders of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="institutional_holders",
         )
 
@@ -279,45 +246,45 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the mutualfund holders of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="mutualfund_holders",
         )
 
     def get_dividends(self) -> None:
         """Request for the dividend of the ticker."""
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="dividends"
+            tickers=self.tickers, keyword_list=self.keyword_list, func="dividends"
         )
 
     def get_splits(self) -> None:
         """Request for the splits of the ticker."""
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="splits"
+            tickers=self.tickers, keyword_list=self.keyword_list, func="splits"
         )
 
     def get_actions(self) -> None:
         """Request for the dividends and splits of the ticker together."""
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="actions"
+            tickers=self.tickers, keyword_list=self.keyword_list, func="actions"
         )
 
     def get_info(self) -> None:
         """Request for information about the ticker."""
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="info"
+            tickers=self.tickers, keyword_list=self.keyword_list, func="info"
         )
 
     def get_calendar(self) -> None:
         """Request for information about upcoming events of the ticker."""
         self.dict = self.all_trickers(
-            tickers=self.tickers, key_word_list=self.key_word_list, func="calendar"
+            tickers=self.tickers, keyword_list=self.keyword_list, func="calendar"
         )
 
     def get_recommendations(self) -> None:
         """Request for the analyst recommendations for the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="recommendations",
         )
 
@@ -325,7 +292,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the yearly earnings of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="earnings",
         )
 
@@ -333,7 +300,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the yearly quarterly of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="quarterly_earnings",
         )
 
@@ -341,7 +308,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the yearly financial information of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="financials",
         )
 
@@ -349,7 +316,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the quarterly financial information of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="quarterly_financials",
         )
 
@@ -357,7 +324,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the yearly balancesheet of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="balancesheet",
         )
 
@@ -365,7 +332,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the quarterly balancesheet of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="quarterly_balancesheet",
         )
 
@@ -373,7 +340,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the yearly cashflow of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="cashflow",
         )
 
@@ -381,7 +348,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for the quarterly cashflow of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="quarterly_cashflow",
         )
 
@@ -389,7 +356,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for information about the sustainability of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="sustainability",
         )
 
@@ -397,7 +364,7 @@ class DesignerFinanceCollector(BuilderFinanceCollector):
         """Request for information about the options of the ticker."""
         self.dict = self.all_trickers(
             tickers=self.tickers,
-            key_word_list=self.key_word_list,
+            keyword_list=self.keyword_list,
             func="options",
         )
 
@@ -418,8 +385,7 @@ class FinanceCollector:
         """Builder as a property with value None.
 
         Returns:
-            BuilderFinanceCollector: A builder class, that contains the abstract
-            properties and methods.
+            BuilderFinanceCollector: A builder class, that contains the abstract properties and methods.
         """
         return self._builder
 
@@ -428,8 +394,7 @@ class FinanceCollector:
         """Sets the builder according to BuilderFinanceCollector.
 
         Args:
-            builder (BuilderFinanceCollector): A builder class, that contains the
-            abstract properties and methods.
+            builder (BuilderFinanceCollector): A builder class, that contains the abstract properties and methods.
 
         Returns:
             property: A method or property of `BuilderFinanceCollector`.
@@ -454,27 +419,16 @@ class FinanceCollector:
         """Performa a search about the history charts of the tickers.
 
         Args:
-            period (str, optional): Period of the chart history; valid options: `1d`, `5d`, `1mo`,
-            `3mo`, `6mo`, `1y`, `2y`, `5y`, `10y`, or `ytd,max`. It can either be used
-            the `period`-parameter or the combination of `start`- and `end`-parameter.
-            Defaults to "1mo".
+            period (str, optional): Period of the chart history; valid options: `1d`, `5d`, `1mo`, `3mo`, `6mo`, `1y`, `2y`, `5y`, `10y`, or `ytd,max`. It can either be used the `period`-parameter or the combination of `start`- and `end`-parameter. Defaults to "1mo".
             interval (str, optional): Interval, respectively, time step in the period; valid
-            options: `1m`, `2m`, `5m`, `15m`, `30m`, `60m`, `90m`, `1h`, `1d`, `5d`,
-            `1wk`, `1mo`, or `3mo`. The intraday data cannot extend last 60 days.
-            Defaults to "1d".
-            start (str, optional): Download start date string (YYYY-MM-DD) or _datetime.
-            Defaults to None.
-            end (str, optional): Download end date string (YYYY-MM-DD) or _datetime.
-            Defaults to None.
+            options: `1m`, `2m`, `5m`, `15m`, `30m`, `60m`, `90m`, `1h`, `1d`, `5d`, `1wk`, `1mo`, or `3mo`. The intraday data cannot extend last 60 days. Defaults to "1d".
+            start (str, optional): Download start date string (YYYY-MM-DD) or _datetime. Defaults to None.
+            end (str, optional): Download end date string (YYYY-MM-DD) or _datetime. Defaults to None.
             prepost (bool, optional):  Group by 'ticker' or 'column'. Defaults to False.
-            actions (bool, optional):  Including Pre and Post market data in results.
-            Defaults to True.
-            auto_adjust (bool, optional): Adjusting all OHLC automatically.
-            Defaults to True.
-            proxy (str, optional): Downloading the dividend plus stock splits data.
-            Defaults to None.
-            threads (bool, optional): Specifying the number of download threads.
-            Defaults to True.
+            actions (bool, optional):  Including Pre and Post market data in results. Defaults to True.
+            auto_adjust (bool, optional): Adjusting all OHLC automatically. Defaults to True.
+            proxy (str, optional): Downloading the dividend plus stock splits data. Defaults to None.
+            threads (bool, optional): Specifying the number of download threads. Defaults to True.
             group_by (str, optional): Grouping by ticker or column.Defaults to "column".
             progress (bool, optional): Showing progress bar. Defaults to True.
         """

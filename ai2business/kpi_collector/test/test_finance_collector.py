@@ -1,3 +1,4 @@
+"""Test-Enviroment for finance_collector.py"""
 import pandas as pd
 
 from ai2business.kpi_collector import finance_collector as fnc

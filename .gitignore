@@ -10,5 +10,7 @@ ai2business.egg-info
 .coverage
 .pytest_cache
 .vscode
-dist/ai2business-0.1.0-py3-none-any.whl
-dist/ai2business-0.1.0.tar.gz
+dist/
+build/
+dependencies.txt
+#.github/workflows/docstring.yml
