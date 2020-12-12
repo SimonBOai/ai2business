@@ -33,6 +33,4 @@ jobs:
           auth_token: ${{ secrets.PONICODE_TOKEN }}
           all_repo: True
         # Creates pull request with all changes in file
-      - uses: actions/checkout@v2
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+     
