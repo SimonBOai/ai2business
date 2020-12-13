@@ -43,16 +43,16 @@ class AutoMLModels:
     ) -> None:
         """Defining the common parameters for all models.
 
-        Args:
+        # Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
             overwrite (bool, optional): Overwrite existing projects. Defaults to False.
             project_name (str, optional): Project Name. Defaults to "AutoML_DeepLearning".
-            max_model_size (int, optional): [description]. Defaults to None.
-            max_trials (int, optional): [description]. Defaults to 100.
-            metrics (str, optional): [description]. Defaults to None.
-            seed (int, optional): [description]. Defaults to None.
+            max_model_size (int, optional): Maximum number of models to evaluate. Defaults to None.
+            max_trials (int, optional): Maximum number of trials for building a model. Defaults to 100.
+            metrics (str, optional): The metric of the validation. Defaults to None.
+            seed (int, optional): Random shuffling number. Defaults to None.
             tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
         """
         self.directory = directory
@@ -258,9 +258,9 @@ class AutoMLModels:
             column_names (list, optional): Name of the columns. Defaults to None.
             column_types (dict, optional): Type of the columns. Defaults to None.
             output_dim (int, optional): Number of output dimensions. Defaults to None.
-            lookback (int, optional): [description]. Defaults to None.
-            predict_from (int, optional): [description]. Defaults to 1.
-            predict_until (int, optional): [description]. Defaults to None.
+            lookback (int, optional): History range for each prediction. Defaults to None.
+            predict_from (int, optional): Starting point for the time series. Defaults to 1.
+            predict_until (int, optional): Finishing point for the time series. Defaults to None.
 
         Returns:
             ak.TimeseriesForecaster: AutoKERAS timeseries forecast class.
@@ -643,7 +643,7 @@ class AutoMLEvaluate(Procedure):
         Args:
             x_test (Any): Testing data of `x` as 2d-array
             y_test (Any, optional): Testing data of `y` as 1d- or 2d-array. Defaults to None.
-            batch_size (int, optional): [description]. Defaults to 32.
+            batch_size (int, optional): Size of the batch. Defaults to 32.
         """
         self.x_test = x_test
         self.y_test = y_test
