@@ -44,13 +44,13 @@ theme:
 markdown_extensions:
   - codehilite
   - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_div_format
-  - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+  #    custom_fences:
+  #      - name: mermaid
+  #        class: mermaid
+  #        format: !!python/name:pymdownx.superfences.fence_div_format
+  #- pymdownx.emoji:
+  #    emoji_index: !!python/name:materialx.emoji.twemoji
+  #    emoji_generator: !!python/name:materialx.emoji.to_svg
   - admonition
 
 extra_javascript:
