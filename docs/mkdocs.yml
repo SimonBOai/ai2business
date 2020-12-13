@@ -3,6 +3,8 @@ site_url: https://anselmoo.github.io/ai2business/
 site_description: Smart solutions for Business with AI.
 site_author: AI2Business & coworkers
 
+
+docs_dir: sources
 repo_url: https://github.com/AI2Business/ai2business
 repo_name: AI2Business
 edit_uri: edit/main/docs
@@ -49,8 +51,8 @@ markdown_extensions:
   #        class: mermaid
   #        format: !!python/name:pymdownx.superfences.fence_div_format
   - pymdownx.emoji:
-  #    emoji_index: !!python/name:materialx.emoji.twemoji
-  #    emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - admonition
 
 extra_javascript:
