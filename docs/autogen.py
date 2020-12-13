@@ -19,7 +19,7 @@ aliases_needed = [
 ]
 
 
-ROOT = "https://anselmoo.github.io/ai2business/"
+ROOT = "https://ai2business.github.io/ai2business/"
 
 ai2business_dir = pathlib.Path(__file__).resolve().parents[1]
 
@@ -28,7 +28,7 @@ def generate(dest_dir):
     api_dir = ai2business_dir / "docs" / "api"
     doc_generator = keras_autodoc.DocumentationGenerator(
         PAGES,
-        "https://github.com/anselmoo/ai2business/blob/main",
+        "https://github.com/ai2business/ai2business/blob/main",
         api_dir,
         # template_dir,
         # ai2business_dir / 'examples',
