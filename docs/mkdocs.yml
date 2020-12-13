@@ -42,60 +42,19 @@ theme:
     - 404.html
 
 markdown_extensions:
-  - markdown.extensions.toc:
-  - markdown.extensions.admonition:
-  - markdown.extensions.smarty:
-  - pymdownx.betterem:
-  - markdown.extensions.attr_list:
-  - markdown.extensions.def_list:
-  - markdown.extensions.tables:
-  - markdown.extensions.abbr:
-  - markdown.extensions.footnotes:
-  - markdown.extensions.md_in_html:
+  - codehilite
   - pymdownx.superfences:
-      preserve_tabs: true
-  - pymdownx.highlight:
-      extend_pygments_lang:
-        - name: php-inline
-          lang: php
-          options:
-            startinline: true
-        - name: python
-          lang: python
-          options:
-            python3: true
-      linenums_style: pymdownx-inline
-  - pymdownx.inlinehilite:
-      custom_inline:
-        - name: math
-          class: arithmatex
-  - pymdownx.magiclink:
-      repo_url_shortener: true
-      repo_url_shorthand: true
-      social_url_shorthand: true
-      social_url_shortener: true
-      user: AI2Business
-      repo: ai2business
-  - pymdownx.tilde:
-  - pymdownx.caret:
-  - pymdownx.smartsymbols:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
-  - pymdownx.escapeall:
-      hardbreak: True
-      nbsp: True
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.progressbar:
-  - pymdownx.arithmatex:
-  - pymdownx.mark:
-  - pymdownx.striphtml:
-  - pymdownx.snippets:
-  - pymdownx.keys:
-  - pymdownx.details:
-  - pymdownx.tabbed:
-  - pymdownx.saneheaders:
+  - admonition
+
+extra_javascript:
+  - https://unpkg.com/mermaid@8.4.4/dist/mermaid.min.js
 
 extra:
   social:
@@ -109,27 +68,11 @@ extra:
 #extra_javascript:
 #  - assets/pymdownx-extras/extra-uml.js
 
-plugins:
-  - search
-  - mkdocstrings
-  - git-revision-date:
-      enabled_if_env: CI
-  - exclude:
-      glob:
-        - "test/*"
-        - "*.tmp"
-        - "*.pdf"
-        - "*.gz"
-  #- macros
-  - git-revision-date-localized
-  - minify:
-      minify_html: true
-
 # Page tree
 nav:
   - Home: index.md
-  - Usage:
-      - KPI-Collectors: docs/kpi_collector.md
+  - Documentation:
+    - AutMLRun: AutoML_for_NeuralNetworks.md
   - API:
       - Key Performance Collector:
           - Finance-Collector: api/finance_collector.md
