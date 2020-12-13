@@ -75,7 +75,7 @@ nav:
     - AutMLRun: AutoML_for_NeuralNetworks.md
   - API:
       - Key Performance Collector:
-          - Finance-Collector: api/finance_collector.md
-          - Trends-Collector: api/trends_collector.md
-          - Datasets: api/datasets.md
-          - AutML: api/automl.md
+          - Finance-Collector: finance_collector.md
+          - Trends-Collector: trends_collector.md
+          - Datasets: datasets.md
+          - AutML: automl.md
