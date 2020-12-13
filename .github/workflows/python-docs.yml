@@ -32,11 +32,15 @@ jobs:
           python autogen.py
           mike install-extras
           mike deploy dev
+          cd ~
       - name: Deploy documentation develops
         if: contains(github.ref, 'refs/heads/main')
         run: |
+          cd docs
+          python autogen.py
           mike delete dev || true
           mike deploy --push dev --force
+          cd ~
       - name: Get the release version
         if: contains(github.ref, 'refs/tags/v')
         id: get_version
