@@ -7,7 +7,7 @@ site_author: AI2Business & coworkers
 docs_dir: sources
 repo_url: https://github.com/AI2Business/ai2business
 repo_name: AI2Business
-edit_uri: edit/main/docs
+edit_uri: edit/main/docs/sources
 
 # Copyright
 copyright: Copyright &copy; 2020 - AI2Business
@@ -46,13 +46,7 @@ theme:
 markdown_extensions:
   - codehilite
   - pymdownx.superfences:
-  #    custom_fences:
-  #      - name: mermaid
-  #        class: mermaid
-  #        format: !!python/name:pymdownx.superfences.fence_div_format
   - pymdownx.emoji:
-    #  emoji_index: !!python/name:materialx.emoji.twemoji
-    #  emoji_generator: !!python/name:materialx.emoji.to_svg
   - admonition
 
 extra_javascript:
@@ -65,12 +59,6 @@ extra:
   version:
     method: mike
 
-#extra_css:
-#  - assets/pymdownx-extras/extra.css
-#extra_javascript:
-#  - assets/pymdownx-extras/extra-uml.js
-
-# Page tree
 nav:
   - Home: index.md
   - Documentation:
