@@ -1,0 +1,81 @@
+site_name: AI2Business
+site_url: https://ai2business.github.io/ai2business/
+site_description: Smart solutions for Business with AI.
+site_author: AI2Business & coworkers
+
+repo_url: https://github.com/AI2Business/ai2business
+repo_name: AI2Business
+edit_uri: edit/main/docs
+
+# Copyright
+copyright: Copyright &copy; 2020 - AI2Business
+
+theme:
+  name: "material"
+  palette:
+    - scheme: dracula
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+    - scheme: dracula
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  icon:
+    logo: material/library
+    repo: material/github
+  favicon: assets/favicon.png
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+  static_templates:
+    - 404.html
+
+markdown_extensions:
+  - codehilite
+  - pymdownx.superfences:
+  #    custom_fences:
+  #      - name: mermaid
+  #        class: mermaid
+  #        format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.emoji:
+  #    emoji_index: !!python/name:materialx.emoji.twemoji
+  #    emoji_generator: !!python/name:materialx.emoji.to_svg
+  - admonition
+
+extra_javascript:
+  - https://unpkg.com/mermaid@8.4.4/dist/mermaid.min.js
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ai2business
+  version:
+    method: mike
+
+#extra_css:
+#  - assets/pymdownx-extras/extra.css
+#extra_javascript:
+#  - assets/pymdownx-extras/extra-uml.js
+
+# Page tree
+nav:
+  - Home: index.md
+  - Documentation:
+    - AutMLRun: AutoML_for_NeuralNetworks.md
+  - API:
+      - Key Performance Collector:
+          - Finance-Collector: finance_collector.md
+          - Trends-Collector: trends_collector.md
+          - Datasets: datasets.md
+          - AutML: automl.md
