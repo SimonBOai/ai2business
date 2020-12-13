@@ -7,7 +7,7 @@ site_author: AI2Business & coworkers
 docs_dir: sources
 repo_url: https://github.com/AI2Business/ai2business
 repo_name: AI2Business
-edit_uri: edit/main/docs/sources
+edit_uri: edit/main/docs/api
 
 # Copyright
 copyright: Copyright &copy; 2020 - AI2Business
@@ -45,9 +45,19 @@ theme:
 
 markdown_extensions:
   - codehilite
+  - admonition
   - pymdownx.superfences:
   - pymdownx.emoji:
-  - admonition
+  - pymdownx.highlight:
+  - pymdownx.arithmatex:
+  - pymdownx.mark:
+  - pymdownx.striphtml:
+  - pymdownx.details:
+  - pymdownx.tabbed:
+  - pymdownx.saneheaders:
+  - pymdownx.tilde:
+  - pymdownx.caret:
+  - pymdownx.smartsymbols:
 
 extra_javascript:
   - https://unpkg.com/mermaid@8.4.4/dist/mermaid.min.js
@@ -59,10 +69,15 @@ extra:
   version:
     method: mike
 
+plugins:
+  - search
+  - macros
+  - git-revision-date-localized
+
 nav:
   - Home: index.md
   - Documentation:
-    - AutMLRun: AutoML_for_NeuralNetworks.md
+    - AutoMLRun: AutoML_for_NeuralNetworks.md
   - API:
       - Key Performance Collector:
           - Finance-Collector: finance_collector.md

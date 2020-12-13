@@ -7,6 +7,7 @@ import keras_autodoc
 PAGES = {
     "AutoML_for_NeuralNetworks.md": [
         "ai2business.ai_engines.automl_neural_network.AutoMLModels",
+        "ai2business.ai_engines.automl_neural_network.AutoMLModels.__init__",
     ],
 }
 
