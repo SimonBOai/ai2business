@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
 """
-
 ## Building a search trend dataframe
 
 Trend search can be differs roughly in two major criteria:
@@ -15,18 +13,27 @@ In this context, the `trend-search`-module is a designed in a builder model to a
 ! pip install git+https://github.com/AI2Business/ai2business.git
 """
 
-"""Loading the model `trends_collector`."""
+"""
+### Loading the model `trends_collector`
+
+"""
 
 from ai2business.kpi_collector import trends_collector
 
-"""Setup the search with the keyword list and write it into the `builder`"""
+"""
+
+Setup the search with the keyword list and write it into the `builder`
+
+"""
 
 keyword_list: list = ["Corona", "S&P 500", "Hope"]
 trends = trends_collector.TrendsCollector()
 builder = trends_collector.DesignerTrendsCollector(keyword_list=keyword_list)
 trends.builder = builder
 
-"""Add the `trend-search` functions, in this particular case:
+"""
+
+### Add the `trend-search` functions, in this particular case:
 
 1. Searching over time
 2. Searching in a special area
@@ -34,6 +41,7 @@ trends.builder = builder
 4. Searching for realted topics
 
 All the information will be generated and stored in the `builder`.
+
 """
 
 trends.find_interest_over_time()
@@ -41,7 +49,9 @@ trends.find_interest_by_region()
 trends.find_related_topics()
 trends.find_related_queries()
 
-"""With the use of the builder's property-attribute, a dictionary will be returned consisting of pandas-data frames and dictionaries. The key-names are the function names.
+"""
+
+With the use of the builder's property-attribute, a dictionary will be returned consisting of pandas-data frames and dictionaries. The key-names are the function names.
 
 ```python
 >>> results = builder.trends.return_product
@@ -54,6 +64,10 @@ Note
 ----
 
 It is important to immediately transfer the return value to a variable because a second return will return an empty dictionary.
+
+
+### Return the objects of the `builder` in the dictionary
+
 """
 
 results = builder.trends.return_product
@@ -62,7 +76,11 @@ print(results.keys())
 
 print(results)
 
-"""Due to the fact that the dataframes are pandas-dataframes, all pandas commands can be easily applied, like plot, for example."""
+"""
+
+Due to the fact that the dataframes are pandas-dataframes, all pandas commands can be easily applied, like plot, for example.
+
+"""
 
 results["interest_over_time"].plot(title="Search Trend of the Big Three (per time)")
 
@@ -70,8 +88,9 @@ results["interest_by_region"].plot.bar(
     title="Search Trend of the Big Three (per location)", figsize=(28, 12)
 )
 
-"""Also, the stored data in a dictionary are saved as pandas dataframe so that the trend results can be then easily analyzed again the default commands of pandas.
+"""
 
+Also, the stored data in a dictionary are saved as pandas dataframe so that the trend results can be then easily analyzed again the default commands of pandas.
 
 """
 
@@ -81,7 +100,9 @@ for key in keyword_list:
     )
 
 """
+
 Finally, also non-visual commands like correlation analysis are working fine.
+
 """
 
 results["interest_by_region"].corr("pearson")

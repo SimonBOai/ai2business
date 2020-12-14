@@ -1,5 +1,5 @@
 import os
-import pathlib
+from pathlib import Path
 import shutil
 
 import keras_autodoc
@@ -23,7 +23,7 @@ aliases_needed = [
 
 ROOT = "https://ai2business.github.io/ai2business/"
 
-ai2business_dir = pathlib.Path(__file__).resolve().parents[1]
+ai2business_dir = Path(__file__).resolve().parents[1]
 
 
 def py_to_nb_md(dest_dir):
@@ -41,6 +41,10 @@ def py_to_nb_md(dest_dir):
         nb_path = os.path.join("ipynb", file_name_no_ext + ".ipynb")
         md_path = os.path.join(dest_dir, "tutorial", file_name_no_ext + ".md")
 
+        Path(nb_path).parent.mkdir(exist_ok=True)
+        Path(md_path).parent.mkdir(exist_ok=True)
+        
+        tutobooks.py_to_nb(py_path, nb_path, fill_outputs=True)
         tutobooks.py_to_md(py_path, nb_path, md_path, "templates/img")
 
         github_repo_dir = "keras-team/autokeras/blob/master/docs/"
@@ -70,7 +74,7 @@ def py_to_nb_md(dest_dir):
 
 def generate(dest_dir):
     api_dir = ai2business_dir / "docs" / "api"
-    template_dir = ai2business_dir / "docs" / "templates"
+    template_dir = ai2business_dir / 'docs' / 'templates'
     doc_generator = keras_autodoc.DocumentationGenerator(
         PAGES,
         "https://github.com/ai2business/ai2business/blob/main",
