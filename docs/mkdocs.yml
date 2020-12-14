@@ -77,8 +77,11 @@ plugins:
 
 nav:
   - Home: index.md
+
   - Documentation:
     - AutoMLRun: AutoML_for_NeuralNetworks.md
+  - Tutorials:
+    - Trend Search: tutorials/trend_search_tutorial.md
   - API:
       - Key Performance Collector:
           - Finance-Collector: finance_collector.md

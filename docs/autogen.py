@@ -1,8 +1,9 @@
 import os
-from pathlib import Path
 import shutil
+from pathlib import Path
 
 import keras_autodoc
+
 import tutobooks
 
 PAGES = {
@@ -26,8 +27,7 @@ ROOT = "https://ai2business.github.io/ai2business/"
 ai2business_dir = Path(__file__).resolve().parents[1]
 
 
-def py_to_nb_md(dest_dir):
-    dir_path = "examples"
+def py_to_nb_md(dest_dir, dir_path="tutorials"):
     for file_path in os.listdir(f"{dir_path}/"):
 
         file_name = file_path
@@ -43,7 +43,7 @@ def py_to_nb_md(dest_dir):
 
         Path(nb_path).parent.mkdir(exist_ok=True)
         Path(md_path).parent.mkdir(exist_ok=True)
-        
+
         tutobooks.py_to_nb(py_path, nb_path, fill_outputs=True)
         tutobooks.py_to_md(py_path, nb_path, md_path, "templates/img")
 
@@ -74,7 +74,7 @@ def py_to_nb_md(dest_dir):
 
 def generate(dest_dir):
     api_dir = ai2business_dir / "docs" / "api"
-    template_dir = ai2business_dir / 'docs' / 'templates'
+    template_dir = ai2business_dir / "docs" / "templates"
     doc_generator = keras_autodoc.DocumentationGenerator(
         PAGES,
         "https://github.com/ai2business/ai2business/blob/main",

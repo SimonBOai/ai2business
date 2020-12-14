@@ -61,10 +61,10 @@ Finally, submit a PR adding `examples/your_example.py`.
 """
 import json
 import os
-from secrets import token_hex
 import shutil
 import sys
 from pathlib import Path
+from secrets import token_hex
 
 TIMEOUT = 60 * 60
 MAX_LOC = 300
