@@ -63,6 +63,7 @@ import json
 import os
 import shutil
 import sys
+import tempfile
 from pathlib import Path
 from secrets import token_hex
 
@@ -305,7 +306,8 @@ def validate(py):
             raise ValueError("Found trailing space on line %d; line: `%s`" % (i, line))
     # Validate style with black
     fpath = f"/tmp/{token_hex(16)}.py"
-    f = open(fpath, "w")
+
+    f = tempfile.TemporaryFile(dir=fpath, mode="w+")
     pre_formatting = "\n".join(lines)
     f.write(pre_formatting)
     f.close()

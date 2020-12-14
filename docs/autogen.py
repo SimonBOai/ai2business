@@ -3,7 +3,6 @@ import shutil
 from pathlib import Path
 
 import keras_autodoc
-
 import tutobooks
 
 PAGES = {
@@ -39,7 +38,7 @@ def py_to_nb_md(dest_dir, dir_path="tutorials"):
             continue
 
         nb_path = os.path.join("ipynb", file_name_no_ext + ".ipynb")
-        md_path = os.path.join(dest_dir, "tutorial", file_name_no_ext + ".md")
+        md_path = os.path.join(dest_dir, "tutorials", file_name_no_ext + ".md")
 
         Path(nb_path).parent.mkdir(exist_ok=True)
         Path(md_path).parent.mkdir(exist_ok=True)
