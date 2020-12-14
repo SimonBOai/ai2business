@@ -27,8 +27,8 @@ ai2business_dir = pathlib.Path(__file__).resolve().parents[1]
 
 
 def py_to_nb_md(dest_dir):
-    dir_path = "py"
-    for file_path in os.listdir("py/"):
+    dir_path = "examples"
+    for file_path in os.listdir(f"{dir_path}/"):
 
         file_name = file_path
         py_path = os.path.join(dir_path, file_path)
@@ -70,7 +70,7 @@ def py_to_nb_md(dest_dir):
 
 def generate(dest_dir):
     api_dir = ai2business_dir / "docs" / "api"
-    template_dir = ai2business_dir / 'docs' / 'templates'
+    template_dir = ai2business_dir / "docs" / "templates"
     doc_generator = keras_autodoc.DocumentationGenerator(
         PAGES,
         "https://github.com/ai2business/ai2business/blob/main",

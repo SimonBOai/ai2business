@@ -58,9 +58,9 @@ It is important to immediately transfer the return value to a variable because a
 
 results = builder.trends.return_product
 
-results.keys()
+print(results.keys())
 
-results
+print(results)
 
 """Due to the fact that the dataframes are pandas-dataframes, all pandas commands can be easily applied, like plot, for example."""
 

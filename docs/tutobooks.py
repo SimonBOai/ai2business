@@ -61,7 +61,7 @@ Finally, submit a PR adding `examples/your_example.py`.
 """
 import json
 import os
-import random
+from secrets import token_hex
 import shutil
 import sys
 from pathlib import Path
@@ -216,7 +216,7 @@ def nb_to_md(nb_path, md_path, img_dir, working_dir=None):
     del_working_dir = False
     if working_dir is None:
         del_working_dir = True
-        working_dir = "tmp_" + str(random.randint(1e6, 1e7))
+        working_dir = f"tmp_{token_hex(16)}"
     if not os.path.exists(working_dir):
         os.makedirs(working_dir)
     print("Using working_dir:", working_dir)
@@ -304,7 +304,7 @@ def validate(py):
         if line.endswith(" "):
             raise ValueError("Found trailing space on line %d; line: `%s`" % (i, line))
     # Validate style with black
-    fpath = "/tmp/" + str(random.randint(1e6, 1e7)) + ".py"
+    fpath = f"/tmp/{token_hex(16)}.py"
     f = open(fpath, "w")
     pre_formatting = "\n".join(lines)
     f.write(pre_formatting)
