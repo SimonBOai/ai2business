@@ -1,13 +1,13 @@
 import json
 from pathlib import Path
 
-from ai2business.datasets.data import SampleGenerators, database
+from ai2business.datasets.data import database
 
 __cwd__ = Path("ai2business/datasets/data/")
 
 
 def test_definition() -> None:
-    assert SampleGenerators.__name__ == "SampleGenerators"
+    assert database.SampleGenerators.__name__ == "SampleGenerators"
 
 
 def test_dowjones_indices() -> None:
