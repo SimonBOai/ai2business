@@ -35,24 +35,3 @@ Here is the list of the current implemented auto-machine learning models from [A
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/ai2business/ai2business/blob/main/ai2business/ai_engines/automl_neural_network.py#L97)</span>
-
-### image_regression
-
-
-```python
-AutoMLModels.image_regression(output_dim=None, **kwargs)
-```
-
-
-Image Regression.
-
-Args:
-    output_dim (int, optional): Number of output dimensions. Defaults to None.
-
-Returns:
-    ak.ImageRegressor: AutoKERAS image regression class.
-
-
-----
-

@@ -66,6 +66,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#table-of-contents" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -265,9 +270,57 @@
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Home
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
     <a href="." class="md-nav__link md-nav__link--active">
       Home
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    Table of Contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#about-the-ai4business" class="md-nav__link">
+    About the AI4Business  
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting Started  
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage 
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -451,19 +504,85 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    Table of Contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#about-the-ai4business" class="md-nav__link">
+    About the AI4Business  
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting Started  
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage 
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/AI2Business/ai2business/edit/main/docs/api/index.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/AI2Business/ai2business/edit/main/docs/sources/index.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
                   <h1>Home</h1>
                 
-                
+                <h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#getting_started">Getting Started</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h2 id="about-the-ai4business">About the <code>AI4Business</code>  <a name = "about"></a></h2>
+<p>The idea behind  <code>AI4Business</code> is to have a python package that bundles data scientist and project manager's daily routines. For our understanding, the daily routines start with gathering information, which derives from three independent sources:
+Search trends
+Research trends
+Market trends and tickers
+The significant advantage is that <code>AI4Business</code> allows designing databases depending on individual Key Performance Indicators (KPIs). The following established method for data cleaning, data balancing, and data features selections is implemented and merged with automatic machine learning tools for classic and deep learning methods.</p>
+<p>Finally, the results can be exported to database systems, EXCEL, or PowerPoint for generating a quick summary of a possible Proof of Concept (PoC).</p>
+<h2 id="getting-started">Getting Started  <a name = "getting_started"></a></h2>
+<div class="highlight"><pre><span></span><code>pip install git+https://github.com/AI2Business/ai2business.git
+</code></pre></div>
+<h2 id="usage">Usage <a name = "usage"></a></h2>
+<p>Please see the <a href="https://ai2business.github.io/ai2business/dev/">developer-docs</a>.</p>
                 
                   
                     
