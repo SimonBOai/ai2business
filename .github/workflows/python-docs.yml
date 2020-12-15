@@ -53,6 +53,8 @@ jobs:
           mike deploy --push --update-aliases ${{ steps.get_version.outputs.VERSION }} latest
           mike set-default --push ${{ steps.get_version.outputs.VERSION }}
       - name: Create Pull Request for IPython Notebooks
+        run: |
+          if [ -f *.inpynb ]; then git add *.ipynb; fi 
         uses: peter-evans/create-pull-request@v3
         with:
           commit-message: update docs
