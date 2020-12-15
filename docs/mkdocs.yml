@@ -13,35 +13,35 @@ edit_uri: edit/main/docs/api
 copyright: Copyright &copy; 2020 - AI2Business
 
 theme:
-  name: "material"
-  palette:
-    - scheme: dracula
-      primary: indigo
-      accent: blue
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to light mode
-    - scheme: dracula
-      primary: blue
-      accent: light blue
-      toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
-  font:
-    text: Roboto
-    code: Roboto Mono
-  icon:
-    logo: material/library
-    repo: material/github
-  favicon: assets/favicon.png
-  features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.expand
-    - search.suggest
-    - search.highlight
-  static_templates:
-    - 404.html
+    name: "material"
+    palette:
+      - scheme: dracula
+        primary: indigo
+        accent: blue
+        toggle:
+            icon: material/toggle-switch
+            name: Switch to light mode
+      - scheme: dracula
+        primary: blue
+        accent: light blue
+        toggle:
+            icon: material/toggle-switch-off-outline
+            name: Switch to dark mode
+    font:
+        text: Roboto
+        code: Roboto Mono
+    icon:
+        logo: material/library
+        repo: material/github
+    favicon: assets/favicon.png
+    features:
+      - navigation.tabs
+      - navigation.sections
+      - navigation.expand
+      - search.suggest
+      - search.highlight
+    static_templates:
+      - 404.html
 
 markdown_extensions:
   - codehilite
@@ -62,12 +62,13 @@ markdown_extensions:
 extra_javascript:
   - https://unpkg.com/mermaid@8.4.4/dist/mermaid.min.js
 
+  - js/version-select.js
 extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/ai2business
-  version:
-    method: mike
+    social:
+      - icon: fontawesome/brands/github
+        link: https://github.com/ai2business
+    version:
+        method: mike
 
 plugins:
   - search
@@ -79,12 +80,14 @@ nav:
   - Home: index.md
 
   - Documentation:
-    - AutoMLRun: AutoML_for_NeuralNetworks.md
+      - AutoMLRun: AutoML_for_NeuralNetworks.md
   - Tutorials:
-    - Trend Search: tutorials/trend_search_tutorial.md
+      - Trend Search: tutorials/trend_search_tutorial.md
   - API:
       - Key Performance Collector:
           - Finance-Collector: finance_collector.md
           - Trends-Collector: trends_collector.md
           - Datasets: datasets.md
           - AutoML: automl.md
+extra_css:
+  - css/version-select.css
