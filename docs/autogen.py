@@ -8,7 +8,10 @@ import tutobooks
 PAGES = {
     "AutoML_for_NeuralNetworks.md": [
         "ai2business.ai_engines.automl_neural_network.AutoMLModels",
-        "ai2business.ai_engines.automl_neural_network.AutoMLModels.image_regression",
+    ],
+    "KeyPerformanceCollection": [
+        "ai2business.kpi_collector.trends_collector.TrendsCollector",
+        "ai2business.kpi_collector.finance_collector.FinanceCollector",
     ],
 }
 
@@ -59,14 +62,14 @@ def py_to_nb_md(dest_dir, dir_path="tutorials"):
                 # + ":octicons-octoface-16: "
                 "[**GitHub source**](https://github.com/"
                 + github_repo_dir
-                + "py/"
+                + "tutorials/"
                 + file_name_no_ext
                 + ".py)",
                 "\n",
             ]
             md_content = "".join(button_lines) + "\n" + md_file.read()
 
-        with open(md_path, "w") as md_file:
+        with open(md_path, "w+") as md_file:
             md_file.write(md_content)
 
 

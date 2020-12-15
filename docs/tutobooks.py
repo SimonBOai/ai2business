@@ -115,8 +115,9 @@ def nb_to_py(nb_path, py_path):
 
 
 def py_to_nb(py_path, nb_path, fill_outputs=True):
-    f = open(py_path)
-    py = f.read()
+
+    with open(py_path) as f:
+        py = f.read()
     f.close()
     # validate(py)
 
@@ -164,9 +165,7 @@ def py_to_nb(py_path, nb_path, fill_outputs=True):
             else:
                 cell["metadata"] = {"colab_type": "text"}
             cells.append(cell)
-    notebook = {}
-    for key in NB_BASE.keys():
-        notebook[key] = NB_BASE[key]
+    notebook = {key: NB_BASE[key] for key in NB_BASE.keys()}
     notebook["metadata"]["colab"]["name"] = str(py_path).split("/")[-1][:-3]
     notebook["cells"] = cells
     if loc > MAX_LOC:
@@ -174,8 +173,8 @@ def py_to_nb(py_path, nb_path, fill_outputs=True):
             "Found %d lines of code, but expected fewer than %d" % (loc, MAX_LOC)
         )
 
-    f = open(nb_path, "w")
-    f.write(json.dumps(notebook, indent=1, sort_keys=True))
+    with open(nb_path, "w+") as f:
+        f.write(json.dumps(notebook, indent=1, sort_keys=True))
     f.close()
     if fill_outputs:
         print("Generating ipynb")
@@ -289,9 +288,9 @@ def validate(py):
     description = lines[5][len("Description: ") :]
     if not description:
         raise ValueError("Missing `Description:` field content.")
-    if not description[0] == description[0].upper():
+    if description[0] != description[0].upper():
         raise ValueError("Description field content must be capitalized.")
-    if not description[-1] == ".":
+    if description[-1] != ".":
         raise ValueError("Description field content must end with a period.")
     if len(description) > 100:
         raise ValueError("Description field content must be less than 100 chars.")
@@ -312,8 +311,8 @@ def validate(py):
     f.write(pre_formatting)
     f.close()
     os.system("black " + fpath)
-    f = open(fpath)
-    formatted = f.read()
+    with open(fpath) as f:
+        formatted = f.read()
     f.close()
     os.remove(fpath)
     if formatted != pre_formatting:
@@ -395,10 +394,7 @@ def _get_next_script_element(py):
         else:
             elines.append(line)
 
-    if etype == "markdown":
-        py = "\n".join(lines[i + 1 :])
-    else:
-        py = "\n".join(lines[i:])
+    py = "\n".join(lines[i + 1 :]) if etype == "markdown" else "\n".join(lines[i:])
     e = "\n".join(elines)
 
     return e, etype, py, tag
@@ -434,10 +430,11 @@ def _make_output_code_blocks(md):
     is_inside_backticks = False
 
     def is_output_line(line, prev_line, output_lines):
-        if line.startswith("    ") and len(line) >= 5:
-            if output_lines or (lines[i - 1].strip() == "" and line.strip()):
-                return True
-        return False
+        return bool(
+            line.startswith("    ")
+            and len(line) >= 5
+            and (output_lines or (lines[i - 1].strip() == "" and line.strip()))
+        )
 
     def flush(output_lines, final_lines):
         final_lines.append('<div class="k-default-codeblock">')
@@ -521,16 +518,6 @@ if __name__ == "__main__":
     source = sys.argv[2]
     target = sys.argv[3]
 
-    if cmd == "py2nb":
-        if not source.endswith(".py"):
-            raise ValueError(
-                "The source filename should be a Python file. Got:", source
-            )
-        if not target.endswith(".ipynb"):
-            raise ValueError(
-                "The target filename should be a notebook file. Got:", target
-            )
-        py_to_nb(source, target)
     if cmd == "nb2py":
         if not source.endswith(".ipynb"):
             raise ValueError(
@@ -541,3 +528,13 @@ if __name__ == "__main__":
                 "The target filename should be a Python file. Got:", target
             )
         nb_to_py(source, target)
+    elif cmd == "py2nb":
+        if not source.endswith(".py"):
+            raise ValueError(
+                "The source filename should be a Python file. Got:", source
+            )
+        if not target.endswith(".ipynb"):
+            raise ValueError(
+                "The target filename should be a notebook file. Got:", target
+            )
+        py_to_nb(source, target)
