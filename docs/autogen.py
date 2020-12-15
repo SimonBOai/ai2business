@@ -45,8 +45,7 @@ def py_to_nb_md(dest_dir, dir_path="tutorials"):
 
         tutobooks.py_to_nb(py_path, nb_path, fill_outputs=True)
         tutobooks.py_to_md(py_path, nb_path, md_path, "templates/img")
-
-        github_repo_dir = "keras-team/autokeras/blob/master/docs/"
+        github_repo_dir = "ai2business/ai2business/blob/main/docs/"
         with open(md_path, "r") as md_file:
             button_lines = [
                 # ":material-link: "
