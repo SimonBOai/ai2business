@@ -34,7 +34,7 @@ jobs:
           if [ -f *.ipynb ]; then git add *.ipynb && git commit -am "Add new *.ipynb"; fi
           mike install-extras
           mike deploy dev
-      - name: Create Pull Request for ipynb
+      - name: Create Pull Request for IPython Notebooks
         uses: peter-evans/create-pull-request@v3
       - name: Deploy documentation develops
         if: contains(github.ref, 'refs/heads/main')
