@@ -115,8 +115,9 @@ def nb_to_py(nb_path, py_path):
 
 
 def py_to_nb(py_path, nb_path, fill_outputs=True):
-    f = open(py_path)
-    py = f.read()
+
+    with open(py_path) as f:
+        py = f.read()
     f.close()
     # validate(py)
 
@@ -174,8 +175,8 @@ def py_to_nb(py_path, nb_path, fill_outputs=True):
             "Found %d lines of code, but expected fewer than %d" % (loc, MAX_LOC)
         )
 
-    f = open(nb_path, "w")
-    f.write(json.dumps(notebook, indent=1, sort_keys=True))
+    with open(nb_path, "w+") as f:
+        f.write(json.dumps(notebook, indent=1, sort_keys=True))
     f.close()
     if fill_outputs:
         print("Generating ipynb")
@@ -289,9 +290,9 @@ def validate(py):
     description = lines[5][len("Description: ") :]
     if not description:
         raise ValueError("Missing `Description:` field content.")
-    if not description[0] == description[0].upper():
+    if description[0] != description[0].upper():
         raise ValueError("Description field content must be capitalized.")
-    if not description[-1] == ".":
+    if description[-1] != ".":
         raise ValueError("Description field content must end with a period.")
     if len(description) > 100:
         raise ValueError("Description field content must be less than 100 chars.")
@@ -312,8 +313,8 @@ def validate(py):
     f.write(pre_formatting)
     f.close()
     os.system("black " + fpath)
-    f = open(fpath)
-    formatted = f.read()
+    with open(fpath) as f:
+        formatted = f.read()
     f.close()
     os.remove(fpath)
     if formatted != pre_formatting:
