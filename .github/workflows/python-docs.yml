@@ -31,8 +31,11 @@ jobs:
           cd docs
           if [ -f doc-requirements.txt ]; then pip install -r doc-requirements.txt; fi
           python autogen.py
+          if [ -f *.ipynb ]; then git add *.ipynb && git commit -am "Add new *.ipynb"; fi
           mike install-extras
           mike deploy dev
+      - name: Create Pull Request for ipynb
+        uses: peter-evans/create-pull-request@v3
       - name: Deploy documentation develops
         if: contains(github.ref, 'refs/heads/main')
         run: |
@@ -52,3 +55,4 @@ jobs:
         run: |
           mike deploy --push --update-aliases ${{ steps.get_version.outputs.VERSION }} latest
           mike set-default --push ${{ steps.get_version.outputs.VERSION }}
+      
