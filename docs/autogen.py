@@ -9,9 +9,12 @@ PAGES = {
     "AutoML_for_NeuralNetworks.md": [
         "ai2business.ai_engines.automl_neural_network.AutoMLModels",
     ],
-    "KeyPerformanceCollection": [
+    "Key_Performance_Collection.md": [
         "ai2business.kpi_collector.trends_collector.TrendsCollector",
         "ai2business.kpi_collector.finance_collector.FinanceCollector",
+    ],
+    "Sample_Generators.md": [
+        "ai2business.kpi_collector.datasets.sample_generator.SampleGenerators"
     ],
 }
 

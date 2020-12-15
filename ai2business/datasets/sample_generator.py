@@ -1,5 +1,20 @@
 """Generates sample list of KPIs"""
-from ai2business.datasets.data import database
+# from ai2business.datasets.data import database
+
+
+class SampleGenerators:
+    """Sample Generators allows to generate key word list.
+
+    The module `sample_generator.py` contains functions, which allows generating a list of keywords
+    with and without acronym:
+
+    ```python
+    # Get ticker values of the leading stock markert worldwide.
+    stock_market(indices: str = "DOWJONES") -> dict
+    ```
+    """
+
+    pass
 
 
 def stock_market(indices: str = "DOWJONES") -> dict:
@@ -16,3 +31,7 @@ def stock_market(indices: str = "DOWJONES") -> dict:
     except KeyError as exc:
         print(f"ERROR: {exc} -> Indices is not listed in the databse!")
         return {}
+
+
+if __name__ == "__main__":
+    print(SampleGenerators.__name__ == "SampleGenerators")
