@@ -59,7 +59,7 @@ def py_to_nb_md(dest_dir, dir_path="tutorials"):
                 # + ":octicons-octoface-16: "
                 "[**GitHub source**](https://github.com/"
                 + github_repo_dir
-                + "py/"
+                + "/tutorials"
                 + file_name_no_ext
                 + ".py)",
                 "\n",
