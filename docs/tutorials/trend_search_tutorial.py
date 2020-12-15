@@ -10,7 +10,7 @@ In this context, the `trend-search`-module is a designed in a builder model to a
 """
 
 """shell
-! pip install git+https://github.com/AI2Business/ai2business.git
+pip install git+https://github.com/AI2Business/ai2business.git
 """
 
 """
