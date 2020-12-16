@@ -48,8 +48,9 @@ print(dataset)
 
 """
 
-from ai2business.ai_engines import automl_neural_network as an
 from sklearn.model_selection import train_test_split
+
+from ai2business.ai_engines import automl_neural_network as an
 
 """
 ### Setup the Timeseries Forecaster.
