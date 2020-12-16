@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 ## Runing a small timeseries forecast
 
