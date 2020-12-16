@@ -29,9 +29,5 @@ def stock_market(indices: str = "DOWJONES") -> dict:
     try:
         return database.StockMarket.__dict__[indices.lower()]
     except KeyError as exc:
-        print(f"ERROR: {exc} -> Indices is not listed in the databse!")
+        print(f"ERROR: {exc} -> Indices is not listed in the database!")
         return {}
-
-
-if __name__ == "__main__":
-    print(SampleGenerators.__name__ == "SampleGenerators")
