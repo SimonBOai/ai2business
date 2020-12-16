@@ -72,9 +72,8 @@ MAX_LOC = 300
 
 
 def nb_to_py(nb_path, py_path):
-    f = open(nb_path)
-    content = f.read()
-    f.close()
+    with open(nb_path) as f:
+        content = f.read()
     nb = json.loads(content)
     py = '"""\n'
     py += "Title: FILLME\n"
@@ -99,8 +98,8 @@ def nb_to_py(nb_path, py_path):
             py += "".join(cell["source"]) + "\n"
             py += '"""\n\n'
     # Save file
-    f = open(py_path, "w")
-    f.write(py)
+    with open(py_path, "w+") as f:
+        f.write(py)
     f.close()
     # Format file with Black
     os.system("black " + py_path)
@@ -109,8 +108,8 @@ def nb_to_py(nb_path, py_path):
     try:
         py = _shorten_lines(py)
     finally:
-        f = open(py_path, "w")
-        f.write(py)
+        with open(py_path, "w+") as f:
+            f.write(py)
         f.close()
 
 
@@ -255,7 +254,7 @@ def nb_to_md(nb_path, md_path, img_dir, working_dir=None):
             "![" + ext + "](" + original_img_dir + "/" + md_name,
         )
     md_content = _make_output_code_blocks(md_content)
-    open(md_path, "w").write(md_content)
+    open(md_path, "w+").write(md_content)
     if del_working_dir:
         shutil.rmtree(working_dir)
 
