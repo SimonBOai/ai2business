@@ -1,5 +1,5 @@
 """Generates sample list of KPIs"""
-# from ai2business.datasets.data import database
+from ai2business.datasets.data import database
 
 
 class SampleGenerators:
