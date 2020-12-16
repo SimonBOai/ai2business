@@ -5,8 +5,9 @@ from ai2business.datasets.data import database
 class SampleGenerators:
     """Sample Generators allows to generate key word list.
 
-    The module `sample_generator.py` contains functions, which allows generating a list of keywords
-    with and without acronym:
+    !!! example
+        The module `sample_generator.py` contains functions, which allows generating a list of
+        keywords with and without acronym.
 
     ```python
     # Get ticker values of the leading stock markert worldwide.

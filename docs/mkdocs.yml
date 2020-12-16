@@ -73,6 +73,9 @@ extra:
 plugins:
   - search
   - macros
+  - mkdocstrings:
+      watch:
+        - ai2business
   - git-revision-date-localized
 
 nav:
