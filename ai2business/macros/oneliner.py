@@ -6,7 +6,12 @@ from ai2business.kpi_collector import trends_collector
 
 
 class TrendSearch:
-    """Here is collection of oneliner for trend search.
+    """Here is collection of *oneliner* for trend search.
+
+    !!! example "What is an *oneliner*?"
+    
+        Oneliner is a function that can be executed in one line and contains all essential
+        parameters. No further introductions are needed.
 
     ## A four step search is searching:
 
@@ -24,7 +29,8 @@ class TrendSearch:
         timezone: int = 360,
         country: str = "",
         property_filter="",
-        resolution: str = "COUNTRY" ** kwargs,
+        resolution: str = "COUNTRY",
+        **kwargs,
     ) -> dict:
         """four step search
 

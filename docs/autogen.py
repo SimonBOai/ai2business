@@ -14,6 +14,7 @@ PAGES = {
         "ai2business.kpi_collector.finance_collector.FinanceCollector",
     ],
     "Sample_Generators.md": ["ai2business.datasets.sample_generator.SampleGenerators"],
+    "Oneliner.md": ["ai2business.macros.oneliner.TrendSearch"],
 }
 
 
