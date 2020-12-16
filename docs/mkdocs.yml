@@ -73,6 +73,9 @@ extra:
 plugins:
   - search
   - macros
+  - mkdocstrings:
+      watch:
+        - ai2business
   - git-revision-date-localized
 
 nav:
@@ -85,6 +88,7 @@ nav:
       - Oneliner: Oneliner.md
   - Tutorials:
       - Trend Search: tutorials/trend_search_tutorial.md
+      - AutoML: tutorials/timeseries_forecast_tutorial.md
   - API:
       - Key Performance Collector:
           - Finance-Collector: finance_collector.md
