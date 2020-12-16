@@ -73,14 +73,16 @@ extra:
 plugins:
   - search
   - macros
-  - mkdocstrings
   - git-revision-date-localized
 
 nav:
   - Home: index.md
 
   - Documentation:
+      - Sample Generators: Sample_Generators.md
+      - Trend Search: Key_Performance_Collection.md
       - AutoMLRun: AutoML_for_NeuralNetworks.md
+      - Oneliner: Oneliner.md
   - Tutorials:
       - Trend Search: tutorials/trend_search_tutorial.md
   - API:
