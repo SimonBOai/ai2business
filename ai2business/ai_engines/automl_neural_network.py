@@ -473,7 +473,7 @@ class TextRegression(Procedure):
 
 
 class DataClassification(Procedure):
-    """DataClassification [summary]
+    """DataClassification
 
     Args:
         Procedure (ABC):  Helper class that provides a standard way to create an ABC using inheritance.
@@ -486,7 +486,7 @@ class DataClassification(Procedure):
 
 
 class DataRegression(Procedure):
-    """DataRegression [summary]
+    """DataRegression
 
     Args:
         Procedure (ABC):  Helper class that provides a standard way to create an ABC using inheritance.
@@ -499,7 +499,7 @@ class DataRegression(Procedure):
 
 
 class TimeseriesForecaster(Procedure):
-    """TimeseriesForecaster [summary]
+    """TimeseriesForecaster
 
     Args:
         Procedure (ABC):  Helper class that provides a standard way to create an ABC using inheritance.
@@ -512,7 +512,7 @@ class TimeseriesForecaster(Procedure):
 
 
 class MultiModel(Procedure):
-    """MultiModel [summary]
+    """MultiModel
 
     Args:
         Procedure (ABC):  Helper class that provides a standard way to create an ABC using inheritance.
@@ -573,7 +573,9 @@ class AutoMLFit(Procedure):
             dict: Updated dictionary for key `model`.
         """
         return {
-            "model": automl_model["model"].fit_model(
+            "model": automl_model["model"]
+            .__dict__["model"]
+            .fit_model(
                 x_train=self.x_train,
                 y_train=self.y_train,
                 epochs=self.epochs,
@@ -687,9 +689,7 @@ class AutoMLSave(Procedure):
         self.model_name = model_name
 
     def perform_job(self, automl_model: dict):
-        """perform_job [summary]
-
-        [extended_summary]
+        """Save the auto machine learning model
 
         Args:
             automl_model (dict): [description]
