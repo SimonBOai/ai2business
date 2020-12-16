@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-
 ## Runing a small timeseries forecast
 
 Before running a time series forecast, the initial data set has to be generated first via oneliner. The online `four_step_search` combines four types of trend search:
@@ -33,7 +32,10 @@ keyword_list: list = ["2017", "2018", "2019", "2020"]
 timeframe = oneliner.TrendSearch.four_step_search(keyword_list=keyword_list)
 timeframe["interest_over_time"].plot()
 
-"""And the Pearson-correlation shows the negative linear dependency between the current and previous year."""
+"""
+And the Pearson-correlation shows the negative linear dependency between the current and previous year.
+
+"""
 
 timeframe["interest_over_time"].corr()
 
@@ -41,12 +43,18 @@ dataset = timeframe["interest_over_time"].drop(columns="isPartial")
 
 print(dataset)
 
-"""### Loading the automl modul"""
+"""
+### Loading the automl modul.
+
+"""
 
 from ai2business.ai_engines import automl_neural_network as an
 from sklearn.model_selection import train_test_split
 
-"""### Setup the Timeseries Forecaster"""
+"""
+### Setup the Timeseries Forecaster.
+
+"""
 
 x_train, y_train, x_test, y_test = train_test_split(
     dataset.iloc[:, 0:2].values,
@@ -57,12 +65,18 @@ x_train, y_train, x_test, y_test = train_test_split(
 context = an.AutoMLPipeline(an.TimeseriesForecaster())
 context.run_automl()
 
-"""### Fitting the Timeseries Forecaster"""
+"""
+### Fitting the Timeseries Forecaster.
+
+"""
 
 context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=1)
 context.run_automl()
 
-"""### Evaluate the Timeseries Forecaster"""
+"""
+### Evaluate the Timeseries Forecaster.
+
+"""
 
 context.train = an.AutoMLEvaluate(x_test, y_test, batch_size=32)
 context.run_automl()
