@@ -3,6 +3,7 @@ import shutil
 from pathlib import Path
 
 import keras_autodoc
+
 import tutobooks
 
 PAGES = {
