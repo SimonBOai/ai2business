@@ -4,6 +4,10 @@ from ai2business.datasets.data import database
 ref_DOW = database.StockMarket.__dict__["dowjones"]
 
 
+def test_definition() -> None:
+    assert sample_generator.SampleGenerators.__name__ == "SampleGenerators"
+
+
 def test_load_default() -> None:
     assert sample_generator.stock_market() == ref_DOW
 
