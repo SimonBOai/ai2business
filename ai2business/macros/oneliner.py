@@ -9,7 +9,7 @@ class TrendSearch:
     """Here is collection of *oneliner* for trend search.
 
     !!! example "What is an *oneliner*?"
-    
+
         Oneliner is a function that can be executed in one line and contains all essential
         parameters. No further introductions are needed.
 
