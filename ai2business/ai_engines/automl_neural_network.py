@@ -36,7 +36,7 @@ class AutoMLModels:
         overwrite: bool = False,
         project_name: str = "AutoML_DeepLearning",
         max_model_size: int = None,
-        max_trials: int = 1,
+        max_trials: int = None,
         metrics: str = None,
         seed: int = None,
         tuner: str = None,
