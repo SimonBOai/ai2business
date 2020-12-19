@@ -7,7 +7,7 @@ site_author: AI2Business & coworkers
 docs_dir: sources
 repo_url: https://github.com/AI2Business/ai2business
 repo_name: AI2Business
-edit_uri: edit/main/docs/api
+edit_uri: edit/main/docs/sources
 
 # Copyright
 copyright: Copyright &copy; 2020 - AI2Business
@@ -73,16 +73,22 @@ extra:
 plugins:
   - search
   - macros
-  - mkdocstrings
+  - mkdocstrings:
+      watch:
+        - ai2business
   - git-revision-date-localized
 
 nav:
   - Home: index.md
 
   - Documentation:
+      - Sample Generators: Sample_Generators.md
+      - Trend Search: Key_Performance_Collection.md
       - AutoMLRun: AutoML_for_NeuralNetworks.md
+      - Oneliner: Oneliner.md
   - Tutorials:
       - Trend Search: tutorials/trend_search_tutorial.md
+      - AutoML: tutorials/timeseries_forecast_tutorial.md
   - API:
       - Key Performance Collector:
           - Finance-Collector: finance_collector.md
