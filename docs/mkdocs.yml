@@ -93,7 +93,9 @@ nav:
       - Key Performance Collector:
           - Finance-Collector: finance_collector.md
           - Trends-Collector: trends_collector.md
-          - Datasets: datasets.md
-          - AutoML: automl.md
+      - Datasets: 
+          - Sample Generator: sample_generator.md
+      - Auto Machine Learning:
+          - Deep Learning: deep_learning.md
 extra_css:
   - css/version-select.css
