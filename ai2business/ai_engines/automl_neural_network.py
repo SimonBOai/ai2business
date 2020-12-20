@@ -36,7 +36,7 @@ class AutoMLModels:
         overwrite: bool = False,
         project_name: str = "AutoML_DeepLearning",
         max_model_size: int = None,
-        max_trials: int = 1,
+        max_trials: int = None,
         metrics: str = None,
         seed: int = None,
         tuner: str = None,
@@ -49,10 +49,10 @@ class AutoMLModels:
             objective (str, optional): Model metric. Defaults to "val_loss".
             overwrite (bool, optional): Overwrite existing projects. Defaults to False.
             project_name (str, optional): Project Name. Defaults to "AutoML_DeepLearning".
-            max_model_size (int, optional): [description]. Defaults to None.
-            max_trials (int, optional): [description]. Defaults to 100.
-            metrics (str, optional): [description]. Defaults to None.
-            seed (int, optional): [description]. Defaults to None.
+            max_model_size (int, optional): Maximum number of models to evaluate. Defaults to None.
+            max_trials (int, optional): Maximum number of trials for building a model. Defaults to 100.
+            metrics (str, optional): The metric of the validation. Defaults to None.
+            seed (int, optional): Random shuffling number. Defaults to None.
             tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
         """
         self.directory = directory
@@ -258,9 +258,9 @@ class AutoMLModels:
             column_names (list, optional): Name of the columns. Defaults to None.
             column_types (dict, optional): Type of the columns. Defaults to None.
             output_dim (int, optional): Number of output dimensions. Defaults to None.
-            lookback (int, optional): [description]. Defaults to None.
-            predict_from (int, optional): [description]. Defaults to 1.
-            predict_until (int, optional): [description]. Defaults to None.
+            lookback (int, optional): History range for each prediction. Defaults to None.
+            predict_from (int, optional): Starting point for the time series. Defaults to 1.
+            predict_until (int, optional): Finishing point for the time series. Defaults to None.
 
         Returns:
             ak.TimeseriesForecaster: AutoKERAS timeseries forecast class.
@@ -273,7 +273,6 @@ class AutoMLModels:
             predict_from=predict_from,
             predict_until=predict_until,
             loss=self.loss,
-            metrics=self.metrics,
             project_name=self.project_name,
             max_trials=self.max_trials,
             directory=self.directory,
@@ -392,6 +391,7 @@ class AutoMLPipeline:
         Args:
             train (Any): Any type of auto machine learning model or its attribute.
         """
+        self._train = train
 
     def run_automl(self):
         """Perform the job and update the auto machine learning model."""
@@ -427,9 +427,76 @@ class ImageClassification(Procedure):
         Procedure (ABC):  Helper class that provides a standard way to create an ABC using inheritance.
     """
 
+    def __init__(
+        self,
+        directory: str = None,
+        loss: str = None,
+        objective: str = "val_loss",
+        overwrite: bool = False,
+        project_name: str = "AutoML_DeepLearning",
+        max_model_size: int = None,
+        max_trials: int = None,
+        metrics: str = None,
+        seed: int = None,
+        tuner: str = None,
+        num_classes: int = None,
+        multi_label: bool = False,
+        **kwargs,
+    ) -> None:
+        """Defining the common parameters for all Image Classification.
+
+        Args:
+            directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
+            loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
+            objective (str, optional): Model metric. Defaults to "val_loss".
+            overwrite (bool, optional): Overwrite existing projects. Defaults to False.
+            project_name (str, optional): Project Name. Defaults to "AutoML_DeepLearning".
+            max_model_size (int, optional): Maximum number of models to evaluate. Defaults to None.
+            max_trials (int, optional): Maximum number of trials for building a model. Defaults to 100.
+            metrics (str, optional): The metric of the validation. Defaults to None.
+            seed (int, optional): Random shuffling number. Defaults to None.
+            tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            num_classes (int, optional): Number of classes. Defaults to None.
+            multi_label (bool, optional): The target is multi-labeled. Defaults to False.
+        """
+        self.directory = directory
+        self.loss = loss
+        self.objective = objective
+        self.overwrite = overwrite
+        self.project_name = project_name
+        self.max_model_size = max_model_size
+        self.max_trials = max_trials
+        self.metrics = metrics
+        self.seed = seed
+        self.tuner = tuner
+        self.num_classes = num_classes
+        self.multi_label = multi_label
+        self.kwargs = kwargs
+
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Image Classification.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Image Classification.
+        """
         _ = automl_model
-        model = AutoMLModels().image_classification()
+        model = AutoMLModels(
+            directory=self.directory,
+            loss=self.loss,
+            objective=self.objective,
+            overwrite=self.overwrite,
+            project_name=self.project_name,
+            max_model_size=self.max_model_size,
+            max_trials=self.max_trials,
+            metrics=self.metrics,
+            seed=self.seed,
+            tuner=self.tuner,
+        ).image_classification(
+            num_classes=self.num_classes, multi_label=self.multi_label, **self.kwargs
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
@@ -440,9 +507,73 @@ class ImageRegression(Procedure):
         Procedure (ABC):  Helper class that provides a standard way to create an ABC using inheritance.
     """
 
+    def __init__(
+        self,
+        directory: str = None,
+        loss: str = None,
+        objective: str = "val_loss",
+        overwrite: bool = False,
+        project_name: str = "AutoML_DeepLearning",
+        max_model_size: int = None,
+        max_trials: int = None,
+        metrics: str = None,
+        seed: int = None,
+        tuner: str = None,
+        output_dim: int = None,
+        **kwargs,
+    ) -> None:
+        """Defining the common parameters for Image Regression.
+
+        # Args:
+            directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
+            loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
+            objective (str, optional): Model metric. Defaults to "val_loss".
+            overwrite (bool, optional): Overwrite existing projects. Defaults to False.
+            project_name (str, optional): Project Name. Defaults to "AutoML_DeepLearning".
+            max_model_size (int, optional): Maximum number of models to evaluate. Defaults to None.
+            max_trials (int, optional): Maximum number of trials for building a model. Defaults to 100.
+            metrics (str, optional): The metric of the validation. Defaults to None.
+            seed (int, optional): Random shuffling number. Defaults to None.
+            tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            output_dim (int, optional): Number of output dimensions. Defaults to None.
+        """
+        self.directory = directory
+        self.loss = loss
+        self.objective = objective
+        self.overwrite = overwrite
+        self.project_name = project_name
+        self.max_model_size = max_model_size
+        self.max_trials = max_trials
+        self.metrics = metrics
+        self.seed = seed
+        self.tuner = tuner
+        self.output_dim = output_dim
+        self.kwargs = kwargs
+
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Image Regression.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Image Regression.
+        """
         _ = automl_model
-        model = AutoMLModels().image_regression()
+        model = AutoMLModels(
+            directory=self.directory,
+            loss=self.loss,
+            objective=self.objective,
+            overwrite=self.overwrite,
+            project_name=self.project_name,
+            max_model_size=self.max_model_size,
+            max_trials=self.max_trials,
+            metrics=self.metrics,
+            seed=self.seed,
+            tuner=self.tuner,
+            output_dim=self.output_dim,
+            **self.kwargs,
+        ).image_regression()
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
@@ -453,9 +584,78 @@ class TextClassification(Procedure):
         Procedure (ABC):  Helper class that provides a standard way to create an ABC using inheritance.
     """
 
+    def __init__(
+        self,
+        directory: str = None,
+        loss: str = None,
+        objective: str = "val_loss",
+        overwrite: bool = False,
+        project_name: str = "AutoML_DeepLearning",
+        max_model_size: int = None,
+        max_trials: int = None,
+        metrics: str = None,
+        seed: int = None,
+        tuner: str = None,
+        num_classes: int = None,
+        multi_label: bool = False,
+        **kwargs,
+    ) -> None:
+        """Defining the common parameters for Text Classification.
+
+        # Args:
+            directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
+            loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
+            objective (str, optional): Model metric. Defaults to "val_loss".
+            overwrite (bool, optional): Overwrite existing projects. Defaults to False.
+            project_name (str, optional): Project Name. Defaults to "AutoML_DeepLearning".
+            max_model_size (int, optional): Maximum number of models to evaluate. Defaults to None.
+            max_trials (int, optional): Maximum number of trials for building a model. Defaults to 100.
+            metrics (str, optional): The metric of the validation. Defaults to None.
+            seed (int, optional): Random shuffling number. Defaults to None.
+            tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            num_classes (int, optional): Number of classes. Defaults to None.
+            multi_label (bool, optional): The target is multi-labeled. Defaults to False.
+        """
+        self.directory = directory
+        self.loss = loss
+        self.objective = objective
+        self.overwrite = overwrite
+        self.project_name = project_name
+        self.max_model_size = max_model_size
+        self.max_trials = max_trials
+        self.metrics = metrics
+        self.seed = seed
+        self.tuner = tuner
+        self.num_classes = num_classes
+        self.multi_label = multi_label
+        self.kwargs = kwargs
+
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Text Classification.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Text Classification.
+        """
         _ = automl_model
-        model = AutoMLModels().text_classification()
+        model = AutoMLModels(
+            directory=self.directory,
+            loss=self.loss,
+            objective=self.objective,
+            overwrite=self.overwrite,
+            project_name=self.project_name,
+            max_model_size=self.max_model_size,
+            max_trials=self.max_trials,
+            metrics=self.metrics,
+            seed=self.seed,
+            tuner=self.tuner,
+        ).text_classification(
+            num_classes=self.num_classes,
+            multi_label=self.multi_label,
+            **self.kwargs,
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
@@ -466,61 +666,426 @@ class TextRegression(Procedure):
         Procedure (ABC):  Helper class that provides a standard way to create an ABC using inheritance.
     """
 
+    def __init__(
+        self,
+        directory: str = None,
+        loss: str = None,
+        objective: str = "val_loss",
+        overwrite: bool = False,
+        project_name: str = "AutoML_DeepLearning",
+        max_model_size: int = None,
+        max_trials: int = None,
+        metrics: str = None,
+        seed: int = None,
+        tuner: str = None,
+        output_dim: int = None,
+        **kwargs,
+    ) -> None:
+        """Defining the common parameters for Text Regression.
+
+        Args:
+            directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
+            loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
+            objective (str, optional): Model metric. Defaults to "val_loss".
+            overwrite (bool, optional): Overwrite existing projects. Defaults to False.
+            project_name (str, optional): Project Name. Defaults to "AutoML_DeepLearning".
+            max_model_size (int, optional): Maximum number of models to evaluate. Defaults to None.
+            max_trials (int, optional): Maximum number of trials for building a model. Defaults to 100.
+            metrics (str, optional): The metric of the validation. Defaults to None.
+            seed (int, optional): Random shuffling number. Defaults to None.
+            tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            output_dim (int, optional): Number of output dimensions. Defaults to None.
+        """
+        self.directory = directory
+        self.loss = loss
+        self.objective = objective
+        self.overwrite = overwrite
+        self.project_name = project_name
+        self.max_model_size = max_model_size
+        self.max_trials = max_trials
+        self.metrics = metrics
+        self.seed = seed
+        self.tuner = tuner
+        self.output_dim = output_dim
+        self.kwargs = kwargs
+
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Text Regression.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Text Regression.
+        """
         _ = automl_model
-        model = AutoMLModels().text_regression()
+        model = AutoMLModels(
+            directory=self.directory,
+            loss=self.loss,
+            objective=self.objective,
+            overwrite=self.overwrite,
+            project_name=self.project_name,
+            max_model_size=self.max_model_size,
+            max_trials=self.max_trials,
+            metrics=self.metrics,
+            seed=self.seed,
+            tuner=self.tuner,
+        ).text_regression(
+            output_dim=self.output_dim,
+            **self.kwargs,
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
 class DataClassification(Procedure):
-    """DataClassification [summary]
+    """DataClassification
 
     Args:
         Procedure (ABC):  Helper class that provides a standard way to create an ABC using inheritance.
     """
 
+    def __init__(
+        self,
+        directory: str = None,
+        loss: str = None,
+        objective: str = "val_loss",
+        overwrite: bool = False,
+        project_name: str = "AutoML_DeepLearning",
+        max_model_size: int = None,
+        max_trials: int = None,
+        metrics: str = None,
+        seed: int = None,
+        tuner: str = None,
+        column_names: list = None,
+        column_types: dict = None,
+        num_classes: int = None,
+        multi_label: bool = False,
+        **kwargs,
+    ) -> None:
+        """Defining the common parameters for structured Data Classification.
+
+        # Args:
+            directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
+            loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
+            objective (str, optional): Model metric. Defaults to "val_loss".
+            overwrite (bool, optional): Overwrite existing projects. Defaults to False.
+            project_name (str, optional): Project Name. Defaults to "AutoML_DeepLearning".
+            max_model_size (int, optional): Maximum number of models to evaluate. Defaults to None.
+            max_trials (int, optional): Maximum number of trials for building a model. Defaults to 100.
+            metrics (str, optional): The metric of the validation. Defaults to None.
+            seed (int, optional): Random shuffling number. Defaults to None.
+            tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            column_names (list, optional): Name of the columns. Defaults to None.
+            column_types (dict, optional): Type of the columns. Defaults to None.
+            num_classes (int, optional): Number of classes. Defaults to None.
+            multi_label (bool, optional): The target is multi-labeled. Defaults to False.
+        """
+        self.directory = directory
+        self.loss = loss
+        self.objective = objective
+        self.overwrite = overwrite
+        self.project_name = project_name
+        self.max_model_size = max_model_size
+        self.max_trials = max_trials
+        self.metrics = metrics
+        self.seed = seed
+        self.tuner = tuner
+        self.column_names = column_names
+        self.column_types = column_types
+        self.num_classes = num_classes
+        self.multi_label = multi_label
+        self.kwargs = kwargs
+
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Data Classification.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Data Classification.
+        """
         _ = automl_model
-        model = AutoMLModels().data_classification()
+        model = AutoMLModels(
+            directory=self.directory,
+            loss=self.loss,
+            objective=self.objective,
+            overwrite=self.overwrite,
+            project_name=self.project_name,
+            max_model_size=self.max_model_size,
+            max_trials=self.max_trials,
+            metrics=self.metrics,
+            seed=self.seed,
+            tuner=self.tuner,
+        ).data_classification(
+            column_names=self.column_names,
+            column_types=self.column_types,
+            num_classes=self.num_classes,
+            multi_label=self.multi_label,
+            **self.kwargs,
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
 class DataRegression(Procedure):
-    """DataRegression [summary]
+    """DataRegression
 
     Args:
         Procedure (ABC):  Helper class that provides a standard way to create an ABC using inheritance.
     """
 
+    def __init__(
+        self,
+        directory: str = None,
+        loss: str = None,
+        objective: str = "val_loss",
+        overwrite: bool = False,
+        project_name: str = "AutoML_DeepLearning",
+        max_model_size: int = None,
+        max_trials: int = None,
+        metrics: str = None,
+        seed: int = None,
+        tuner: str = None,
+        column_names: list = None,
+        column_types: dict = None,
+        output_dim: int = None,
+        **kwargs,
+    ) -> None:
+        """Defining the common parameters for structured Data Regression.
+
+        # Args:
+            directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
+            loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
+            objective (str, optional): Model metric. Defaults to "val_loss".
+            overwrite (bool, optional): Overwrite existing projects. Defaults to False.
+            project_name (str, optional): Project Name. Defaults to "AutoML_DeepLearning".
+            max_model_size (int, optional): Maximum number of models to evaluate. Defaults to None.
+            max_trials (int, optional): Maximum number of trials for building a model. Defaults to 100.
+            metrics (str, optional): The metric of the validation. Defaults to None.
+            seed (int, optional): Random shuffling number. Defaults to None.
+            tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            column_names (list, optional): Name of the columns. Defaults to None.
+            column_types (dict, optional): Type of the columns. Defaults to None.
+            output_dim (int, optional): Number of output dimensions. Defaults to None.
+        """
+        self.directory = directory
+        self.loss = loss
+        self.objective = objective
+        self.overwrite = overwrite
+        self.project_name = project_name
+        self.max_model_size = max_model_size
+        self.max_trials = max_trials
+        self.metrics = metrics
+        self.seed = seed
+        self.tuner = tuner
+
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Data Regression.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Data Regression.
+        """
         _ = automl_model
-        model = AutoMLModels().data_regression()
+        model = AutoMLModels(
+            directory=self.directory,
+            loss=self.loss,
+            objective=self.objective,
+            overwrite=self.overwrite,
+            project_name=self.project_name,
+            max_model_size=self.max_model_size,
+            max_trials=self.max_trials,
+            metrics=self.metrics,
+            seed=self.seed,
+            tuner=self.tuner,
+        ).data_regression(
+            column_names=self.column_names,
+            column_types=self.column_types,
+            output_dim=self.output_dim,
+            **self.kwargs,
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
 class TimeseriesForecaster(Procedure):
-    """TimeseriesForecaster [summary]
+    """TimeseriesForecaster
 
     Args:
         Procedure (ABC):  Helper class that provides a standard way to create an ABC using inheritance.
     """
 
+    def __init__(
+        self,
+        directory: str = None,
+        loss: str = None,
+        objective: str = "val_loss",
+        overwrite: bool = False,
+        project_name: str = "AutoML_DeepLearning",
+        max_model_size: int = None,
+        max_trials: int = None,
+        metrics: str = None,
+        seed: int = None,
+        tuner: str = None,
+        column_names: list = None,
+        column_types: dict = None,
+        output_dim: int = None,
+        lookback: int = None,
+        predict_from: int = 1,
+        predict_until: int = None,
+        **kwargs,
+    ) -> None:
+        """Defining the common parameters for Timeseries Forcast.
+
+        # Args:
+            directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
+            loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
+            objective (str, optional): Model metric. Defaults to "val_loss".
+            overwrite (bool, optional): Overwrite existing projects. Defaults to False.
+            project_name (str, optional): Project Name. Defaults to "AutoML_DeepLearning".
+            max_model_size (int, optional): Maximum number of models to evaluate. Defaults to None.
+            max_trials (int, optional): Maximum number of trials for building a model. Defaults to 100.
+            metrics (str, optional): The metric of the validation. Defaults to None.
+            seed (int, optional): Random shuffling number. Defaults to None.
+            tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            column_names (list, optional): Name of the columns. Defaults to None.
+            column_types (dict, optional): Type of the columns. Defaults to None.
+            output_dim (int, optional): Number of output dimensions. Defaults to None.
+            lookback (int, optional): History range for each prediction. Defaults to None.
+            predict_from (int, optional): Starting point for the time series. Defaults to 1.
+            predict_until (int, optional): Finishing point for the time series. Defaults to None.
+        """
+        self.directory = directory
+        self.loss = loss
+        self.objective = objective
+        self.overwrite = overwrite
+        self.project_name = project_name
+        self.max_model_size = max_model_size
+        self.max_trials = max_trials
+        self.metrics = (metrics,)
+        self.seed = seed
+        self.tuner = tuner
+        self.column_names = column_names
+        self.column_types = column_types
+        self.output_dim = output_dim
+        self.lookback = lookback
+        self.predict_from = predict_from
+        self.predict_until = predict_until
+        self.kwargs = kwargs
+
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Timeseries Forcast.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Timeseries Forcast.
+        """
         _ = automl_model
-        model = AutoMLModels().timeseries_forecaster()
+        model = AutoMLModels(
+            directory=self.directory,
+            loss=self.loss,
+            objective=self.objective,
+            overwrite=self.overwrite,
+            project_name=self.project_name,
+            max_model_size=self.max_model_size,
+            max_trials=self.max_trials,
+            metrics=self.metrics,
+            seed=self.seed,
+            tuner=self.tuner,
+        ).timeseries_forecaster(
+            column_names=self.column_names,
+            column_types=self.column_types,
+            output_dim=self.output_dim,
+            lookback=self.lookback,
+            predict_from=self.predict_from,
+            predict_until=self.predict_until,
+            **self.kwargs,
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
 class MultiModel(Procedure):
-    """MultiModel [summary]
+    """MultiModel
 
     Args:
         Procedure (ABC):  Helper class that provides a standard way to create an ABC using inheritance.
     """
 
+    def __init__(
+        self,
+        inputs: list,
+        outputs: list,
+        directory: str = None,
+        loss: str = None,
+        objective: str = "val_loss",
+        overwrite: bool = False,
+        project_name: str = "AutoML_DeepLearning",
+        max_model_size: int = None,
+        max_trials: int = None,
+        metrics: str = None,
+        seed: int = None,
+        tuner: str = None,
+        **kwargs,
+    ) -> None:
+        """Defining the common parameters for Multi Models.
+
+        # Args:
+            inputs (list): A list of `input node instances` of the AutoModel.
+            outputs (list): A list of `output node instances` of the AutoModel.
+            directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
+            loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
+            objective (str, optional): Model metric. Defaults to "val_loss".
+            overwrite (bool, optional): Overwrite existing projects. Defaults to False.
+            project_name (str, optional): Project Name. Defaults to "AutoML_DeepLearning".
+            max_model_size (int, optional): Maximum number of models to evaluate. Defaults to None.
+            max_trials (int, optional): Maximum number of trials for building a model. Defaults to 100.
+            metrics (str, optional): The metric of the validation. Defaults to None.
+            seed (int, optional): Random shuffling number. Defaults to None.
+            tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+        """
+        self.directory = directory
+        self.loss = loss
+        self.objective = objective
+        self.overwrite = overwrite
+        self.project_name = project_name
+        self.max_model_size = max_model_size
+        self.max_trials = max_trials
+        self.metrics = metrics
+        self.seed = seed
+        self.tuner = tuner
+        self.inputs = inputs
+        self.outputs = outputs
+        self.kwargs = kwargs
+
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Multi Model Prediction.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Multi Model Prediction.
+        """
         _ = automl_model
-        model = AutoMLModels().multi_model()
+        model = AutoMLModels(
+            directory=self.directory,
+            loss=self.loss,
+            objective=self.objective,
+            overwrite=self.overwrite,
+            project_name=self.project_name,
+            max_model_size=self.max_model_size,
+            max_trials=self.max_trials,
+            metrics=self.metrics,
+            seed=self.seed,
+            tuner=self.tuner,
+        ).multi_model(
+            inputs=self.inputs,
+            outputs=self.outputs,
+            **self.kwargs,
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
@@ -643,7 +1208,7 @@ class AutoMLEvaluate(Procedure):
         Args:
             x_test (Any): Testing data of `x` as 2d-array
             y_test (Any, optional): Testing data of `y` as 1d- or 2d-array. Defaults to None.
-            batch_size (int, optional): [description]. Defaults to 32.
+            batch_size (int, optional): Size of the batch. Defaults to 32.
         """
         self.x_test = x_test
         self.y_test = y_test
@@ -687,12 +1252,10 @@ class AutoMLSave(Procedure):
         self.model_name = model_name
 
     def perform_job(self, automl_model: dict):
-        """perform_job [summary]
-
-        [extended_summary]
+        """Save the auto machine learning model
 
         Args:
             automl_model (dict): [description]
         """
-        _model = automl_model.export_model()
+        _model = automl_model["model"].export_model()
         _model.save(f"{self.model_name}", save_format="tf")

@@ -1,12 +1,3 @@
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/AI2Business/ai2business)
-[![Python dev-docs](https://github.com/AI2Business/ai2business/workflows/Python%20docs/badge.svg?branch=main)](https://ai2business.github.io/ai2business/dev/)
-[![Python package](https://github.com/AI2Business/ai2business/workflows/Python%20package/badge.svg?branch=main)](https://github.com/AI2Business/ai2business/actions?query=workflow%3A%22Python+package%22)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-
-# AI2Business
----
-
-
 ## Table of Contents
 
 - [About](#about)

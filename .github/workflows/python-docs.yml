@@ -1,9 +1,9 @@
 name: Python docs
 on:
   push:
-    branches: [master, main, docs]
+    branches: [master, main, docs, docs_new]
   pull_request:
-    branches: [master, main, docs]
+    branches: [master, main, docs, docs_new]
 
 jobs:
   documentation:
@@ -24,17 +24,23 @@ jobs:
           pip install -e .
       - name: Set git config
         run: |
-           git config --local user.email "action@github.com"
-           git config --local user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
       - name: Build documentation
         run: |
-           mike install-extras
-           mike deploy dev
+          cd docs
+          if [ -f doc-requirements.txt ]; then pip install -r doc-requirements.txt; fi
+          python autogen.py
+          mike install-extras
+          mike deploy dev
       - name: Deploy documentation develops
         if: contains(github.ref, 'refs/heads/main')
         run: |
-           mike delete dev || true
-           mike deploy --push dev --force
+          cd docs
+          python autogen.py
+          mike delete dev || true
+          mike deploy --push dev --force
+          cd ~
       - name: Get the release version
         if: contains(github.ref, 'refs/tags/v')
         id: get_version
@@ -44,5 +50,18 @@ jobs:
       - name: Deploy documentation new release
         if: contains(github.ref, 'refs/tags/v')
         run: |
-           mike deploy --push --update-aliases ${{ steps.get_version.outputs.VERSION }} latest
-           mike set-default --push ${{ steps.get_version.outputs.VERSION }}
+          mike deploy --push --update-aliases ${{ steps.get_version.outputs.VERSION }} latest
+          mike set-default --push ${{ steps.get_version.outputs.VERSION }}
+      - name: Create Pull Request for IPython Notebooks
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: update docs
+          title: Automated Updates to docs and IPython Notebooks
+          body: This is an auto-generated PR for the documentary including the auto generated IPython Notebooks.
+          labels: |
+            ipynb
+            documentation
+            automated pr
+          ref: docsbuild
+          base: ${{ github.head_ref }}
