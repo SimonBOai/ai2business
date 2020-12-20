@@ -651,10 +651,11 @@ class TextClassification(Procedure):
             metric=self.metric,
             seed=self.seed,
             tuner=self.tuner,
+        ).text_classification(
             num_classes=self.num_classes,
             multi_label=self.multi_label,
             **self.kwargs,
-        ).text_classification()
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
@@ -729,9 +730,10 @@ class TextRegression(Procedure):
             metric=self.metric,
             seed=self.seed,
             tuner=self.tuner,
+        ).text_regression(
             output_dim=self.output_dim,
             **self.kwargs,
-        ).text_regression()
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
@@ -815,12 +817,13 @@ class DataClassification(Procedure):
             metric=self.metric,
             seed=self.seed,
             tuner=self.tuner,
+        ).data_classification(
             column_names=self.column_names,
             column_types=self.column_types,
             num_classes=self.num_classes,
             multi_label=self.multi_label,
             **self.kwargs,
-        ).data_classification()
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
@@ -875,10 +878,6 @@ class DataRegression(Procedure):
         self.metrics = metrics
         self.seed = seed
         self.tuner = tuner
-        self.column_names = column_names
-        self.column_types = column_types
-        self.output_dim = output_dim
-        self.kwargs = kwargs
 
     def perform_job(self, automl_model: dict) -> dict:
         """Perform the job for Data Regression.
@@ -901,11 +900,12 @@ class DataRegression(Procedure):
             metric=self.metric,
             seed=self.seed,
             tuner=self.tuner,
+        ).data_regression(
             column_names=self.column_names,
             column_types=self.column_types,
             output_dim=self.output_dim,
             **self.kwargs,
-        ).data_regression()
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
@@ -925,6 +925,7 @@ class TimeseriesForecaster(Procedure):
         project_name: str = "AutoML_DeepLearning",
         max_model_size: int = None,
         max_trials: int = None,
+        metrics: str = None,
         seed: int = None,
         tuner: str = None,
         column_names: list = None,
@@ -945,6 +946,7 @@ class TimeseriesForecaster(Procedure):
             project_name (str, optional): Project Name. Defaults to "AutoML_DeepLearning".
             max_model_size (int, optional): Maximum number of models to evaluate. Defaults to None.
             max_trials (int, optional): Maximum number of trials for building a model. Defaults to 100.
+            metrics (str, optional): The metric of the validation. Defaults to None.
             seed (int, optional): Random shuffling number. Defaults to None.
             tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
             column_names (list, optional): Name of the columns. Defaults to None.
@@ -961,7 +963,7 @@ class TimeseriesForecaster(Procedure):
         self.project_name = project_name
         self.max_model_size = max_model_size
         self.max_trials = max_trials
-        self.metrics = metrics
+        self.metric = (metric,)
         self.seed = seed
         self.tuner = tuner
         self.column_names = column_names
@@ -992,6 +994,7 @@ class TimeseriesForecaster(Procedure):
             max_trials=self.max_trials,
             seed=self.seed,
             tuner=self.tuner,
+        ).timeseries_forecaster(
             column_names=self.column_names,
             column_types=self.column_types,
             output_dim=self.output_dim,
@@ -999,7 +1002,7 @@ class TimeseriesForecaster(Procedure):
             predict_from=self.predict_from,
             predict_until=self.predict_until,
             **self.kwargs,
-        ).timeseries_forecaster()
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
@@ -1077,10 +1080,11 @@ class MultiModel(Procedure):
             metric=self.metric,
             seed=self.seed,
             tuner=self.tuner,
+        ).multi_model(
             inputs=self.inputs,
             outputs=self.outputs,
             **self.kwargs,
-        ).multi_model()
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
