@@ -7,7 +7,24 @@ from ai2business.ai_engines import automl_neural_network as an
 
 
 @mock.patch("ai2business.ai_engines.automl_neural_network.AutoMLFit")
-def test_interest_over_time(AutoMLFit):
+def test_call_iamge_classification(AutoMLFit):
+    data = load_boston()
+    x_train, y_train, x_test, y_test = train_test_split(
+        data.data,
+        data.target,
+        test_size=0.33,
+        random_state=42,
+    )
+    context = an.AutoMLPipeline(an.ImageClassification())
+    context.run_automl()
+    context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=1)
+    context.run_automl()
+
+    assert an.AutoMLFit.is_called
+
+
+@mock.patch("ai2business.ai_engines.automl_neural_network.AutoMLFit")
+def test_call_timeseries_forecast(AutoMLFit):
     data = load_boston()
     x_train, y_train, x_test, y_test = train_test_split(
         data.data,

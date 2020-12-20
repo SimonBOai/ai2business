@@ -43,7 +43,7 @@ class AutoMLModels:
     ) -> None:
         """Defining the common parameters for all models.
 
-        # Args:
+        Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
@@ -491,7 +491,7 @@ class ImageClassification(Procedure):
             project_name=self.project_name,
             max_model_size=self.max_model_size,
             max_trials=self.max_trials,
-            metric=self.metric,
+            metrics=self.metrics,
             seed=self.seed,
             tuner=self.tuner,
         ).image_classification(
@@ -568,7 +568,7 @@ class ImageRegression(Procedure):
             project_name=self.project_name,
             max_model_size=self.max_model_size,
             max_trials=self.max_trials,
-            metric=self.metric,
+            metrics=self.metrics,
             seed=self.seed,
             tuner=self.tuner,
             output_dim=self.output_dim,
@@ -648,7 +648,7 @@ class TextClassification(Procedure):
             project_name=self.project_name,
             max_model_size=self.max_model_size,
             max_trials=self.max_trials,
-            metric=self.metric,
+            metrics=self.metrics,
             seed=self.seed,
             tuner=self.tuner,
         ).text_classification(
@@ -727,7 +727,7 @@ class TextRegression(Procedure):
             project_name=self.project_name,
             max_model_size=self.max_model_size,
             max_trials=self.max_trials,
-            metric=self.metric,
+            metrics=self.metrics,
             seed=self.seed,
             tuner=self.tuner,
         ).text_regression(
@@ -814,7 +814,7 @@ class DataClassification(Procedure):
             project_name=self.project_name,
             max_model_size=self.max_model_size,
             max_trials=self.max_trials,
-            metric=self.metric,
+            metrics=self.metrics,
             seed=self.seed,
             tuner=self.tuner,
         ).data_classification(
@@ -897,7 +897,7 @@ class DataRegression(Procedure):
             project_name=self.project_name,
             max_model_size=self.max_model_size,
             max_trials=self.max_trials,
-            metric=self.metric,
+            metrics=self.metrics,
             seed=self.seed,
             tuner=self.tuner,
         ).data_regression(
@@ -1078,7 +1078,7 @@ class MultiModel(Procedure):
             project_name=self.project_name,
             max_model_size=self.max_model_size,
             max_trials=self.max_trials,
-            metric=self.metric,
+            metrics=self.metrics,
             seed=self.seed,
             tuner=self.tuner,
         ).multi_model(
