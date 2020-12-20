@@ -32,4 +32,4 @@ def test_runtime_dataclassifier():
     context.run_automl()
     assert context.return_automl["model"] != None
     assert isinstance(context.return_automl["prediction"], np.ndarray)
-    assert isinstance(context.return_automl["evaluation"], np.ndarray)
+    assert isinstance(context.return_automl["evaluation"], list)
