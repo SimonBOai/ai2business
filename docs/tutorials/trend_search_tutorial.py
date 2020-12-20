@@ -3,7 +3,7 @@
 
 Trend search can be differs roughly in two major criteria:
 
-1. A *active* driven search by using `keyword` like "Corona", "S&P 500", "Hope"
+1. An *active* driven search by using `keyword` like "Corona", "S&P 500", "Hope"
 2. A *passive* driven search by using the community feedback to gather actual topics.
 
 In this context, the `trend-search`-module is a designed in a builder model to add much searches as required in a collection `{}`.
