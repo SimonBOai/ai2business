@@ -63,3 +63,5 @@ jobs:
             ipynb
             documentation
             automated pr
+          ref: docsbuild
+          base: ${{ github.head_ref }}
