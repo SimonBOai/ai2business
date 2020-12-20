@@ -8,10 +8,10 @@ from ai2business.ai_engines import automl_neural_network as an
 
 @mock.patch("ai2business.ai_engines.automl_neural_network.AutoMLFit")
 def test_interest_over_time(AutoMLFit):
-    X, y = load_boston(return_X_y=True)
+    data = load_boston()
     x_train, y_train, x_test, y_test = train_test_split(
-        X,
-        y,
+        data.data,
+        data.target,
         test_size=0.33,
         random_state=42,
     )

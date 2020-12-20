@@ -22,9 +22,9 @@ def test_runtime_dataclassifier():
     x_test = data_test.drop(columns="survived")
     y_test = data_test["survived"]
 
-    context = an.AutoMLPipeline(an.DataClassification())
+    context = an.AutoMLPipeline(an.DataClassification(max_trials=4))
     context.run_automl()
-    context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=1)
+    context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=100)
     context.run_automl()
     context.train = an.AutoMLEvaluate(x_test, y_test, batch_size=32)
     context.run_automl()

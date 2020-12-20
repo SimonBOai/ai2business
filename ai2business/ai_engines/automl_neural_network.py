@@ -273,7 +273,6 @@ class AutoMLModels:
             predict_from=predict_from,
             predict_until=predict_until,
             loss=self.loss,
-            metrics=self.metrics,
             project_name=self.project_name,
             max_trials=self.max_trials,
             directory=self.directory,
@@ -926,7 +925,6 @@ class TimeseriesForecaster(Procedure):
         project_name: str = "AutoML_DeepLearning",
         max_model_size: int = None,
         max_trials: int = None,
-        metrics: str = None,
         seed: int = None,
         tuner: str = None,
         column_names: list = None,
@@ -947,7 +945,6 @@ class TimeseriesForecaster(Procedure):
             project_name (str, optional): Project Name. Defaults to "AutoML_DeepLearning".
             max_model_size (int, optional): Maximum number of models to evaluate. Defaults to None.
             max_trials (int, optional): Maximum number of trials for building a model. Defaults to 100.
-            metrics (str, optional): The metric of the validation. Defaults to None.
             seed (int, optional): Random shuffling number. Defaults to None.
             tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
             column_names (list, optional): Name of the columns. Defaults to None.
@@ -993,7 +990,6 @@ class TimeseriesForecaster(Procedure):
             project_name=self.project_name,
             max_model_size=self.max_model_size,
             max_trials=self.max_trials,
-            metric=self.metric,
             seed=self.seed,
             tuner=self.tuner,
             column_names=self.column_names,
