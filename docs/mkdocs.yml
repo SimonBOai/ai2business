@@ -91,9 +91,11 @@ nav:
       - AutoML: tutorials/timeseries_forecast_tutorial.md
   - API:
       - Key Performance Collector:
-          - Finance-Collector: finance_collector.md
-          - Trends-Collector: trends_collector.md
-          - Datasets: datasets.md
-          - AutoML: automl.md
+          - Finance-Collector: finance_collector_api.md
+          - Trends-Collector: trends_collector_api.md
+      - Datasets: 
+          - Sample Generator: sample_generator_api.md
+      - Auto Machine Learning:
+          - Deep Learning: deep_learning_api.md
 extra_css:
   - css/version-select.css
