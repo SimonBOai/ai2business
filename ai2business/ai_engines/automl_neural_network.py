@@ -963,7 +963,7 @@ class TimeseriesForecaster(Procedure):
         self.project_name = project_name
         self.max_model_size = max_model_size
         self.max_trials = max_trials
-        self.metric = (metric,)
+        self.metrics = (metrics,)
         self.seed = seed
         self.tuner = tuner
         self.column_names = column_names
@@ -992,6 +992,7 @@ class TimeseriesForecaster(Procedure):
             project_name=self.project_name,
             max_model_size=self.max_model_size,
             max_trials=self.max_trials,
+            metrics=self.metrics,
             seed=self.seed,
             tuner=self.tuner,
         ).timeseries_forecaster(
