@@ -1,4 +1,4 @@
-import autokeras as ak
+import numpy as np
 import pandas as pd
 import tensorflow as tf
 
@@ -31,5 +31,5 @@ def test_runtime_dataclassifier():
     context.train = an.AutoMLPredict(x_train, batch_size=32)
     context.run_automl()
     assert context.return_automl["model"] != None
-    assert context.return_automl["prediction"] != None
-    assert context.return_automl["evaluation"] != None
+    assert isinstance(context.return_automl["prediction"], np.ndarray)
+    assert isinstance(context.return_automl["evaluation"], np.ndarray)
