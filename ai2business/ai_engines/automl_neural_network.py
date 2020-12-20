@@ -440,10 +440,13 @@ class ImageClassification(Procedure):
         metrics: str = None,
         seed: int = None,
         tuner: str = None,
+        num_classes: int = None,
+        multi_label: bool = False,
+        **kwargs,
     ) -> None:
-        """Defining the common parameters for all models.
+        """Defining the common parameters for all Image Classification.
 
-        # Args:
+        Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
@@ -454,6 +457,8 @@ class ImageClassification(Procedure):
             metrics (str, optional): The metric of the validation. Defaults to None.
             seed (int, optional): Random shuffling number. Defaults to None.
             tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            num_classes (int, optional): Number of classes. Defaults to None.
+            multi_label (bool, optional): The target is multi-labeled. Defaults to False.
         """
         self.directory = directory
         self.loss = loss
@@ -465,8 +470,19 @@ class ImageClassification(Procedure):
         self.metrics = metrics
         self.seed = seed
         self.tuner = tuner
+        self.num_classes = num_classes
+        self.multi_label = multi_label
+        self.kwargs = kwargs
 
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Image Classification.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Image Classification.
+        """
         _ = automl_model
         model = AutoMLModels(
             directory=self.directory,
@@ -479,7 +495,9 @@ class ImageClassification(Procedure):
             metric=self.metric,
             seed=self.seed,
             tuner=self.tuner,
-        ).image_classification()
+        ).image_classification(
+            num_classes=self.num_classes, multi_label=self.multi_label, **self.kwargs
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
@@ -502,8 +520,10 @@ class ImageRegression(Procedure):
         metrics: str = None,
         seed: int = None,
         tuner: str = None,
+        output_dim: int = None,
+        **kwargs,
     ) -> None:
-        """Defining the common parameters for all models.
+        """Defining the common parameters for Image Regression.
 
         # Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
@@ -516,6 +536,7 @@ class ImageRegression(Procedure):
             metrics (str, optional): The metric of the validation. Defaults to None.
             seed (int, optional): Random shuffling number. Defaults to None.
             tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            output_dim (int, optional): Number of output dimensions. Defaults to None.
         """
         self.directory = directory
         self.loss = loss
@@ -527,8 +548,18 @@ class ImageRegression(Procedure):
         self.metrics = metrics
         self.seed = seed
         self.tuner = tuner
+        self.output_dim = output_dim
+        self.kwargs = kwargs
 
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Image Regression.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Image Regression.
+        """
         _ = automl_model
         model = AutoMLModels(
             directory=self.directory,
@@ -541,6 +572,8 @@ class ImageRegression(Procedure):
             metric=self.metric,
             seed=self.seed,
             tuner=self.tuner,
+            output_dim=self.output_dim,
+            **self.kwargs,
         ).image_regression()
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
@@ -564,8 +597,11 @@ class TextClassification(Procedure):
         metrics: str = None,
         seed: int = None,
         tuner: str = None,
+        num_classes: int = None,
+        multi_label: bool = False,
+        **kwargs,
     ) -> None:
-        """Defining the common parameters for all models.
+        """Defining the common parameters for Text Classification.
 
         # Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
@@ -578,6 +614,8 @@ class TextClassification(Procedure):
             metrics (str, optional): The metric of the validation. Defaults to None.
             seed (int, optional): Random shuffling number. Defaults to None.
             tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            num_classes (int, optional): Number of classes. Defaults to None.
+            multi_label (bool, optional): The target is multi-labeled. Defaults to False.
         """
         self.directory = directory
         self.loss = loss
@@ -589,8 +627,19 @@ class TextClassification(Procedure):
         self.metrics = metrics
         self.seed = seed
         self.tuner = tuner
+        self.num_classes = num_classes
+        self.multi_label = multi_label
+        self.kwargs = kwargs
 
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Text Classification.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Text Classification.
+        """
         _ = automl_model
         model = AutoMLModels(
             directory=self.directory,
@@ -603,6 +652,9 @@ class TextClassification(Procedure):
             metric=self.metric,
             seed=self.seed,
             tuner=self.tuner,
+            num_classes=self.num_classes,
+            multi_label=self.multi_label,
+            **self.kwargs,
         ).text_classification()
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
@@ -626,10 +678,12 @@ class TextRegression(Procedure):
         metrics: str = None,
         seed: int = None,
         tuner: str = None,
+        output_dim: int = None,
+        **kwargs,
     ) -> None:
-        """Defining the common parameters for all models.
+        """Defining the common parameters for Text Regression.
 
-        # Args:
+        Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
@@ -640,6 +694,7 @@ class TextRegression(Procedure):
             metrics (str, optional): The metric of the validation. Defaults to None.
             seed (int, optional): Random shuffling number. Defaults to None.
             tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            output_dim (int, optional): Number of output dimensions. Defaults to None.
         """
         self.directory = directory
         self.loss = loss
@@ -651,8 +706,18 @@ class TextRegression(Procedure):
         self.metrics = metrics
         self.seed = seed
         self.tuner = tuner
+        self.output_dim = output_dim
+        self.kwargs = kwargs
 
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Text Regression.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Text Regression.
+        """
         _ = automl_model
         model = AutoMLModels(
             directory=self.directory,
@@ -665,6 +730,8 @@ class TextRegression(Procedure):
             metric=self.metric,
             seed=self.seed,
             tuner=self.tuner,
+            output_dim=self.output_dim,
+            **self.kwargs,
         ).text_regression()
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
@@ -688,8 +755,13 @@ class DataClassification(Procedure):
         metrics: str = None,
         seed: int = None,
         tuner: str = None,
+        column_names: list = None,
+        column_types: dict = None,
+        num_classes: int = None,
+        multi_label: bool = False,
+        **kwargs,
     ) -> None:
-        """Defining the common parameters for all models.
+        """Defining the common parameters for structured Data Classification.
 
         # Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
@@ -702,6 +774,10 @@ class DataClassification(Procedure):
             metrics (str, optional): The metric of the validation. Defaults to None.
             seed (int, optional): Random shuffling number. Defaults to None.
             tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            column_names (list, optional): Name of the columns. Defaults to None.
+            column_types (dict, optional): Type of the columns. Defaults to None.
+            num_classes (int, optional): Number of classes. Defaults to None.
+            multi_label (bool, optional): The target is multi-labeled. Defaults to False.
         """
         self.directory = directory
         self.loss = loss
@@ -713,8 +789,21 @@ class DataClassification(Procedure):
         self.metrics = metrics
         self.seed = seed
         self.tuner = tuner
+        self.column_names = column_names
+        self.column_types = column_types
+        self.num_classes = num_classes
+        self.multi_label = multi_label
+        self.kwargs = kwargs
 
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Data Classification.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Data Classification.
+        """
         _ = automl_model
         model = AutoMLModels(
             directory=self.directory,
@@ -727,6 +816,11 @@ class DataClassification(Procedure):
             metric=self.metric,
             seed=self.seed,
             tuner=self.tuner,
+            column_names=self.column_names,
+            column_types=self.column_types,
+            num_classes=self.num_classes,
+            multi_label=self.multi_label,
+            **self.kwargs,
         ).data_classification()
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
@@ -750,8 +844,12 @@ class DataRegression(Procedure):
         metrics: str = None,
         seed: int = None,
         tuner: str = None,
+        column_names: list = None,
+        column_types: dict = None,
+        output_dim: int = None,
+        **kwargs,
     ) -> None:
-        """Defining the common parameters for all models.
+        """Defining the common parameters for structured Data Regression.
 
         # Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
@@ -764,6 +862,9 @@ class DataRegression(Procedure):
             metrics (str, optional): The metric of the validation. Defaults to None.
             seed (int, optional): Random shuffling number. Defaults to None.
             tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            column_names (list, optional): Name of the columns. Defaults to None.
+            column_types (dict, optional): Type of the columns. Defaults to None.
+            output_dim (int, optional): Number of output dimensions. Defaults to None.
         """
         self.directory = directory
         self.loss = loss
@@ -775,8 +876,20 @@ class DataRegression(Procedure):
         self.metrics = metrics
         self.seed = seed
         self.tuner = tuner
+        self.column_names = column_names
+        self.column_types = column_types
+        self.output_dim = output_dim
+        self.kwargs = kwargs
 
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Data Regression.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Data Regression.
+        """
         _ = automl_model
         model = AutoMLModels(
             directory=self.directory,
@@ -789,6 +902,10 @@ class DataRegression(Procedure):
             metric=self.metric,
             seed=self.seed,
             tuner=self.tuner,
+            column_names=self.column_names,
+            column_types=self.column_types,
+            output_dim=self.output_dim,
+            **self.kwargs,
         ).data_regression()
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
@@ -812,8 +929,15 @@ class TimeseriesForecaster(Procedure):
         metrics: str = None,
         seed: int = None,
         tuner: str = None,
+        column_names: list = None,
+        column_types: dict = None,
+        output_dim: int = None,
+        lookback: int = None,
+        predict_from: int = 1,
+        predict_until: int = None,
+        **kwargs,
     ) -> None:
-        """Defining the common parameters for all models.
+        """Defining the common parameters for Timeseries Forcast.
 
         # Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
@@ -826,6 +950,12 @@ class TimeseriesForecaster(Procedure):
             metrics (str, optional): The metric of the validation. Defaults to None.
             seed (int, optional): Random shuffling number. Defaults to None.
             tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            column_names (list, optional): Name of the columns. Defaults to None.
+            column_types (dict, optional): Type of the columns. Defaults to None.
+            output_dim (int, optional): Number of output dimensions. Defaults to None.
+            lookback (int, optional): History range for each prediction. Defaults to None.
+            predict_from (int, optional): Starting point for the time series. Defaults to 1.
+            predict_until (int, optional): Finishing point for the time series. Defaults to None.
         """
         self.directory = directory
         self.loss = loss
@@ -837,8 +967,23 @@ class TimeseriesForecaster(Procedure):
         self.metrics = metrics
         self.seed = seed
         self.tuner = tuner
+        self.column_names = column_names
+        self.column_types = column_types
+        self.output_dim = output_dim
+        self.lookback = lookback
+        self.predict_from = predict_from
+        self.predict_until = predict_until
+        self.kwargs = kwargs
 
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Timeseries Forcast.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Timeseries Forcast.
+        """
         _ = automl_model
         model = AutoMLModels(
             directory=self.directory,
@@ -851,6 +996,13 @@ class TimeseriesForecaster(Procedure):
             metric=self.metric,
             seed=self.seed,
             tuner=self.tuner,
+            column_names=self.column_names,
+            column_types=self.column_types,
+            output_dim=self.output_dim,
+            lookback=self.lookback,
+            predict_from=self.predict_from,
+            predict_until=self.predict_until,
+            **self.kwargs,
         ).timeseries_forecaster()
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
@@ -864,6 +1016,8 @@ class MultiModel(Procedure):
 
     def __init__(
         self,
+        inputs: list,
+        outputs: list,
         directory: str = None,
         loss: str = None,
         objective: str = "val_loss",
@@ -874,10 +1028,13 @@ class MultiModel(Procedure):
         metrics: str = None,
         seed: int = None,
         tuner: str = None,
+        **kwargs,
     ) -> None:
-        """Defining the common parameters for all models.
+        """Defining the common parameters for Multi Models.
 
         # Args:
+            inputs (list): A list of `input node instances` of the AutoModel.
+            outputs (list): A list of `output node instances` of the AutoModel.
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
@@ -899,8 +1056,19 @@ class MultiModel(Procedure):
         self.metrics = metrics
         self.seed = seed
         self.tuner = tuner
+        self.inputs = inputs
+        self.outputs = outputs
+        self.kwargs = kwargs
 
     def perform_job(self, automl_model: dict) -> dict:
+        """Perform the job for Multi Model Prediction.
+
+        Args:
+            automl_model (dict): (Empty) dictionary for the AutoKERAS-class, prediction, and evaluation.
+
+        Returns:
+            dict: Updated the the `model`-section of the dictionary with a AutoKERAS-class for Multi Model Prediction.
+        """
         _ = automl_model
         model = AutoMLModels(
             directory=self.directory,
@@ -913,6 +1081,9 @@ class MultiModel(Procedure):
             metric=self.metric,
             seed=self.seed,
             tuner=self.tuner,
+            inputs=self.inputs,
+            outputs=self.outputs,
+            **self.kwargs,
         ).multi_model()
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
