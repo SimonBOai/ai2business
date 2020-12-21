@@ -99,7 +99,7 @@ def test_call_prediction(AutoMLFit, AutoMLPredict):
 
 @mock.patch("ai2business.ai_engines.automl_neural_network.AutoMLFit")
 @mock.patch("ai2business.ai_engines.automl_neural_network.AutoMLEvaluate")
-def test_call_prediction(AutoMLFit, AutoMLEvaluate):
+def test_call_evaluation(AutoMLFit, AutoMLEvaluate):
 
     context = an.AutoMLPipeline(an.DataClassification())
     context.run_automl()
@@ -108,3 +108,16 @@ def test_call_prediction(AutoMLFit, AutoMLEvaluate):
     context.train = an.AutoMLEvaluate(x_test, y_test, batch_size=32)
     context.run_automl()
     assert an.AutoMLEvaluate.is_called
+
+
+@mock.patch("ai2business.ai_engines.automl_neural_network.AutoMLFit")
+@mock.patch("ai2business.ai_engines.automl_neural_network.AutoMLSave")
+def test_call_save(AutoMLFit, AutoMLSave):
+
+    context = an.AutoMLPipeline(an.DataClassification())
+    context.run_automl()
+    context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=1)
+    context.run_automl()
+    context.train = an.AutoMLSave("dummy")
+    context.run_automl()
+    assert an.AutoMLSave.is_called
