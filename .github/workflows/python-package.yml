@@ -51,7 +51,7 @@ jobs:
           black --check .
       - name: Test with pytest and generate coverage report
         run: |
-          pytest --cov=./ --cov-report=xml -vv
+          pytest -vv --cov=./ai2business --cov-report=xml
       - name: Codecov
         uses: codecov/codecov-action@v1.0.15
 
