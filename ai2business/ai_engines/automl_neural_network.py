@@ -571,9 +571,10 @@ class ImageRegression(Procedure):
             metrics=self.metrics,
             seed=self.seed,
             tuner=self.tuner,
+        ).image_regression(
             output_dim=self.output_dim,
             **self.kwargs,
-        ).image_regression()
+        )
         return {"model": AutoMLRoutines(model), "prediction": None, "evaluation": None}
 
 
@@ -878,6 +879,10 @@ class DataRegression(Procedure):
         self.metrics = metrics
         self.seed = seed
         self.tuner = tuner
+        self.column_names = column_names
+        self.column_types = column_types
+        self.output_dim = output_dim
+        self.kwargs = kwargs
 
     def perform_job(self, automl_model: dict) -> dict:
         """Perform the job for Data Regression.
