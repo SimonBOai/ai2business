@@ -33,7 +33,7 @@ RUN mkdir "$ai2business_home" \
     && git clone "https://github.com/$gh_username/ai2business.git" "$ai2business_home" \
     && cd "$ai2business_home" \
     && git remote add upstream "https://github.com/AI2Business/ai2business.git" \
-    && git pull upstream master
+    && git pull upstream main
 
 # Update pip, setuptools, and wheel
 RUN python -m pip install --upgrade pip setuptools wheel 
