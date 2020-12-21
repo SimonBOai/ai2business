@@ -41,7 +41,8 @@ RUN python -m pip install --upgrade pip setuptools wheel
 
 # Build ai2business
 SHELL ["/bin/bash", "-c"]
-RUN python -m pip install -r ./requirements.txt
-RUN python -m pip install -r ./dev-requirements.txt
-RUN python -m pip install -r docs/doc-requirements.txt
-RUN python -m pip install -e .
+RUN cd "$ai2business_home" \
+    && python -m pip install -r ./requirements.txt \
+    && python -m pip install -r ./dev-requirements.txt \
+    && python -m pip install -r docs/doc-requirements.txt \
+    && python -m pip install -e .
