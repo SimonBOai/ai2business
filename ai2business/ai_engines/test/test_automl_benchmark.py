@@ -1,3 +1,4 @@
+import autokeras as ak
 import numpy as np
 import pandas as pd
 import tensorflow as tf
@@ -5,8 +6,6 @@ from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
 
 from ai2business.ai_engines import automl_neural_network as an
-
-import autokeras as ak
 
 
 def test_runtime_dataclassifier():
