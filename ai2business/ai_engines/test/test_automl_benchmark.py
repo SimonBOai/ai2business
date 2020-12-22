@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
 
 from ai2business.ai_engines import automl_neural_network as an
 
@@ -23,7 +24,9 @@ def test_runtime_dataclassifier():
     x_test = data_test.drop(columns="survived")
     y_test = data_test["survived"]
 
-    context = an.AutoMLPipeline(an.DataClassification(max_trials=4))
+    context = an.AutoMLPipeline(
+        an.DataClassification(max_trials=5, overwrite=True, loss="mean_squared_error")
+    )
     context.run_automl()
     context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=100)
     context.run_automl()
@@ -38,21 +41,16 @@ def test_runtime_dataclassifier():
 
 def test_runtime_dataregression():
 
-    house_dataset = fetch_california_housing()
-    df = pd.DataFrame(
-        np.concatenate(
-            (house_dataset.data, house_dataset.target.reshape(-1, 1)), axis=1
-        ),
-        columns=house_dataset.feature_names + ["price"],
+    data = fetch_california_housing()
+    x_train, y_train, x_test, y_test = train_test_split(
+        data.data,
+        data.target,
+        test_size=0.33,
+        random_state=42,
     )
-    train_size = int(df.shape[0] * 0.9)
-    data_train = df[:train_size]
-    data_test = df[train_size:]
-    x_train = data_train.drop(columns="price")
-    y_train = data_train["price"]
-    x_test = data_test.drop(columns="price")
-    y_test = data_test["price"]
-    context = an.AutoMLPipeline(an.DataRegression(max_trials=5, overwrite=True))
+    context = an.AutoMLPipeline(
+        an.DataRegression(max_trials=5, overwrite=True, loss="mean_squared_error")
+    )
     context.run_automl()
     context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=100)
     context.run_automl()
@@ -74,21 +72,16 @@ def test_return_train():
 
 def test_save_load():
 
-    house_dataset = fetch_california_housing()
-    df = pd.DataFrame(
-        np.concatenate(
-            (house_dataset.data, house_dataset.target.reshape(-1, 1)), axis=1
-        ),
-        columns=house_dataset.feature_names + ["price"],
+    data = fetch_california_housing()
+    x_train, y_train, x_test, y_test = train_test_split(
+        data.data,
+        data.target,
+        test_size=0.33,
+        random_state=42,
     )
-    train_size = int(df.shape[0] * 0.9)
-    data_train = df[:train_size]
-    data_test = df[train_size:]
-    x_train = data_train.drop(columns="price")
-    y_train = data_train["price"]
-    x_test = data_test.drop(columns="price")
-    y_test = data_test["price"]
-    context = an.AutoMLPipeline(an.DataRegression(max_trials=5, overwrite=True))
+    context = an.AutoMLPipeline(
+        an.DataRegression(max_trials=5, overwrite=True, loss="mean_squared_error")
+    )
     context.run_automl()
     context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=100)
     context.run_automl()
