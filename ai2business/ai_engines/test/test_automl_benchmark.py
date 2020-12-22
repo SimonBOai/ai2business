@@ -62,4 +62,4 @@ def test_runtime_dataregression():
 def test_return_train():
 
     context = an.AutoMLPipeline(an.DataRegression(max_trials=4))
-    assert context.train == an.AutoMLPipeline(an.DataRegression(max_trials=4))
+    assert context.train == an.DataRegression(max_trials=4)
