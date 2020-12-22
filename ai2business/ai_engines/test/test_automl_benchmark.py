@@ -6,6 +6,8 @@ from sklearn.model_selection import train_test_split
 
 from ai2business.ai_engines import automl_neural_network as an
 
+import autokeras as ak
+
 
 def test_runtime_dataclassifier():
 
@@ -89,3 +91,22 @@ def test_save_load():
     context.run_automl()
     model = an.AutoMLModels().load_model(model_name="model_autokeras")
     assert type(model) == tf.python.keras.engine.functional.Functional
+
+
+def test_multi_model():
+
+    context = an.AutoMLPipeline(
+        an.MultiModelinputs(
+            inputs=[ak.ImageInput(), ak.StructuredDataInput()],
+            outputs=[
+                ak.RegressionHead(metrics=["mae"]),
+                ak.ClassificationHead(
+                    loss="categorical_crossentropy", metrics=["accuracy"]
+                ),
+            ],
+            overwrite=True,
+            max_trials=2,
+        )
+    )
+    context.run_automl()
+    assert context.return_automl["model"] != None
