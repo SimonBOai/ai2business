@@ -66,9 +66,10 @@ def test_runtime_dataregression():
 
 
 def test_return_train():
-
-    context = an.AutoMLPipeline(an.DataRegression(max_trials=4))
-    assert context.train == an.DataRegression(max_trials=4)
+    
+    model = an.DataRegression(max_trials=4)
+    context = an.AutoMLPipeline(model)
+    assert context.train == model
 
 
 def test_save_load():
