@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from ai2business.ai_engines import automl_neural_network as an
 
 data = load_boston()
-x_train, y_train, x_test, y_test = train_test_split(
+x_train, x_test, y_train, y_test = train_test_split(
     data.data,
     data.target,
     test_size=0.33,

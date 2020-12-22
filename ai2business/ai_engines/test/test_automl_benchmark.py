@@ -42,7 +42,7 @@ def test_runtime_dataclassifier():
 def test_runtime_dataregression():
 
     data = fetch_california_housing()
-    x_train, y_train, x_test, y_test = train_test_split(
+    x_train, x_test, y_train, y_test = train_test_split(
         data.data,
         data.target,
         test_size=0.33,
@@ -73,7 +73,7 @@ def test_return_train():
 def test_save_load():
 
     data = fetch_california_housing()
-    x_train, y_train, _, _ = train_test_split(
+    x_train, _, y_train, _ = train_test_split(
         data.data,
         data.target,
         test_size=0.33,
