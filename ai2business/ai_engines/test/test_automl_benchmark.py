@@ -49,10 +49,10 @@ def test_runtime_dataregression():
         random_state=42,
     )
     context = an.AutoMLPipeline(
-        an.DataRegression(max_trials=5, overwrite=True, loss="mean_squared_error")
+        an.DataRegression(max_trials=3, overwrite=True, loss="mean_squared_error")
     )
     context.run_automl()
-    context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=100)
+    context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=10)
     context.run_automl()
     context.train = an.AutoMLEvaluate(x_test, y_test, batch_size=32)
     context.run_automl()
@@ -73,17 +73,17 @@ def test_return_train():
 def test_save_load():
 
     data = fetch_california_housing()
-    x_train, y_train, x_test, y_test = train_test_split(
+    x_train, y_train, _, _ = train_test_split(
         data.data,
         data.target,
         test_size=0.33,
         random_state=42,
     )
     context = an.AutoMLPipeline(
-        an.DataRegression(max_trials=5, overwrite=True, loss="mean_squared_error")
+        an.DataRegression(max_trials=3, overwrite=True, loss="mean_squared_error")
     )
     context.run_automl()
-    context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=100)
+    context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=10)
     context.run_automl()
     context.test = an.AutoMLSave(model_name="model_autokeras")
     context.run_automl()
