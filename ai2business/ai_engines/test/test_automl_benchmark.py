@@ -1,3 +1,4 @@
+import autokeras as ak
 import numpy as np
 import pandas as pd
 import tensorflow as tf
@@ -89,3 +90,22 @@ def test_save_load():
     context.run_automl()
     model = an.AutoMLModels().load_model(model_name="model_autokeras")
     assert type(model) == tf.python.keras.engine.functional.Functional
+
+
+def test_multi_model():
+
+    context = an.AutoMLPipeline(
+        an.MultiModel(
+            inputs=[ak.ImageInput(), ak.StructuredDataInput()],
+            outputs=[
+                ak.RegressionHead(metrics=["mae"]),
+                ak.ClassificationHead(
+                    loss="categorical_crossentropy", metrics=["accuracy"]
+                ),
+            ],
+            overwrite=True,
+            max_trials=2,
+        )
+    )
+    context.run_automl()
+    assert context.return_automl["model"] != None

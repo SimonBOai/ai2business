@@ -304,6 +304,7 @@ class AutoMLModels:
             overwrite=self.overwrite,
             seed=self.seed,
             max_model_size=self.max_model_size,
+            **kwargs,
         )
 
     @staticmethod
@@ -523,7 +524,7 @@ class ImageRegression(Procedure):
     ) -> None:
         """Defining the common parameters for Image Regression.
 
-        # Args:
+        Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
@@ -602,7 +603,7 @@ class TextClassification(Procedure):
     ) -> None:
         """Defining the common parameters for Text Classification.
 
-        # Args:
+        Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
@@ -764,7 +765,7 @@ class DataClassification(Procedure):
     ) -> None:
         """Defining the common parameters for structured Data Classification.
 
-        # Args:
+        Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
@@ -853,7 +854,7 @@ class DataRegression(Procedure):
     ) -> None:
         """Defining the common parameters for structured Data Regression.
 
-        # Args:
+        Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
@@ -942,7 +943,7 @@ class TimeseriesForecaster(Procedure):
     ) -> None:
         """Defining the common parameters for Timeseries Forcast.
 
-        # Args:
+        Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
@@ -1031,12 +1032,12 @@ class MultiModel(Procedure):
         max_trials: int = None,
         metrics: str = None,
         seed: int = None,
-        tuner: str = None,
+        tuner: str = "greedy",
         **kwargs,
     ) -> None:
         """Defining the common parameters for Multi Models.
 
-        # Args:
+        Args:
             inputs (list): A list of `input node instances` of the AutoModel.
             outputs (list): A list of `output node instances` of the AutoModel.
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
@@ -1048,7 +1049,7 @@ class MultiModel(Procedure):
             max_trials (int, optional): Maximum number of trials for building a model. Defaults to 100.
             metrics (str, optional): The metric of the validation. Defaults to None.
             seed (int, optional): Random shuffling number. Defaults to None.
-            tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. In case of `MultiModel` it is defined. Defaults to "greedy".
         """
         self.directory = directory
         self.loss = loss
