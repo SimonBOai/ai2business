@@ -103,6 +103,7 @@ def test_multi_model():
                     loss="categorical_crossentropy", metrics=["accuracy"]
                 ),
             ],
+            tuner="greedy",
             overwrite=True,
             max_trials=2,
         )
