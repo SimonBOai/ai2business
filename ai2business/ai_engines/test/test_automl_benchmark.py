@@ -52,7 +52,7 @@ def test_runtime_dataregression():
     y_train = data_train["price"]
     x_test = data_test.drop(columns="price")
     y_test = data_test["price"]
-    context = an.AutoMLPipeline(an.DataRegression(max_trials=4))
+    context = an.AutoMLPipeline(an.DataRegression(max_trials=5, overwrite=True))
     context.run_automl()
     context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=100)
     context.run_automl()
@@ -88,7 +88,7 @@ def test_save_load():
     y_train = data_train["price"]
     x_test = data_test.drop(columns="price")
     y_test = data_test["price"]
-    context = an.AutoMLPipeline(an.DataRegression(max_trials=4))
+    context = an.AutoMLPipeline(an.DataRegression(max_trials=5, overwrite=True))
     context.run_automl()
     context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=100)
     context.run_automl()
