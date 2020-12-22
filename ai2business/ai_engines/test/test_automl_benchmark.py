@@ -88,4 +88,4 @@ def test_save_load():
     context.train = an.AutoMLSave(model_name="model_autokeras")
     context.run_automl()
     an.AutoMLModels().load_model(model_name="model_autokeras")
-    assert isinstance(model, type)
+    assert type(model) == type(context.train)
