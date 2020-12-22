@@ -96,7 +96,7 @@ def test_save_load():
 def test_multi_model():
 
     context = an.AutoMLPipeline(
-        an.MultiModelinputs(
+        an.MultiModel(
             inputs=[ak.ImageInput(), ak.StructuredDataInput()],
             outputs=[
                 ak.RegressionHead(metrics=["mae"]),
