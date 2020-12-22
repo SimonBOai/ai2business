@@ -1032,12 +1032,12 @@ class MultiModel(Procedure):
         max_trials: int = None,
         metrics: str = None,
         seed: int = None,
-        tuner: str = None,
+        tuner: str = "greedy",
         **kwargs,
     ) -> None:
         """Defining the common parameters for Multi Models.
 
-        # Args:
+        Args:
             inputs (list): A list of `input node instances` of the AutoModel.
             outputs (list): A list of `output node instances` of the AutoModel.
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
@@ -1049,7 +1049,7 @@ class MultiModel(Procedure):
             max_trials (int, optional): Maximum number of trials for building a model. Defaults to 100.
             metrics (str, optional): The metric of the validation. Defaults to None.
             seed (int, optional): Random shuffling number. Defaults to None.
-            tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. If it is unspecific, the  first evaluates the most commonly used models for the task before exploring other models
+            tuner (str, optional): The tuner is engine for suggestions the concept of the new models. It can be either a string 'greedy', 'bayesian', 'hyperband' or 'random' or a subclass of AutoTuner. In case of `MultiModel` it is defined. Defaults to "greedy".
         """
         self.directory = directory
         self.loss = loss
