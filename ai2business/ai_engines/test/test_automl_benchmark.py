@@ -43,15 +43,15 @@ def test_runtime_dataregression():
         np.concatenate(
             (house_dataset.data, house_dataset.target.reshape(-1, 1)), axis=1
         ),
-        columns=house_dataset.feature_names + ["Price"],
+        columns=house_dataset.feature_names + ["price"],
     )
     train_size = int(df.shape[0] * 0.9)
     data_train = df[:train_size]
     data_test = df[train_size:]
-    x_train = data_train.drop(columns="Price")
-    y_train = data_train["Price"]
-    x_test = data_test.drop(columns="Price")
-    y_test = data_test["Price"]
+    x_train = data_train.drop(columns="price")
+    y_train = data_train["price"]
+    x_test = data_test.drop(columns="price")
+    y_test = data_test["price"]
     context = an.AutoMLPipeline(an.DataRegression(max_trials=4))
     context.run_automl()
     context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=100)
@@ -72,13 +72,21 @@ def test_return_train():
 
 
 def test_save_load():
-    data = fetch_california_housing()
-    x_train, y_train, x_test, y_test = train_test_split(
-        data.data,
-        data.target,
-        test_size=0.33,
-        random_state=42,
+
+    house_dataset = fetch_california_housing()
+    df = pd.DataFrame(
+        np.concatenate(
+            (house_dataset.data, house_dataset.target.reshape(-1, 1)), axis=1
+        ),
+        columns=house_dataset.feature_names + ["price"],
     )
+    train_size = int(df.shape[0] * 0.9)
+    data_train = df[:train_size]
+    data_test = df[train_size:]
+    x_train = data_train.drop(columns="price")
+    y_train = data_train["price"]
+    x_test = data_test.drop(columns="price")
+    y_test = data_test["price"]
     context = an.AutoMLPipeline(an.DataRegression(max_trials=4))
     context.run_automl()
     context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=100)
