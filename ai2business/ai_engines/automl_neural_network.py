@@ -524,7 +524,7 @@ class ImageRegression(Procedure):
     ) -> None:
         """Defining the common parameters for Image Regression.
 
-        # Args:
+        Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
@@ -603,7 +603,7 @@ class TextClassification(Procedure):
     ) -> None:
         """Defining the common parameters for Text Classification.
 
-        # Args:
+        Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
@@ -765,7 +765,7 @@ class DataClassification(Procedure):
     ) -> None:
         """Defining the common parameters for structured Data Classification.
 
-        # Args:
+        Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
@@ -854,7 +854,7 @@ class DataRegression(Procedure):
     ) -> None:
         """Defining the common parameters for structured Data Regression.
 
-        # Args:
+        Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
@@ -943,7 +943,7 @@ class TimeseriesForecaster(Procedure):
     ) -> None:
         """Defining the common parameters for Timeseries Forcast.
 
-        # Args:
+        Args:
             directory (str, optional): Path of the directory to save the search outputs. Defaults to None.
             loss (str, optional): Keras loss function. Defaults to None, which means 'mean_squared_error'.
             objective (str, optional): Model metric. Defaults to "val_loss".
