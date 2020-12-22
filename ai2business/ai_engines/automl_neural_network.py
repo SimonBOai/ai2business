@@ -417,7 +417,6 @@ class Procedure(ABC):
     @abstractmethod
     def perform_job(self):
         """Abstractmethod of perform_job."""
-        pass
 
 
 class ImageClassification(Procedure):
