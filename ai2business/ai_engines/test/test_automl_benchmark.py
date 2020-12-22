@@ -85,7 +85,7 @@ def test_save_load():
     context.run_automl()
     context.train = an.AutoMLFit(x_train, y_train, batch_size=32, epochs=10)
     context.run_automl()
-    context.test = an.AutoMLSave(model_name="model_autokeras")
+    context.train = an.AutoMLSave(model_name="model_autokeras")
     context.run_automl()
     model = an.AutoMLModels().load_model(model_name="model_autokeras")
     assert model == context.train
