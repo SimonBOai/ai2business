@@ -304,6 +304,7 @@ class AutoMLModels:
             overwrite=self.overwrite,
             seed=self.seed,
             max_model_size=self.max_model_size,
+            **kwargs,
         )
 
     @staticmethod
