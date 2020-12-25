@@ -13,19 +13,21 @@
         <meta name="author" content="AI2Business & coworkers">
       
       
-      <link rel="shortcut icon" href="/ai2business/assets/favicon.png">
+        <link rel="canonical" href="https://ai2business.github.io/ai2business/tutorials/timeseries_forecast_tutorial/">
+      
+      <link rel="shortcut icon" href="../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.2">
     
     
       
-        <title>AI2Business</title>
+        <title>AutoML - AI2Business</title>
       
     
     
-      <link rel="stylesheet" href="/ai2business/assets/stylesheets/main.73f7c429.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.73f7c429.min.css">
       
         
-        <link rel="stylesheet" href="/ai2business/assets/stylesheets/palette.39b8e14a.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
         
       
     
@@ -40,7 +42,7 @@
     
     
     
-      <link rel="stylesheet" href="/ai2business/css/version-select.css">
+      <link rel="stylesheet" href="../../css/version-select.css">
     
     
       
@@ -64,6 +66,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#runing-a-small-timeseries-forecast" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -93,7 +100,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              
+              AutoML
             
           </span>
         </div>
@@ -162,7 +169,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="/ai2business/." class="md-tabs__link">
+    <a href="../.." class="md-tabs__link">
       Home
     </a>
   </li>
@@ -177,7 +184,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/ai2business/Sample_Generators/" class="md-tabs__link">
+      <a href="../../Sample_Generators/" class="md-tabs__link">
         Documentation
       </a>
     </li>
@@ -187,13 +194,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="/ai2business/tutorials/trend_search_tutorial/" class="md-tabs__link">
+      <a href="../trend_search_tutorial/" class="md-tabs__link md-tabs__link--active">
         Tutorials
       </a>
     </li>
@@ -214,7 +223,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/ai2business/finance_collector_api.md" class="md-tabs__link">
+      <a href="../../finance_collector_api.md" class="md-tabs__link">
         API
       </a>
     </li>
@@ -276,7 +285,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ai2business/." class="md-nav__link">
+    <a href="../.." class="md-nav__link">
       Home
     </a>
   </li>
@@ -313,7 +322,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ai2business/Sample_Generators/" class="md-nav__link">
+    <a href="../../Sample_Generators/" class="md-nav__link">
       Sample Generators
     </a>
   </li>
@@ -326,7 +335,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ai2business/Key_Performance_Collection/" class="md-nav__link">
+    <a href="../../Key_Performance_Collection/" class="md-nav__link">
       Trend Search
     </a>
   </li>
@@ -339,7 +348,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ai2business/AutoML_for_NeuralNetworks/" class="md-nav__link">
+    <a href="../../AutoML_for_NeuralNetworks/" class="md-nav__link">
       AutoMLRun
     </a>
   </li>
@@ -352,7 +361,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ai2business/Oneliner/" class="md-nav__link">
+    <a href="../../Oneliner/" class="md-nav__link">
       Oneliner
     </a>
   </li>
@@ -368,12 +377,14 @@
       
 
 
+  
+
 
   
-  <li class="md-nav__item md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" data-md-state="indeterminate" type="checkbox" id="nav-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       Tutorials
@@ -394,7 +405,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ai2business/tutorials/trend_search_tutorial/" class="md-nav__link">
+    <a href="../trend_search_tutorial/" class="md-nav__link">
       Trend Search
     </a>
   </li>
@@ -405,11 +416,86 @@
           
 
 
+  
 
-  <li class="md-nav__item">
-    <a href="/ai2business/tutorials/timeseries_forecast_tutorial/" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        AutoML
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
       AutoML
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#runing-a-small-timeseries-forecast" class="md-nav__link">
+    Runing a small timeseries forecast
+  </a>
+  
+    <nav class="md-nav" aria-label="Runing a small timeseries forecast">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    Note
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loading-the-automl-modul" class="md-nav__link">
+    Loading the automl modul.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-the-timeseries-forecaster" class="md-nav__link">
+    Setup the Timeseries Forecaster.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fitting-the-timeseries-forecaster" class="md-nav__link">
+    Fitting the Timeseries Forecaster.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluate-the-timeseries-forecaster" class="md-nav__link">
+    Evaluate the Timeseries Forecaster.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -475,7 +561,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ai2business/finance_collector_api.md" class="md-nav__link">
+    <a href="../../finance_collector_api.md" class="md-nav__link">
       Finance-Collector
     </a>
   </li>
@@ -488,7 +574,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ai2business/trends_collector_api.md" class="md-nav__link">
+    <a href="../../trends_collector_api.md" class="md-nav__link">
       Trends-Collector
     </a>
   </li>
@@ -532,7 +618,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ai2business/sample_generator_api.md" class="md-nav__link">
+    <a href="../../sample_generator_api.md" class="md-nav__link">
       Sample Generator
     </a>
   </li>
@@ -576,7 +662,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ai2business/deep_learning_api.md" class="md-nav__link">
+    <a href="../../deep_learning_api.md" class="md-nav__link">
       Deep Learning
     </a>
   </li>
@@ -599,12 +685,154 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#runing-a-small-timeseries-forecast" class="md-nav__link">
+    Runing a small timeseries forecast
+  </a>
+  
+    <nav class="md-nav" aria-label="Runing a small timeseries forecast">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    Note
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loading-the-automl-modul" class="md-nav__link">
+    Loading the automl modul.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-the-timeseries-forecaster" class="md-nav__link">
+    Setup the Timeseries Forecaster.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fitting-the-timeseries-forecaster" class="md-nav__link">
+    Fitting the Timeseries Forecaster.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluate-the-timeseries-forecaster" class="md-nav__link">
+    Evaluate the Timeseries Forecaster.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
+                
+                  <a href="https://github.com/AI2Business/ai2business/edit/main/docs/sources/tutorials/timeseries_forecast_tutorial.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>AutoML</h1>
+                
+                <p><a href="https://colab.research.google.com/github/ai2business/ai2business/blob/main/docs/ipynb/timeseries_forecast_tutorial.ipynb"><strong>View in Colab</strong></a>   &nbsp; &nbsp;<a href="https://github.com/ai2business/ai2business/blob/main/docs/tutorials/timeseries_forecast_tutorial.py"><strong>GitHub source</strong></a></p>
+<h2 id="runing-a-small-timeseries-forecast">Runing a small timeseries forecast</h2>
+<p>Before running a time series forecast, the initial data set has to be generated first via oneliner. The online <code>four_step_search</code> combines four types of trend search:</p>
+<ol>
+<li>Overtime</li>
+<li>By regions</li>
+<li>By related topics</li>
+<li>By related queries</li>
+</ol>
+<p>However, this example is only focusing on the dateframe from <em>Overtime</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">AI2Business</span><span class="o">/</span><span class="n">ai2business</span><span class="o">.</span><span class="n">git</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ai2business.macros</span> <span class="kn">import</span> <span class="n">oneliner</span>
+</code></pre></div>
+<p>Hence, search trend for the years "2017", "2018", "2019", and "2020" will be generated and plotted.</p>
+<h3 id="note">Note</h3>
+<p>A dependency between the years is obviously given, even if single event trigger breakouts.</p>
+<div class="highlight"><pre><span></span><code><span class="n">keyword_list</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;2017&quot;</span><span class="p">,</span> <span class="s2">&quot;2018&quot;</span><span class="p">,</span> <span class="s2">&quot;2019&quot;</span><span class="p">,</span> <span class="s2">&quot;2020&quot;</span><span class="p">]</span>
+<span class="n">timeframe</span> <span class="o">=</span> <span class="n">oneliner</span><span class="o">.</span><span class="n">TrendSearch</span><span class="o">.</span><span class="n">four_step_search</span><span class="p">(</span><span class="n">keyword_list</span><span class="o">=</span><span class="n">keyword_list</span><span class="p">)</span>
+<span class="n">timeframe</span><span class="p">[</span><span class="s2">&quot;interest_over_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</code></pre></div>
+<p>And the Pearson-correlation shows the negative linear dependency between the current and previous year.</p>
+<div class="highlight"><pre><span></span><code><span class="n">timeframe</span><span class="p">[</span><span class="s2">&quot;interest_over_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">timeframe</span><span class="p">[</span><span class="s2">&quot;interest_over_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;isPartial&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="loading-the-automl-modul">Loading the automl modul.</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">from</span> <span class="nn">ai2business.ai_engines</span> <span class="kn">import</span> <span class="n">automl_neural_network</span> <span class="k">as</span> <span class="n">an</span>
+</code></pre></div>
+<h3 id="setup-the-timeseries-forecaster">Setup the Timeseries Forecaster.</h3>
+<div class="highlight"><pre><span></span><code><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">dataset</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">dataset</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">context</span> <span class="o">=</span> <span class="n">an</span><span class="o">.</span><span class="n">AutoMLPipeline</span><span class="p">(</span><span class="n">an</span><span class="o">.</span><span class="n">TimeseriesForecaster</span><span class="p">())</span>
+<span class="n">context</span><span class="o">.</span><span class="n">run_automl</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="fitting-the-timeseries-forecaster">Fitting the Timeseries Forecaster.</h3>
+<div class="highlight"><pre><span></span><code><span class="n">context</span><span class="o">.</span><span class="n">train</span> <span class="o">=</span> <span class="n">an</span><span class="o">.</span><span class="n">AutoMLFit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">run_automl</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="evaluate-the-timeseries-forecaster">Evaluate the Timeseries Forecaster.</h3>
+<div class="highlight"><pre><span></span><code><span class="n">context</span><span class="o">.</span><span class="n">train</span> <span class="o">=</span> <span class="n">an</span><span class="o">.</span><span class="n">AutoMLEvaluate</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">run_automl</span><span class="p">()</span>
+</code></pre></div>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 25, 2020</span>
+    
+  </small>
+</div>
+                  
+                
+              
               
                 
 
@@ -617,6 +845,27 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../trend_search_tutorial/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Trend Search
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -651,22 +900,22 @@
       
     </div>
     
-      <script src="/ai2business/assets/javascripts/vendor.08c56446.min.js"></script>
-      <script src="/ai2business/assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
-          base: "/ai2business/",
+          base: "../..",
           features: ['navigation.tabs', 'navigation.sections', 'navigation.expand', 'search.suggest', 'search.highlight'],
           search: Object.assign({
-            worker: "/ai2business/assets/javascripts/worker/search.8c7e0a7e.min.js"
+            worker: "../../assets/javascripts/worker/search.8c7e0a7e.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
       
         <script src="https://unpkg.com/mermaid@8.4.4/dist/mermaid.min.js"></script>
       
-        <script src="/ai2business/js/version-select.js"></script>
+        <script src="../../js/version-select.js"></script>
       
     
   </body>
