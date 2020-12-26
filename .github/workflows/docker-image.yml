@@ -16,5 +16,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |        
-        docker build -t docker.pkg.github.com/ai2business/ai2business/ai2business:$(date +%s) . --file Dockerfile
-        docker push docker.pkg.github.com/ai2business/ai2business/ai2business:$(date +%s)
+        docker build -t docker.pkg.github.com/ai2business/ai2business/ai2business:${{ github.run_id }} . --file Dockerfile
+        docker push docker.pkg.github.com/ai2business/ai2business/ai2business:${{ github.run_id }}
