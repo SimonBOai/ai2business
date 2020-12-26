@@ -17,5 +17,4 @@ jobs:
     - name: Build the Docker image
       run: |        
         docker build -t docker.pkg.github.com/ai2business/ai2business/ai2business:$(date +%s) . --file Dockerfile
-        docker tag docker_id:$(date +%s) docker.pkg.github.com/ai2business/ai2business/ai2business:$(date +%s)
         docker push docker.pkg.github.com/ai2business/ai2business/ai2business:$(date +%s)
