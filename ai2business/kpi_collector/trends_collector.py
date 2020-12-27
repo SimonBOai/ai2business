@@ -1,4 +1,4 @@
-"""Trends Collection Module: Collecting Search Trends via http-API"""
+"""Trends Collection Module: Collecting Search Trends via http-API."""
 from abc import ABC, abstractmethod, abstractproperty
 from typing import Callable
 
