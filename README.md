@@ -19,7 +19,7 @@
 The idea behind  `AI4Business` is to have a python package that bundles data scientist and project manager's daily routines. For our understanding, the daily routines start with gathering information, which derives from three independent sources:
 
 - Search trends
-- Research trends
+- Research trends (coming soon ...)
 - Market trends and tickers
 
 The significant advantage is that `AI4Business` allows designing databases depending on individual Key Performance Indicators (KPIs). The following established method for data cleaning, data balancing, and data features selections is implemented and merged with automatic machine learning tools for classic and deep learning methods.

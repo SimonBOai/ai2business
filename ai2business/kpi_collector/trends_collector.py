@@ -424,7 +424,7 @@ class TrendsCollector:
         Note:
         ---
 
-        The summation of different search engines can cause timeout errors due to lenght of the search.
+        The summation of different search engines can cause timeout errors due to length of the search.
         """
         self.builder.get_related_topics()
         self.builder.get_related_queries()
