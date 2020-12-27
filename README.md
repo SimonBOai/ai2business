@@ -5,8 +5,8 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 # AI2Business
----
 
+---
 
 ## Table of Contents
 
@@ -14,10 +14,10 @@
 - [Getting Started](#getting_started)
 - [Usage](#usage)
 
-
 ## About the `AI4Business`  <a name = "about"></a>
 
 The idea behind  `AI4Business` is to have a python package that bundles data scientist and project manager's daily routines. For our understanding, the daily routines start with gathering information, which derives from three independent sources:
+
 - Search trends
 - Research trends
 - Market trends and tickers
@@ -31,7 +31,6 @@ Finally, the results can be exported to database systems, EXCEL, or PowerPoint f
 ```shell
 pip install git+https://github.com/AI2Business/ai2business.git
 ```
-
 
 ## Usage <a name = "usage"></a>
 

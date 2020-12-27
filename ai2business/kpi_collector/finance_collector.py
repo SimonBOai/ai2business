@@ -1,4 +1,4 @@
-"""Finance Collection Module: Collecting Financial and Ticker Trends via http-API"""
+"""Finance Collection Module: Collecting Financial and Ticker Trends via http-API."""
 from abc import ABC, abstractmethod, abstractproperty, abstractstaticmethod
 
 import pandas as pd
