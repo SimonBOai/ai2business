@@ -1,4 +1,4 @@
-""" Abstract """
+"""Test-Environment for oneliner."""
 
 from ai2business.macros import oneliner
 

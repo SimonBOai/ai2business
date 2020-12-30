@@ -6,6 +6,7 @@ settings.json
 .DS_Store
 __pycache__
 dummy.py
+dummy/
 ai2business.egg-info
 .coverage
 .pytest_cache

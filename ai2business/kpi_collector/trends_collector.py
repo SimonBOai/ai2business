@@ -69,7 +69,7 @@ class TrendProduct:
     """TrendProduct contains the dictionary and the return value of it."""
 
     def __init__(self) -> None:
-        """Initialization of TrendProduct"""
+        """Initialization of TrendProduct."""
         self.product_parts = {}
 
     def add_product(self, key: Callable, value: pd.DataFrame or dict) -> None:
@@ -122,8 +122,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
 
         Args:
             keyword_list (list): Keyword-list with the items to search for.
-            timeframe (str, optional): Time frame, respectively, period to search for.
-            Defaults to "today 5-y".
+            timeframe (str, optional): Time frame, respectively, period to search for. Defaults to "today 5-y".
             language (str, optional): Search language. Defaults to "en-US".
             category (int, optional): Define a specific [search category](https://github.com/pat310/google-trends-api/wiki/Google-Trends-Categories). Defaults to 0.
             timezone (int, optional): [Search timezone](https://developers.google.com/maps/documentation/timezone/overview). Defaults to 360.
@@ -294,8 +293,8 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
 class TrendsCollector:
     """TrendsCollector is in charge for executing the functions.
 
-    During the execution, `TrendsCollector` can construct several product variations
-    using the same building steps.
+    During the execution, `TrendsCollector` can construct several product
+    variations using the same building steps.
     """
 
     def __init__(self) -> None:
