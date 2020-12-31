@@ -108,21 +108,21 @@ class DesignerDataVisualization(BuilderDataVisualization):
     def get_nullity_bar(self) -> None:
         """Generates the nullity bar."""
         self._product.add_product(
-            key=mss.bar,
+            key=self.get_nullity_bar,
             value=mss.bar(self.df),
         )
 
     def get_nullity_heatmap(self) -> None:
         """Generates the nullity heatmap."""
         self._product.add_product(
-            key=mss.heatmap,
+            key=self.get_nullity_heatmap,
             value=mss.heatmap(self.df),
         )
 
     def get_nullity_dendrogram(self) -> None:
         """ Generates the nullity dendrogram."""
         self._product.add_product(
-            key=mss.dendrogram,
+            key=self.get_nullity_dendrogram,
             value=mss.dendrogram(self.df),
         )
 
@@ -176,5 +176,5 @@ class DataVisualization:
         """
         self.builder.get_nullity_matrix()
         self.builder.get_nullity_bar()
-        self.builder.get_nullity_heatmap()
+        #self.builder.get_nullity_heatmap()
         self.builder.get_nullity_dendrogram()
