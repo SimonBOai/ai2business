@@ -31,14 +31,14 @@ def test_trending_searches() -> None:
 
 def test_today_searches() -> None:
     trends.find_today_searches()
-    assert type(builder.trends.return_product["today_searches"]) == type(
+    assert type(builder.trends.return_product["get_today_searches"]) == type(
         pd.Series(dtype=object)
     )
 
 
 def test_top_charts_true() -> None:
     trends.find_top_charts(2018)
-    assert type(builder.trends.return_product["top_charts"]) == type(pd.DataFrame())
+    assert type(builder.trends.return_product["get_top_charts"]) == type(pd.DataFrame())
 
 
 def test_top_charts_failed() -> None:
