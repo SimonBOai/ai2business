@@ -53,7 +53,7 @@ def test_related_topics() -> None:
 
 def test_related_queries() -> None:
     trends.find_related_queries()
-    assert type(builder.trends.return_product["get_elated_queries"]) == type(dict())
+    assert type(builder.trends.return_product["get_related_queries"]) == type(dict())
 
 
 def test_suggestions() -> None:
