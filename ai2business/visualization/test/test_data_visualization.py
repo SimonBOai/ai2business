@@ -9,7 +9,7 @@ from ai2business.visualization import data_visualization as dav
 
 def test_visual_missing_data():
     data = dav.DataVisualization()
-    iris = sns.load_dataset("iris")
+    iris = sns.load_dataset("iris").drop(columns="species")
     builder = dav.DesignerDataVisualization(iris)
     data.builder = builder
     data.visual_missing_data()

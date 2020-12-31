@@ -176,5 +176,5 @@ class DataVisualization:
         """
         self.builder.get_nullity_matrix()
         self.builder.get_nullity_bar()
-        # self.builder.get_nullity_heatmap()
+        self.builder.get_nullity_heatmap()
         self.builder.get_nullity_dendrogram()
