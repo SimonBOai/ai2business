@@ -98,6 +98,7 @@ dependencies:
     - matplotlib==3.3.3
     - mccabe==0.6.1
     - mike==0.5.5
+    - missingno==0.4.2
     - mistune==0.8.4
     - mkdocs==1.1.2
     - mkdocs-exclude==1.0.2
@@ -157,7 +158,7 @@ dependencies:
     - pytest-sugar==0.9.4
     - python-dateutil==2.8.1
     - python-dotenv==0.15.0
-    - python-pptx==0.6.18
+    - python-pptx==0.6.1
     - pytkdocs==0.9.0
     - pytrends==4.7.3
     - pytz==2020.5
