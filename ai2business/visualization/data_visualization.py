@@ -101,7 +101,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
     def get_nullity_matrix(self) -> None:
         """Generates the nullity matrix."""
         self._product.add_product(
-            key=mss.matrix,
+            key=self.get_nullity_matrix,
             value=mss.matrix(self.df),
         )
 
