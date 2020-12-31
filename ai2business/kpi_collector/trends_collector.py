@@ -165,7 +165,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
     def get_interest_over_time(self) -> None:
         """Request data from a interest over time search."""
         self._product.add_product(
-            key=self.pytrends.interest_over_time,
+            key=self.get_interest_over_time,
             value=self.pytrends.interest_over_time(),
         )
 
@@ -176,7 +176,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
             resolution (str): The resolution of the subregion.
         """
         self._product.add_product(
-            key=self.pytrends.interest_by_region,
+            key=self.get_interest_by_region,
             value=self.pytrends.interest_by_region(resolution=resolution, **kwargs),
         )
 
@@ -187,7 +187,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
             trend_country (str, optional): Name of the country of intrest. Defaults to "united_states".
         """
         self._product.add_product(
-            key=self.pytrends.trending_searches,
+            key=self.get_trending_searches,
             value=self.pytrends.trending_searches(pn=trend_country),
         )
 
@@ -198,7 +198,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
             today_country (str): Name of the country of intrest.
         """
         self._product.add_product(
-            key=self.pytrends.today_searches,
+            key=self.get_today_searches,
             value=self.pytrends.today_searches(pn=today_country),
         )
 
@@ -210,7 +210,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
             top_country (str): Name of the country of intrest.
         """
         self._product.add_product(
-            key=self.pytrends.top_charts,
+            key=self.get_top_charts,
             value=self.pytrends.top_charts(
                 date, hl=self.language, tz=self.timezone, geo=top_country
             ),
@@ -219,20 +219,20 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
     def get_related_topics(self) -> None:
         """Request data of a related topics based on the keyword."""
         self._product.add_product(
-            key=self.pytrends.related_topics, value=self.pytrends.related_topics()
+            key=self.get_related_topics, value=self.pytrends.related_topics()
         )
 
     def get_related_queries(self) -> None:
         """Request data of a related queries based on the keyword."""
         self._product.add_product(
-            key=self.pytrends.related_queries,
+            key=self.get_related_queries,
             value=self.pytrends.related_queries(),
         )
 
     def get_suggestions(self) -> None:
         """Request data from keyword suggestion dropdown search."""
         self._product.add_product(
-            key=self.pytrends.suggestions,
+            key=self.get_suggestions,
             value={
                 keyword: self.pytrends.suggestions(keyword=keyword)
                 for keyword in self.keyword_list
@@ -242,7 +242,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
     def get_categories(self) -> None:
         """Request available categories data for the current search."""
         self._product.add_product(
-            key=self.pytrends.categories,
+            key=self.get_categories,
             value=self.pytrends.categories(),
         )
 
@@ -271,7 +271,7 @@ class DesignerTrendsCollector(BuilderTrendsCollector):
             hour_end (int): Final hour
         """
         self._product.add_product(
-            key=self.pytrends.get_historical_interest,
+            key=self.get_historical_interest,
             value=self.pytrends.get_historical_interest(
                 keywords=self.keyword_list,
                 year_start=year_start,

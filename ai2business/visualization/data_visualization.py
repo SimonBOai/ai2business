@@ -116,7 +116,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
         """Generates the nullity heatmap."""
         self._product.add_product(
             key=self.get_nullity_heatmap,
-            value=mss.heatmap(self.df),
+            value=mss.heatmap(self.df, cmap="seismic"),
         )
 
     def get_nullity_dendrogram(self) -> None:
