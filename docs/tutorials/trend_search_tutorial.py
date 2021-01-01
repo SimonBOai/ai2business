@@ -56,7 +56,7 @@ With the use of the builder's property-attribute, a dictionary will be returned 
 ```python
 >>> results = builder.trends.return_product
 >>> result.keys()
-dict_keys(['interest_over_time', 'interest_by_region', 'related_topics', 'related_queries'])
+... dict_keys(['interest_over_time', 'interest_by_region', 'related_topics', 'related_queries'])
 
 ```
 
