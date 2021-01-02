@@ -433,7 +433,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
             value=sns.pairplot(data=self.df, hue=self.hue, **kwargs).get_figure(),
         )
 
-    def get_complex_pairmapplot(self, size: int = 15, lw: int = 2, ** kwargs) -> None:
+    def get_complex_pairmapplot(self, size: int = 15, lw: int = 2, **kwargs) -> None:
         grid = sns.PairGrid(self.df, hue=self.hue, **kwargs)
         grid.map_upper(sns.scatterplot, s=size)
         grid.map_lower(sns.kdeplot)
