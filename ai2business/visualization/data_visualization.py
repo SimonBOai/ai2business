@@ -1,4 +1,6 @@
-"""Data Visualization Module: Visualization of data and its first principal properties."""
+"""
+Data Visualization Module: Visualization of data and its first principal properties.
+"""
 from abc import ABC, abstractmethod, abstractproperty
 from pathlib import Path
 from secrets import token_hex
@@ -12,6 +14,7 @@ import seaborn as sns
 
 
 class BuilderDataVisualization(ABC):
+
     """BuilderDataVisualization contains the abstract properties and methods.
 
     `BuilderDataVisualization` specifies the properties and methods for creating the
@@ -142,6 +145,7 @@ class BuilderDataVisualization(ABC):
 
 
 class DataVisualizationProduct:
+    
     """DataVisualizationProduct contains the dictionary and the return value of it."""
 
     def __init__(self) -> None:
@@ -515,7 +519,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
     def get_nullity_dendrogram(
         self, n_columns: int = 0, per_columns: float = 0.0, **kwargs
     ) -> None:
-        """ Generates the nullity dendrogram."""
+        """Generates the nullity dendrogram."""
         self._product.add_product(
             key=self.get_nullity_dendrogram,
             value=mss.dendrogram(
@@ -525,6 +529,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
 
 
 class DataVisualization:
+    
     """DataVisualization is in charge of executing the functions.
 
     During the execution, `DataVisualization` can construct several product
