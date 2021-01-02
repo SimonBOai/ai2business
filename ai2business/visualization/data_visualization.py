@@ -202,13 +202,25 @@ class DesignerDataVisualization(BuilderDataVisualization):
         BuilderDataVisualization (class): Abstract class that provides the implementations of the properties and methods.
     """
 
-    def __init__(self, df: pd.DataFrame) -> None:
+    def __init__(
+        self,
+        df: pd.DataFrame,
+        x_label: str = None,
+        y_label: str = None,
+        hue: str = None,
+    ) -> None:
         """Intialization of DesignerDataVisualization.
 
         Args:
-            df (pd.DataFrame): pandas DataFrame.
+            df (pd.DataFrame): pandas DataFrame.]
+            x_label (str, optional): Name of the column name for the `x-axis`. Defaults to None.
+            y_label (str, optional): Name of the column name for the `y-axis`. Defaults to None.
+            hue (str, optional): Name of the column name for the seperating the results to the uniques once. Defaults to None.
         """
         self.df = df
+        self.x_label = x_label
+        self.y_label = y_label
+        self.hue = hue
         self.reset()
 
     def reset(self) -> None:
@@ -226,202 +238,289 @@ class DesignerDataVisualization(BuilderDataVisualization):
         self.reset()
         return product
 
-    def get_lineplot(self) -> None:
+    def get_lineplot(self, **kwargs) -> None:
         """get_lineplot [summary]
 
         [extended_summary]
         """
         self._product.add_product(
             key=self.get_lineplot,
-            value=sns.lineplot(data=self.df).get_figure(),
+            value=sns.lineplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_pointplot(self) -> None:
+    def get_pointplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_pointplot,
-            value=sns.pointplot(data=self.df).get_figure(),
+            value=sns.pointplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_scatterplot(self) -> None:
+    def get_scatterplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_scatterplot,
-            value=sns.scatterplot(data=self.df).get_figure(),
+            value=sns.scatterplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_swarmplot(self) -> None:
+    def get_swarmplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_swarmplot,
-            value=sns.swarmplot(data=self.df).get_figure(),
+            value=sns.swarmplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_distributionplot(self) -> None:
+    def get_distributionplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_distributionplot,
-            value=sns.displot(data=self.df).get_figure(),
+            value=sns.displot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_relationalplot(self) -> None:
+    def get_relationalplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_relationalplot,
-            value=sns.relplot(data=self.df).get_figure(),
+            value=sns.relplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_categoryplot(self) -> None:
+    def get_categoryplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_categoryplot,
-            value=sns.catplot(data=self.df).get_figure(),
+            value=sns.catplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_boxplot(self) -> None:
+    def get_boxplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_boxplot,
-            value=sns.boxplot(data=self.df).get_figure(),
+            value=sns.boxplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_boxenplot(self) -> None:
+    def get_boxenplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_boxenplot,
-            value=sns.boxenplot(data=self.df).get_figure(),
+            value=sns.boxenplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_stripplot(self) -> None:
+    def get_stripplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_stripplot,
-            value=sns.stripplot(data=self.df).get_figure(),
+            value=sns.stripplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_hexagonplot(self) -> None:
+    def get_hexagonplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_hexagonplot,
-            value=sns.jointplot(data=self.df, kind="hex").get_figure(),
+            value=sns.jointplot(
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                kind="hex",
+                **kwargs,
+            ).get_figure(),
         )
 
-    def get_histogramplot(self) -> None:
+    def get_histogramplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_histogramplot,
-            value=sns.histplot(data=self.df).get_figure(),
+            value=sns.histplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_violinplot(self) -> None:
+    def get_violinplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_violinplot,
-            value=sns.violinplot(data=self.df).get_figure(),
+            value=sns.violinplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_residualplot(self) -> None:
+    def get_residualplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_residualplot,
-            value=sns.residplot(data=self.df).get_figure(),
+            value=sns.residplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_regressionplot(self) -> None:
+    def get_regressionplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_regressionplot,
-            value=sns.lmplot(data=self.df).get_figure(),
+            value=sns.lmplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_density_mapplot(self) -> None:
+    def get_density_mapplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_hexagonplot,
-            value=sns.jointplot(data=self.df, kind="kde").get_figure(),
+            value=sns.jointplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, kind="kde"
+            ).get_figure(),
         )
 
-    def get_kerneldensity_mapplot(self) -> None:
+    def get_kerneldensity_mapplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_kerneldensity_mapplot,
-            value=sns.jointplot(data=self.df, kind="kde").get_figure(),
+            value=sns.jointplot(
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                kind="kde",
+                **kwargs,
+            ).get_figure(),
         )
 
     def get_cluster_mapplot(
-        self, method: str = "pearson", min_periods: int = 1
+        self, method: str = "pearson", min_periods: int = 1, **kwargs
     ) -> None:
         self._product.add_product(
             key=self.get_cluster_mapplot,
             value=sns.clustermap(
-                data=self.df.corr(method=method, min_periods=min_periods)
+                data=self.df.corr(method=method, min_periods=min_periods), **kwargs
             ).get_figure(),
         )
 
-    def get_heatmapplot(self) -> None:
+    def get_heatmapplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_cluster_mapplot,
-            value=sns.heatmap(data=self.df).get_figure(),
+            value=sns.heatmap(data=self.df, **kwargs).get_figure(),
         )
 
     def get_correlationpplot(
-        self, method: str = "pearson", min_periods: int = 1
+        self, method: str = "pearson", min_periods: int = 1, **kwargs
     ) -> None:
         self._product.add_product(
             key=self.get_correlationpplot,
             value=sns.relplot(
-                data=self.df.corr(method=method, min_periods=min_periods)
+                data=self.df.corr(method=method, min_periods=min_periods),
+                x=x_label,
+                y=self.y_label,
+                hue=self.hue ** kwargs,
             ).get_figure(),
         )
 
     def get_diagonal_correlationpplot(
-        self, method: str = "pearson", min_periods: int = 1
+        self, method: str = "pearson", min_periods: int = 1, **kwargs
     ) -> None:
         _corr = self.df.corr(method=method, min_periods=min_periods)
         _mask = np.triu(np.ones_like(_corr, dtype=bool))
         self._product.add_product(
             key=self.get_cluster_mapplot,
-            value=sns.heatmap(data=_corr, mask=_mask).get_figure(),
+            value=sns.heatmap(data=_corr, mask=_mask, **kwargs).get_figure(),
         )
 
-    def get_pairmapplot(self) -> None:
+    def get_pairmapplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_pairmapplot,
-            value=sns.pairplot(data=self.df).get_figure(),
+            value=sns.pairplot(data=self.df, hue=self.hue, **kwargs).get_figure(),
         )
 
-    def get_complex_pairmapplot(self) -> None:
-        grid = sns.PairGrid(self.df, diag_sharey=False)
-        grid.map_upper(sns.scatterplot, s=15)
+    def get_complex_pairmapplot(self, size: int = 15, lw: int = 2, ** kwargs) -> None:
+        grid = sns.PairGrid(self.df, hue=self.hue, **kwargs)
+        grid.map_upper(sns.scatterplot, s=size)
         grid.map_lower(sns.kdeplot)
-        grid.map_diag(sns.kdeplot, lw=2)
+        grid.map_diag(sns.kdeplot, lw=lw)
         self._product.add_product(
             key=self.get_pairmapplot,
             value=grid.get_figure(),
         )
 
-    def get_regression_mapplot(self) -> None:
+    def get_regression_mapplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_regression_mapplot,
-            value=sns.jointplot(data=self.df, kind="reg").get_figure(),
+            value=sns.jointplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, kind="reg"
+            ).get_figure(),
         )
 
-    def get_pairmapplot(self) -> None:
+    def get_pairmapplot(self, **kwargs) -> None:
         self._product.add_product(
             key=self.get_pairmapplot,
-            value=sns.lmplot(data=self.df).get_figure(),
+            value=sns.lmplot(
+                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+            ).get_figure(),
         )
 
-    def get_nullity_matrix(self, **kwargs) -> None:
-        """Generates the nullity matrix."""
+    def get_nullity_matrix(
+        self, n_columns: int = 0, per_columns: float = 0.0, **kwargs
+    ) -> None:
+        """A bar matrix visualization of the nullity of the given DataFrame]
+
+        Args:
+            n_columns (int, optional): The cap on the number of columns to include in the filtered DataFrame. Defaults to 0.
+            per_columns (float, optional): The cap on the percentage fill of the columns in the filtered DataFrame. Defaults to 0.0.
+        """
         self._product.add_product(
             key=self.get_nullity_matrix,
-            value=mss.matrix(self.df, **kwargs).get_figure(),
+            value=mss.matrix(
+                df=self.df, n=n_columns, p=per_columns, **kwargs
+            ).get_figure(),
         )
 
-    def get_nullity_bar(self, **kwargs) -> None:
-        """Generates the nullity bar."""
+    def get_nullity_bar(
+        self, n_columns: int = 0, per_columns: float = 0.0, **kwargs
+    ) -> None:
+        """A bar chart visualization of the nullity of the given DataFrame.
+
+        Args:
+            n_columns (int, optional): The cap on the number of columns to include in the filtered DataFrame. Defaults to 0.
+            per_columns (float, optional): The cap on the percentage fill of the columns in the filtered DataFrame. Defaults to 0.0.
+        """
         self._product.add_product(
             key=self.get_nullity_bar,
-            value=mss.bar(self.df, **kwargs).get_figure(),
+            value=mss.bar(
+                df=self.df, n=n_columns, p=per_columns, **kwargs
+            ).get_figure(),
         )
 
-    def get_nullity_heatmap(self, **kwargs) -> None:
-        """Generates the nullity heatmap."""
+    def get_nullity_heatmap(
+        self,
+        n_columns: int = 0,
+        per_columns: float = 0.0,
+        cmap: str = "seismic",
+        **kwargs,
+    ) -> None:
+        """A heatmap chart visualization of the nullity of the given DataFrame.
+
+        Args:
+            n_columns (int, optional): The cap on the number of columns to include in the filtered DataFrame. Defaults to 0.
+            per_columns (float, optional): The cap on the percentage fill of the columns in the filtered DataFrame. Defaults to 0.0.
+            cmap (str, optional): The color of the heatmap. Defaults to "seismic".
+        """
         self._product.add_product(
             key=self.get_nullity_heatmap,
-            value=mss.heatmap(self.df, cmap="seismic", **kwargs).get_figure(),
+            value=mss.heatmap(
+                df=self.df, n=n_columns, p=per_columns, cmap=cmap, **kwargs
+            ).get_figure(),
         )
 
-    def get_nullity_dendrogram(self, **kwargs) -> None:
+    def get_nullity_dendrogram(
+        self, n_columns: int = 0, per_columns: float = 0.0, **kwargs
+    ) -> None:
         """ Generates the nullity dendrogram."""
         self._product.add_product(
             key=self.get_nullity_dendrogram,
-            value=mss.dendrogram(self.df, **kwargs).get_figure(),
+            value=mss.dendrogram(
+                df=self.df, n=n_columns, p=per_columns, **kwargs
+            ).get_figure(),
         )
 
 
@@ -457,22 +556,44 @@ class DataVisualization:
         """
         self._builder = builder
 
-    def visual_missing_data(self) -> None:
+    def visual_missing_data(
+        self,
+        n_columns: int = 0,
+        per_columns: float = 0.0,
+        cmap: str = "seismic",
+        **kwargs,
+    ) -> None:
         """Visualizing possible missing data.
 
-        Possible missing data will be visualized by:
-
-        1. nullity matrix highlights out patterns and structures in data completion.
-        2. nullity bar shows the available data as a series of single bars.
-        3. nullity heatmap point out the correlation between the presence and absence data.
-        4. nullity dendrogram visualize the correlate variable completion.
+        Args:
+            n_columns (int, optional): The cap on the number of columns to include in the filtered DataFrame. Defaults to 0.
+            per_columns (float, optional): The cap on the percentage fill of the columns in the filtered DataFrame. Defaults to 0.0.
+            cmap (str, optional): The color of the heatmap. Defaults to "seismic".
 
         !!! example "Note"
 
-            For more information see: [https://github.com/ResidentMario/missingno](https://github.com/ResidentMario/missingno)
+            Possible missing data will be visualized by:
 
+            1. nullity matrix highlights out patterns and structures in data completion.
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/get_nullity_heatmap_d53456cea1ca7a7a8e3f15770cca3fd6.png){: loading=lazy }
+            2. nullity bar shows the available data as a series of single bars.
+                ![Placeholder]https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/get_nullity_bar_5ea54ad25915e24e0b98236036b0aba0.png){: loading=lazy }
+            3. nullity heatmap point out the correlation between the presence and absence data.
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/get_nullity_heatmap_d53456cea1ca7a7a8e3f15770cca3fd6.png){: loading=lazy }
+            4. nullity dendrogram visualize the correlate variable completion.
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/get_nullity_dendrogram_aff668425937a2ff1b2608799ed71ef0.png){: loading=lazy }
+
+            For more information see: [https://github.com/ResidentMario/missingno](https://github.com/ResidentMario/missingno)
         """
-        self.builder.get_nullity_matrix()
-        self.builder.get_nullity_bar()
-        self.builder.get_nullity_heatmap()
-        self.builder.get_nullity_dendrogram()
+        self.builder.get_nullity_matrix(
+            n_columns=n_columns, per_columns=per_columns, **kwargs
+        )
+        self.builder.get_nullity_bar(
+            n_columns=n_columns, per_columns=per_columns, **kwargs
+        )
+        self.builder.get_nullity_heatmap(
+            n_columns=n_columns, per_columns=per_columns, cmap=cmap, **kwargs
+        )
+        self.builder.get_nullity_dendrogram(
+            n_columns=n_columns, per_columns=per_columns, **kwargs
+        )
