@@ -1,6 +1,4 @@
-"""
-Data Visualization Module: Visualization of data and its first principal properties.
-"""
+"""Data Visualization Module: Visualization of data and its first principal properties."""
 from abc import ABC, abstractmethod, abstractproperty
 from pathlib import Path
 from secrets import token_hex
@@ -11,10 +9,12 @@ import missingno as mss
 import numpy as np
 import pandas as pd
 import seaborn as sns
+from typing import Union
+
+from ai2business.visualization import style
 
 
 class BuilderDataVisualization(ABC):
-
     """BuilderDataVisualization contains the abstract properties and methods.
 
     `BuilderDataVisualization` specifies the properties and methods for creating the
@@ -145,7 +145,7 @@ class BuilderDataVisualization(ABC):
 
 
 class DataVisualizationProduct:
-    
+
     """DataVisualizationProduct contains the dictionary and the return value of it."""
 
     def __init__(self) -> None:
@@ -209,22 +209,33 @@ class DesignerDataVisualization(BuilderDataVisualization):
     def __init__(
         self,
         df: pd.DataFrame,
+        dark_mode: bool = False,
+        grid: bool = False,
         x_label: str = None,
         y_label: str = None,
         hue: str = None,
+        palette: Union[str, list, dict] = None,
     ) -> None:
-        """Intialization of DesignerDataVisualization.
+        """Initialization of DesignerDataVisualization.
 
         Args:
-            df (pd.DataFrame): pandas DataFrame.]
+            df (pd.DataFrame): pandas DataFrame.
+            dark_mode (bool, optional): Switch to dark mode. Defaults to False.
+            grid (bool, optional): Activate grids in plots. Defaults to False.
             x_label (str, optional): Name of the column name for the `x-axis`. Defaults to None.
             y_label (str, optional): Name of the column name for the `y-axis`. Defaults to None.
             hue (str, optional): Name of the column name for the seperating the results to the uniques once. Defaults to None.
+            palette (Union[str, list,  dict], optional): The `str`, `list`, or `dict` of colors or continuous colormap, which defines the color palette. Defaults to None.
         """
         self.df = df
         self.x_label = x_label
         self.y_label = y_label
         self.hue = hue
+        self.palette = palette
+        if dark_mode:
+            style.dark_mode(grid=grid)
+        else:
+            style.light_mode(grid=grid)
         self.reset()
 
     def reset(self) -> None:
@@ -243,86 +254,142 @@ class DesignerDataVisualization(BuilderDataVisualization):
         return product
 
     def get_lineplot(self, **kwargs) -> None:
-        """get_lineplot [summary]
-
-        [extended_summary]
-        """
+        """Get a line plot."""
         self._product.add_product(
             key=self.get_lineplot,
             value=sns.lineplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
             ).get_figure(),
         )
 
     def get_pointplot(self, **kwargs) -> None:
+        """Get a point plot."""
         self._product.add_product(
             key=self.get_pointplot,
             value=sns.pointplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
             ).get_figure(),
         )
 
     def get_scatterplot(self, **kwargs) -> None:
+        """Get a scatter plot."""
         self._product.add_product(
             key=self.get_scatterplot,
             value=sns.scatterplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
             ).get_figure(),
         )
 
     def get_swarmplot(self, **kwargs) -> None:
+        """Get a swarm plot."""
         self._product.add_product(
             key=self.get_swarmplot,
             value=sns.swarmplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
             ).get_figure(),
         )
 
     def get_distributionplot(self, **kwargs) -> None:
+        """Get a distribution plot."""
         self._product.add_product(
             key=self.get_distributionplot,
             value=sns.displot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
             ).get_figure(),
         )
 
     def get_relationalplot(self, **kwargs) -> None:
+        """Get a relational plot."""
         self._product.add_product(
             key=self.get_relationalplot,
             value=sns.relplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
             ).get_figure(),
         )
 
     def get_categoryplot(self, **kwargs) -> None:
+        """Get a category plot."""
         self._product.add_product(
             key=self.get_categoryplot,
             value=sns.catplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
             ).get_figure(),
         )
 
     def get_boxplot(self, **kwargs) -> None:
+        """Get a box plot."""
         self._product.add_product(
             key=self.get_boxplot,
             value=sns.boxplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
             ).get_figure(),
         )
 
     def get_boxenplot(self, **kwargs) -> None:
+        """Get a multi box plot."""
         self._product.add_product(
             key=self.get_boxenplot,
             value=sns.boxenplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
             ).get_figure(),
         )
 
     def get_stripplot(self, **kwargs) -> None:
+        """Get a strip plot."""
         self._product.add_product(
             key=self.get_stripplot,
             value=sns.stripplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
             ).get_figure(),
         )
 
@@ -334,24 +401,37 @@ class DesignerDataVisualization(BuilderDataVisualization):
                 x=self.x_label,
                 y=self.y_label,
                 hue=self.hue,
+                palette=self.palette,
                 kind="hex",
                 **kwargs,
             ).get_figure(),
         )
 
     def get_histogramplot(self, **kwargs) -> None:
+        """Get a histogram plot."""
         self._product.add_product(
             key=self.get_histogramplot,
             value=sns.histplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
             ).get_figure(),
         )
 
     def get_violinplot(self, **kwargs) -> None:
+        """Get a violinplot plot."""
         self._product.add_product(
             key=self.get_violinplot,
             value=sns.violinplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
             ).get_figure(),
         )
 
@@ -359,27 +439,45 @@ class DesignerDataVisualization(BuilderDataVisualization):
         self._product.add_product(
             key=self.get_residualplot,
             value=sns.residplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
             ).get_figure(),
         )
 
     def get_regressionplot(self, **kwargs) -> None:
+        """Get a regression plot."""
         self._product.add_product(
             key=self.get_regressionplot,
             value=sns.lmplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
             ).get_figure(),
         )
 
     def get_density_mapplot(self, **kwargs) -> None:
+        """Get a density map plot."""
         self._product.add_product(
             key=self.get_hexagonplot,
             value=sns.jointplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, kind="kde"
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                kind="kde",
             ).get_figure(),
         )
 
     def get_kerneldensity_mapplot(self, **kwargs) -> None:
+        """Get a kernel density map plot."""
         self._product.add_product(
             key=self.get_kerneldensity_mapplot,
             value=sns.jointplot(
@@ -387,6 +485,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
                 x=self.x_label,
                 y=self.y_label,
                 hue=self.hue,
+                palette=self.palette,
                 kind="kde",
                 **kwargs,
             ).get_figure(),
@@ -395,6 +494,12 @@ class DesignerDataVisualization(BuilderDataVisualization):
     def get_cluster_mapplot(
         self, method: str = "pearson", min_periods: int = 1, **kwargs
     ) -> None:
+        """Get a cluster map plot.
+
+        Args:
+            method (str, optional): Method of the correlation type ('pearson', 'kendall', 'spearman' or callable method of correlation). Defaults to "pearson".
+            min_periods (int, optional): Minimum number of observations required per pair of columns to have a valid result. Defaults to 1.
+        """
         self._product.add_product(
             key=self.get_cluster_mapplot,
             value=sns.clustermap(
@@ -403,6 +508,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
         )
 
     def get_heatmapplot(self, **kwargs) -> None:
+        """Get a heatmap plot."""
         self._product.add_product(
             key=self.get_cluster_mapplot,
             value=sns.heatmap(data=self.df, **kwargs).get_figure(),
@@ -411,19 +517,32 @@ class DesignerDataVisualization(BuilderDataVisualization):
     def get_correlationpplot(
         self, method: str = "pearson", min_periods: int = 1, **kwargs
     ) -> None:
+        """Get a correlation map plot.
+
+        Args:
+            method (str, optional): Method of the correlation type ('pearson', 'kendall', 'spearman' or callable method of correlation). Defaults to "pearson".
+            min_periods (int, optional): Minimum number of observations required per pair of columns to have a valid result. Defaults to 1.
+        """
         self._product.add_product(
             key=self.get_correlationpplot,
             value=sns.relplot(
                 data=self.df.corr(method=method, min_periods=min_periods),
                 x=x_label,
                 y=self.y_label,
-                hue=self.hue ** kwargs,
+                hue=self.hue,
+                palette=self.palette ** kwargs,
             ).get_figure(),
         )
 
     def get_diagonal_correlationpplot(
         self, method: str = "pearson", min_periods: int = 1, **kwargs
     ) -> None:
+        """Get a correlation map plot with lower non-diagonal elements.
+
+        Args:
+            method (str, optional): Method of the correlation type ('pearson', 'kendall', 'spearman' or callable method of correlation). Defaults to "pearson".
+            min_periods (int, optional): Minimum number of observations required per pair of columns to have a valid result. Defaults to 1.
+        """
         _corr = self.df.corr(method=method, min_periods=min_periods)
         _mask = np.triu(np.ones_like(_corr, dtype=bool))
         self._product.add_product(
@@ -432,41 +551,56 @@ class DesignerDataVisualization(BuilderDataVisualization):
         )
 
     def get_pairmapplot(self, **kwargs) -> None:
+        """Get a pair plot."""
         self._product.add_product(
             key=self.get_pairmapplot,
-            value=sns.pairplot(data=self.df, hue=self.hue, **kwargs).get_figure(),
+            value=sns.lmplot(
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                **kwargs,
+            ).get_figure(),
         )
 
-    def get_complex_pairmapplot(self, size: int = 15, lw: int = 2, **kwargs) -> None:
-        grid = sns.PairGrid(self.df, hue=self.hue, **kwargs)
-        grid.map_upper(sns.scatterplot, s=size)
+    def get_complex_pairmapplot(self, **kwargs) -> None:
+        """Get a complex pair plot.
+
+        !!! example Note
+            The complex pair consits of three different types of subplots:
+
+            1. A distribution plot on the diagonal.
+            2. A kernel distribution map on the lower non-diagonal.
+            3. A scatter plot in combination with a linear regression on the upper non-diagonal.
+        """
+        grid = sns.PairGrid(self.df, hue=self.hue, palette=self.palette, **kwargs)
+        grid.map_upper(sns.regplot)
         grid.map_lower(sns.kdeplot)
-        grid.map_diag(sns.kdeplot, lw=lw)
+        grid.map_diag(sns.kdeplot)
         self._product.add_product(
             key=self.get_pairmapplot,
             value=grid.get_figure(),
         )
 
     def get_regression_mapplot(self, **kwargs) -> None:
+        """Get a regression map plot."""
         self._product.add_product(
             key=self.get_regression_mapplot,
             value=sns.jointplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, kind="reg"
-            ).get_figure(),
-        )
-
-    def get_pairmapplot(self, **kwargs) -> None:
-        self._product.add_product(
-            key=self.get_pairmapplot,
-            value=sns.lmplot(
-                data=self.df, x=self.x_label, y=self.y_label, hue=self.hue, **kwargs
+                data=self.df,
+                x=self.x_label,
+                y=self.y_label,
+                hue=self.hue,
+                palette=self.palette,
+                kind="reg",
             ).get_figure(),
         )
 
     def get_nullity_matrix(
         self, n_columns: int = 0, per_columns: float = 0.0, **kwargs
     ) -> None:
-        """A bar matrix visualization of the nullity of the given DataFrame]
+        """A bar matrix visualization of the nullity of the given DataFrame.
 
         Args:
             n_columns (int, optional): The cap on the number of columns to include in the filtered DataFrame. Defaults to 0.
@@ -529,7 +663,6 @@ class DesignerDataVisualization(BuilderDataVisualization):
 
 
 class DataVisualization:
-    
     """DataVisualization is in charge of executing the functions.
 
     During the execution, `DataVisualization` can construct several product
@@ -602,3 +735,6 @@ class DataVisualization:
         self.builder.get_nullity_dendrogram(
             n_columns=n_columns, per_columns=per_columns, **kwargs
         )
+
+    def lineplot(self, **kwargs) -> None:
+        self.builder.get_lineplot(**kwargs)

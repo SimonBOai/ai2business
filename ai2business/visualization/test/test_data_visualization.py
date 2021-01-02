@@ -8,6 +8,9 @@ import seaborn as sns
 
 from ai2business.visualization import data_visualization as dav
 
+from ai2business.macros import oneliner as one
+
+
 df_nan = pd.DataFrame(
     np.random.randn(5, 3),
     index=["a", "c", "e", "f", "h"],
@@ -52,3 +55,43 @@ def test_save_all_figures():
     data.visual_missing_data()
     builder.data_figure.save_all_figures(folder="tmp")
     assert len(list(Path("tmp").glob("*.png"))) == 4
+
+df_dict_years = one.TrendSearch.four_step_search(
+    keyword_list=[
+        
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+    ]
+)
+
+
+def test_lineplot():
+    # Test lineplot with new data set:
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(df_dict_years["get_interest_over_time"])
+    data.builder = builder
+    data.lineplot()
+    builder.data_figure.save_all_figures()
+
+
+
+df_dict_bigtech = one.TrendSearch.four_step_search(
+    keyword_list=[
+        "Apple",
+        "Microsoft",
+        "Google",
+        "Huawei",
+    ]
+)
+
+df_dict_corona = one.TrendSearch.four_step_search(
+    keyword_list=[
+        "Corona",
+        "Vacination",
+        "Vaccination",
+        "Fear",
+    ]
+)
