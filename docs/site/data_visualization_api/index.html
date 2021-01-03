@@ -20,7 +20,7 @@
     
     
       
-        <title>Data visualization api - AI2Business</title>
+        <title>Data Visualization - AI2Business</title>
       
     
     
@@ -100,7 +100,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Data visualization api
+              Data Visualization
             
           </span>
         </div>
@@ -210,6 +210,8 @@
         
   
   
+    
+  
 
 
   
@@ -221,7 +223,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../api/finance_collector_api.md" class="md-tabs__link">
+      <a href="../finance_collector_api/" class="md-tabs__link md-tabs__link--active">
         API
       </a>
     </li>
@@ -430,12 +432,14 @@
       
 
 
+  
+
 
   
-  <li class="md-nav__item md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" data-md-state="indeterminate" type="checkbox" id="nav-4" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
     <label class="md-nav__link" for="nav-4">
       API
@@ -482,7 +486,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../api/finance_collector_api.md" class="md-nav__link">
+    <a href="../finance_collector_api/" class="md-nav__link">
       Finance-Collector
     </a>
   </li>
@@ -495,7 +499,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../api/trends_collector_api.md" class="md-nav__link">
+    <a href="../trends_collector_api/" class="md-nav__link">
       Trends-Collector
     </a>
   </li>
@@ -539,7 +543,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../api/sample_generator_api.md" class="md-nav__link">
+    <a href="../sample_generator_api/" class="md-nav__link">
       Sample Generator
     </a>
   </li>
@@ -555,14 +559,16 @@
           
 
 
+  
+
 
   
     
   
-  <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
     
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-3" data-md-state="indeterminate" type="checkbox" id="nav-4-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3" checked>
     
     <label class="md-nav__link" for="nav-4-3">
       Visualization
@@ -581,11 +587,768 @@
           
 
 
+  
 
-  <li class="md-nav__item">
-    <a href="../api/data_visualization_api.md" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Data Visualization
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
       Data Visualization
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api-of-the-visualization" class="md-nav__link">
+    API of the Visualization
+  </a>
+  
+    <nav class="md-nav" aria-label="API of the Visualization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualization-of-data" class="md-nav__link">
+    Visualization of Data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization" class="md-nav__link">
+    ai2business.visualization.data_visualization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization" class="md-nav__link">
+    BuilderDataVisualization
+  </a>
+  
+    <nav class="md-nav" aria-label="BuilderDataVisualization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.data_figure" class="md-nav__link">
+    data_figure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_boxenplot" class="md-nav__link">
+    get_boxenplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_boxplot" class="md-nav__link">
+    get_boxplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_categoryplot" class="md-nav__link">
+    get_categoryplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_cluster_mapplot" class="md-nav__link">
+    get_cluster_mapplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_complex_pairmapplot" class="md-nav__link">
+    get_complex_pairmapplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_correlationpplot" class="md-nav__link">
+    get_correlationpplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_density_mapplot" class="md-nav__link">
+    get_density_mapplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_diagonal_correlationpplot" class="md-nav__link">
+    get_diagonal_correlationpplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_distributionplot" class="md-nav__link">
+    get_distributionplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_heatmapplot" class="md-nav__link">
+    get_heatmapplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_hexagonplot" class="md-nav__link">
+    get_hexagonplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_histogramplot" class="md-nav__link">
+    get_histogramplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_kerneldensity_mapplot" class="md-nav__link">
+    get_kerneldensity_mapplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_lineplot" class="md-nav__link">
+    get_lineplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_nullity_bar" class="md-nav__link">
+    get_nullity_bar()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_nullity_dendrogram" class="md-nav__link">
+    get_nullity_dendrogram()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_nullity_heatmap" class="md-nav__link">
+    get_nullity_heatmap()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_nullity_matrix" class="md-nav__link">
+    get_nullity_matrix()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_pairmapplot" class="md-nav__link">
+    get_pairmapplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_pointplot" class="md-nav__link">
+    get_pointplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_regression_mapplot" class="md-nav__link">
+    get_regression_mapplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_regressionplot" class="md-nav__link">
+    get_regressionplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_relationalplot" class="md-nav__link">
+    get_relationalplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_residualplot" class="md-nav__link">
+    get_residualplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_scatterplot" class="md-nav__link">
+    get_scatterplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_stripplot" class="md-nav__link">
+    get_stripplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_swarmplot" class="md-nav__link">
+    get_swarmplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.get_violinplot" class="md-nav__link">
+    get_violinplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.BuilderDataVisualization.reset" class="md-nav__link">
+    reset()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization" class="md-nav__link">
+    DataVisualization
+  </a>
+  
+    <nav class="md-nav" aria-label="DataVisualization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.builder" class="md-nav__link">
+    builder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.initialization_figure" class="md-nav__link">
+    initialization_figure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.boxplot" class="md-nav__link">
+    boxplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.categoryplot" class="md-nav__link">
+    categoryplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.clustermap" class="md-nav__link">
+    clustermap()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.correlationmap" class="md-nav__link">
+    correlationmap()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.densitymap" class="md-nav__link">
+    densitymap()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.distributionplot" class="md-nav__link">
+    distributionplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.heatmap" class="md-nav__link">
+    heatmap()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.hexagonplot" class="md-nav__link">
+    hexagonplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.histogramplot" class="md-nav__link">
+    histogramplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.lineplot" class="md-nav__link">
+    lineplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.pairmap" class="md-nav__link">
+    pairmap()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.pointplot" class="md-nav__link">
+    pointplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.regressionplot" class="md-nav__link">
+    regressionplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.relationalplot" class="md-nav__link">
+    relationalplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.residualplot" class="md-nav__link">
+    residualplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.scatterplot" class="md-nav__link">
+    scatterplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.stripplot" class="md-nav__link">
+    stripplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.swarmplot" class="md-nav__link">
+    swarmplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.violinplot" class="md-nav__link">
+    violinplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualization.visual_missing_data" class="md-nav__link">
+    visual_missing_data()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualizationProduct" class="md-nav__link">
+    DataVisualizationProduct
+  </a>
+  
+    <nav class="md-nav" aria-label="DataVisualizationProduct">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualizationProduct.list_product_parts" class="md-nav__link">
+    list_product_parts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualizationProduct.return_product" class="md-nav__link">
+    return_product
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualizationProduct.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualizationProduct.add_product" class="md-nav__link">
+    add_product()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DataVisualizationProduct.save_all_figures" class="md-nav__link">
+    save_all_figures()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization" class="md-nav__link">
+    DesignerDataVisualization
+  </a>
+  
+    <nav class="md-nav" aria-label="DesignerDataVisualization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.data_figure" class="md-nav__link">
+    data_figure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_boxenplot" class="md-nav__link">
+    get_boxenplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_boxplot" class="md-nav__link">
+    get_boxplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_categoryplot" class="md-nav__link">
+    get_categoryplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_cluster_mapplot" class="md-nav__link">
+    get_cluster_mapplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_complex_pairmapplot" class="md-nav__link">
+    get_complex_pairmapplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_correlationpplot" class="md-nav__link">
+    get_correlationpplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_density_mapplot" class="md-nav__link">
+    get_density_mapplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_diagonal_correlationpplot" class="md-nav__link">
+    get_diagonal_correlationpplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_distributionplot" class="md-nav__link">
+    get_distributionplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_heatmapplot" class="md-nav__link">
+    get_heatmapplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_hexagonplot" class="md-nav__link">
+    get_hexagonplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_histogramplot" class="md-nav__link">
+    get_histogramplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_kerneldensity_mapplot" class="md-nav__link">
+    get_kerneldensity_mapplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_lineplot" class="md-nav__link">
+    get_lineplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_nullity_bar" class="md-nav__link">
+    get_nullity_bar()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_nullity_dendrogram" class="md-nav__link">
+    get_nullity_dendrogram()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_nullity_heatmap" class="md-nav__link">
+    get_nullity_heatmap()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_nullity_matrix" class="md-nav__link">
+    get_nullity_matrix()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_pairmapplot" class="md-nav__link">
+    get_pairmapplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_pointplot" class="md-nav__link">
+    get_pointplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_regression_mapplot" class="md-nav__link">
+    get_regression_mapplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_regressionplot" class="md-nav__link">
+    get_regressionplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_relationalplot" class="md-nav__link">
+    get_relationalplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_residualplot" class="md-nav__link">
+    get_residualplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_scatterplot" class="md-nav__link">
+    get_scatterplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_stripplot" class="md-nav__link">
+    get_stripplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_swarmplot" class="md-nav__link">
+    get_swarmplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.get_violinplot" class="md-nav__link">
+    get_violinplot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.visualization.data_visualization.DesignerDataVisualization.reset" class="md-nav__link">
+    reset()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kind-of-visualization-styles" class="md-nav__link">
+    Kind of Visualization Styles
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai2business.visualization.style" class="md-nav__link">
+    ai2business.visualization.style
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai2business.visualization.style.dark_mode" class="md-nav__link">
+    dark_mode()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai2business.visualization.style.light_mode" class="md-nav__link">
+    light_mode()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -627,7 +1390,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../api/deep_learning_api.md" class="md-nav__link">
+    <a href="../deep_learning_api/" class="md-nav__link">
       Deep Learning
     </a>
   </li>
@@ -1412,7 +2175,7 @@
                   </a>
                 
                 
-                  <h1>Data visualization api</h1>
+                  <h1>Data Visualization</h1>
                 
                 <h2 id="api-of-the-visualization">API of the Visualization</h2>
 <hr />
@@ -2874,13 +3637,13 @@ visual_missing_data<span class="p">(</span><span class="bp">self</span><span cla
 <p>Possible missing data will be visualized by:</p>
 <ol>
 <li>nullity matrix highlights out patterns and structures in data completion.
-    <img alt="Placeholder" src="https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_matrix_bc6141f519e4eea9e6a0d5fe84115d65.png" />{: loading=lazy }</li>
+    <img alt="Placeholder" loading="lazy" src="https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_matrix_bc6141f519e4eea9e6a0d5fe84115d65.png" /></li>
 <li>nullity bar shows the available data as a series of single bars.
     ![Placeholder]<a href="https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_bar_9918e972a769781d322ba1e18fe8f86c.png">https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_bar_9918e972a769781d322ba1e18fe8f86c.png</a>){: loading=lazy }</li>
 <li>nullity heatmap point out the correlation between the presence and absence data.
-    <img alt="Placeholder" src="https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_heatmap_d46e69f559bd7b713b7a6c3ceb0f9968.png" />{: loading=lazy }</li>
+    <img alt="Placeholder" loading="lazy" src="https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_heatmap_d46e69f559bd7b713b7a6c3ceb0f9968.png" /></li>
 <li>nullity dendrogram visualize the correlate variable completion.
-    <img alt="Placeholder" src="https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_dendrogram_15a148832cd43d6d249d56671a0fab6f.png" />{: loading=lazy }</li>
+    <img alt="Placeholder" loading="lazy" src="https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_dendrogram_15a148832cd43d6d249d56671a0fab6f.png" /></li>
 </ol>
 <p>For more information see: <a class="magiclink magiclink-github magiclink-repository" href="https://github.com/ResidentMario/missingno" title="GitHub Repository: ResidentMario/missingno">ResidentMario/missingno</a></p>
 </div>
@@ -3050,7 +3813,7 @@ add_product<span class="p">(</span><span class="bp">self</span><span class="p">,
 </tr>
 <tr>
 <td><code>value</code></td>
-<td><code>&lt;function subplot at 0x7fbaf8d61c10&gt;</code></td>
+<td><code>&lt;function subplot at 0x7f000ce7bc10&gt;</code></td>
 <td>
 <p>Return value as <code>matplotlib</code>-class of subplots.</p>
 </td>
@@ -3306,13 +4069,13 @@ __init__<span class="p">(</span><span class="bp">self</span><span class="p">,</s
 <p class="admonition-title">Appearance-Modes</p>
 <ol>
 <li>Light-Mode without Grid
-    <img alt="Placeholder" src="https://github.com/AI2Business/ai2business/tree/main/docs/images/appearance/get_lineplot_805fabb7bbea3a9e807d3c2444bbaa4e.png" />{: loading=lazy }</li>
+    <img alt="Placeholder" loading="lazy" src="https://github.com/AI2Business/ai2business/tree/main/docs/images/appearance/get_lineplot_805fabb7bbea3a9e807d3c2444bbaa4e.png" /></li>
 <li>Light-Mode with Grid
-    <img alt="Placeholder" src="https://github.com/AI2Business/ai2business/tree/main/docs/images/appearance/get_lineplot_520cb6360c9fb9c61977a303213f1340.png" />{: loading=lazy }</li>
+    <img alt="Placeholder" loading="lazy" src="https://github.com/AI2Business/ai2business/tree/main/docs/images/appearance/get_lineplot_520cb6360c9fb9c61977a303213f1340.png" /></li>
 <li>Dark-Mode without Grid
-    <img alt="Placeholder" src="https://github.com/AI2Business/ai2business/tree/main/docs/images/appearance/get_lineplot_6ef44df80722a1c466d0a4c47b8f2433.png" />{: loading=lazy }</li>
+    <img alt="Placeholder" loading="lazy" src="https://github.com/AI2Business/ai2business/tree/main/docs/images/appearance/get_lineplot_6ef44df80722a1c466d0a4c47b8f2433.png" /></li>
 <li>Dark-Mode with Grid
-    <img alt="Placeholder" src="https://github.com/AI2Business/ai2business/tree/main/docs/images/appearance/get_lineplot_65d5fcb713a18d25b1c1f6b504836776.png" />{: loading=lazy }</li>
+    <img alt="Placeholder" loading="lazy" src="https://github.com/AI2Business/ai2business/tree/main/docs/images/appearance/get_lineplot_65d5fcb713a18d25b1c1f6b504836776.png" /></li>
 </ol>
 </div>
 <p>!!! note "Figuere Size" Due to the default settings of <code>missingno</code>, the figure size has to be defined in advance.</p>
@@ -4532,7 +5295,7 @@ dark_mode<span class="p">(</span><span class="n">grid</span><span class="o">=</s
 </thead>
 <tbody>
 <tr>
-<td><code>&lt;function set_theme at 0x7fbaefddedc0&gt;</code></td>
+<td><code>&lt;function set_theme at 0x7f0003ef7dc0&gt;</code></td>
 <td>
 <p>sns.set_theme: Environment setting function of seaborn.</p>
 </td>
@@ -4600,7 +5363,7 @@ light_mode<span class="p">(</span><span class="n">grid</span><span class="o">=</
 </thead>
 <tbody>
 <tr>
-<td><code>&lt;function set_theme at 0x7fbaefddedc0&gt;</code></td>
+<td><code>&lt;function set_theme at 0x7f0003ef7dc0&gt;</code></td>
 <td>
 <p>sns.set_theme: Environment setting function of seaborn.</p>
 </td>
@@ -4657,6 +5420,41 @@ light_mode<span class="p">(</span><span class="n">grid</span><span class="o">=</
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../sample_generator_api/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Sample Generator
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../deep_learning_api/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Deep Learning
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
