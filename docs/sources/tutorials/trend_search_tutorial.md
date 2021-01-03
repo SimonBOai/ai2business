@@ -61,7 +61,7 @@ With the use of the builder's property-attribute, a dictionary will be returned 
 ```python
 >>> results = builder.trends.return_product
 >>> result.keys()
-... dict_keys(['get_interest_over_time', 'get_interest_by_region', 'get_related_topics', 'get_related_queries'])
+... dict_keys(['interest_over_time', 'interest_by_region', 'related_topics', 'related_queries'])
 
 ```
 
@@ -89,9 +89,9 @@ Due to the fact that the dataframes are pandas-dataframes, all pandas commands c
 
 
 ```python
-results["get_interest_over_time"].plot(title="Search Trend of the Big Three (per time)")
+results["interest_over_time"].plot(title="Search Trend of the Big Three (per time)")
 
-results["get_interest_by_region"].plot.bar(
+results["interest_by_region"].plot.bar(
     title="Search Trend of the Big Three (per location)", figsize=(28, 12)
 )
 
@@ -103,7 +103,7 @@ Also, the stored data in a dictionary are saved as pandas dataframe so that the 
 
 ```python
 for key in keyword_list:
-    results["get_related_queries"][key]["top"].plot.bar(
+    results["related_queries"][key]["top"].plot.bar(
         x="query", title=f"Related Queries for {key}"
     )
 
@@ -114,10 +114,10 @@ Finally, also non-visual commands like correlation analysis are working fine.
 
 
 ```python
-results["get_interest_by_region"].corr("pearson")
+results["interest_by_region"].corr("pearson")
 
-results["get_interest_by_region"].corr("kendall")
+results["interest_by_region"].corr("kendall")
 
-results["get_interest_by_region"].corr("spearman")
+results["interest_by_region"].corr("spearman")
 
 ```
