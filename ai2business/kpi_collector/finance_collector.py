@@ -390,14 +390,11 @@ class FinanceCollector:
         return self._builder
 
     @builder.setter
-    def builder(self, builder: BuilderFinanceCollector) -> property:
+    def builder(self, builder: BuilderFinanceCollector):
         """Sets the builder according to BuilderFinanceCollector.
 
         Args:
             builder (BuilderFinanceCollector): A builder class, that contains the abstract properties and methods.
-
-        Returns:
-            property: A method or property of `BuilderFinanceCollector`.
         """
         self._builder = builder
 

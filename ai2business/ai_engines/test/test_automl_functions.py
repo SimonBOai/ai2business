@@ -1,3 +1,4 @@
+"""Test-Environment for automl for functions."""
 from unittest import mock
 
 from sklearn.datasets import load_boston

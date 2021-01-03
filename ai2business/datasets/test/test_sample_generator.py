@@ -1,3 +1,4 @@
+"""Test-Environment for sample_generator."""
 from ai2business.datasets import sample_generator
 from ai2business.datasets.data import database
 

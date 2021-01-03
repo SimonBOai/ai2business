@@ -1,3 +1,4 @@
+"""Test-Environment for automl as benchmark."""
 import autokeras as ak
 import numpy as np
 import pandas as pd
