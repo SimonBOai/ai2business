@@ -46,6 +46,7 @@ theme:
 markdown_extensions:
   - codehilite
   - admonition
+  - attr_list
   - pymdownx.superfences:
   - pymdownx.emoji:
   - pymdownx.highlight:
