@@ -463,8 +463,6 @@ class DesignerDataVisualization(BuilderDataVisualization):
                 data=self.df,
                 x=self.x_label,
                 y=self.y_label,
-                hue=self.hue,
-                palette=self.palette,
                 **kwargs,
             ).get_figure(),
         )
@@ -480,13 +478,13 @@ class DesignerDataVisualization(BuilderDataVisualization):
                 hue=self.hue,
                 palette=self.palette,
                 **kwargs,
-            ).get_figure(),
+            ),
         )
 
     def get_density_mapplot(self, **kwargs) -> None:
         """Get a density map plot."""
         self._product.add_product(
-            key=self.get_hexagonplot,
+            key=self.get_density_mapplot,
             value=sns.jointplot(
                 data=self.df,
                 x=self.x_label,
@@ -494,7 +492,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
                 hue=self.hue,
                 palette=self.palette,
                 kind="kde",
-            ).get_figure(),
+            ),
         )
 
     def get_kerneldensity_mapplot(self, **kwargs) -> None:
@@ -509,7 +507,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
                 palette=self.palette,
                 kind="kde",
                 **kwargs,
-            ).get_figure(),
+            ),
         )
 
     def get_cluster_mapplot(
@@ -582,7 +580,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
                 hue=self.hue,
                 palette=self.palette,
                 **kwargs,
-            ).get_figure(),
+            ),
         )
 
     def get_complex_pairmapplot(self, **kwargs) -> None:
@@ -601,7 +599,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
         grid.map_diag(sns.kdeplot)
         self._product.add_product(
             key=self.get_pairmapplot,
-            value=grid.get_figure(),
+            value=grid,
         )
 
     def get_regression_mapplot(self, **kwargs) -> None:
@@ -615,7 +613,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
                 hue=self.hue,
                 palette=self.palette,
                 kind="reg",
-            ).get_figure(),
+            ),
         )
 
     def get_nullity_matrix(
@@ -849,11 +847,11 @@ class DataVisualization:
         """Create a given hexagon plot based on seaborn."""
         self.initialization_figure
         self.builder.get_hexagonplot(**kwargs)
-        
+
     def histogramplot(self, **kwargs) -> None:
         """Create a given histogram plot based on seaborn."""
         self.initialization_figure
-        self.builder.get_histogramplot(**kwargs
+        self.builder.get_histogramplot(**kwargs)
 
     def violinplot(self, **kwargs) -> None:
         """Create a given violin plot based on seaborn."""

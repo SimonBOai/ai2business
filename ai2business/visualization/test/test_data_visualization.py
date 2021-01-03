@@ -284,20 +284,19 @@ def test_hexagonplot():
     builder.data_figure.save_all_figures(folder=folder)
     assert len(list(Path(f"{folder}").glob("*.png"))) == 1
 
+
 def test_histogramplot():
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(
-        df_dict_fruits["get_interest_over_time"],
-        x_label="apple",
-        
-        hue="super market"
+        df_dict_fruits["get_interest_over_time"], x_label="apple", hue="super market"
     )
     data.builder = builder
-    data.histogramplot(multiple="home delivery", log_scale=True)
+    data.histogramplot(multiple="stack", log_scale=True)
     folder = f"{test_histogramplot.__name__}"
     builder.data_figure.save_all_figures(folder=folder)
-    assert len(list(Path(f"{folder}").glob("*.png"))) == 
-    
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
 def test_violinplot():
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(
@@ -309,17 +308,148 @@ def test_violinplot():
     builder.data_figure.save_all_figures(folder=folder)
     assert len(list(Path(f"{folder}").glob("*.png"))) == 1
 
+
 def test_residualplot():
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(
         df_dict_fruits["get_interest_over_time"],
         x_label="apple",
-        y_label="super market"
+        y_label="super market",
     )
     data.builder = builder
-    data.residualplot(  lowess=True, color="b")
+    data.residualplot(lowess=True, color="b")
     folder = f"{test_residualplot.__name__}"
     builder.data_figure.save_all_figures(folder=folder)
     assert len(list(Path(f"{folder}").glob("*.png"))) == 1
-    
-    
+
+
+def test_regressionplot():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+        x_label="apple",
+        y_label="pineapple",
+    )
+    data.builder = builder
+    data.regressionplot()
+    folder = f"{test_regressionplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_regressionmap():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+        x_label="apple",
+        y_label="pineapple",
+    )
+    data.builder = builder
+    data.regressionplot(map=True)
+    folder = f"{test_regressionmap.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_densitymap():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+    )
+    data.builder = builder
+    data.densitymap()
+    folder = f"{test_densitymap.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_kdemap():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+        x_label="apple",
+        y_label="pineapple",
+    )
+    data.builder = builder
+    data.densitymap(kde=True)
+    folder = f"{test_kdemap.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_heatmap():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+        x_label="apple",
+        y_label="pineapple",
+    )
+    data.builder = builder
+    data.heatmap()
+    folder = f"{test_heatmap.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_clustermap():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+    )
+    data.builder = builder
+    data.clustermap()
+    folder = f"{test_clustermap.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_correlation():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+        x_label="apple",
+        y_label="pineapple",
+    )
+    data.builder = builder
+    data.correlationmap()
+    folder = f"{test_correlation.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_correlation_2():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+        x_label="apple",
+        y_label="pineapple",
+    )
+    data.builder = builder
+    data.correlationmap(diagonal=True)
+    folder = f"{test_correlation_2.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_pairmap():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+    )
+    data.builder = builder
+    data.pairmap()
+    folder = f"{test_pairmap.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_pairmap_complex():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+    )
+    data.builder = builder
+    data.pairmap(complex=True)
+    folder = f"{test_pairmap_complex.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
