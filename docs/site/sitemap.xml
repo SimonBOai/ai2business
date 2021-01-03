@@ -27,5 +27,25 @@
      <loc>https://ai2business.github.io/ai2business/tutorials/timeseries_forecast_tutorial/</loc>
      <lastmod>2021-01-03</lastmod>
      <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ai2business.github.io/ai2business/finance_collector_api/</loc>
+     <lastmod>2021-01-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ai2business.github.io/ai2business/trends_collector_api/</loc>
+     <lastmod>2021-01-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ai2business.github.io/ai2business/sample_generator_api/</loc>
+     <lastmod>2021-01-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ai2business.github.io/ai2business/data_visualization_api/</loc>
+     <lastmod>2021-01-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ai2business.github.io/ai2business/deep_learning_api/</loc>
+     <lastmod>2021-01-03</lastmod>
+     <changefreq>daily</changefreq>
     </url>
 </urlset>
