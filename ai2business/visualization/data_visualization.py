@@ -2,14 +2,13 @@
 from abc import ABC, abstractmethod, abstractproperty
 from pathlib import Path
 from secrets import token_hex
-from typing import Callable
+from typing import Callable, Union
 
 import matplotlib.pyplot as plt
 import missingno as mss
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from typing import Union
 
 from ai2business.visualization import style
 
@@ -211,6 +210,8 @@ class DesignerDataVisualization(BuilderDataVisualization):
         df: pd.DataFrame,
         dark_mode: bool = False,
         grid: bool = False,
+        figsize: tuple = (12, 8),
+        dpi: int = 300,
         x_label: str = None,
         y_label: str = None,
         hue: str = None,
@@ -222,20 +223,38 @@ class DesignerDataVisualization(BuilderDataVisualization):
             df (pd.DataFrame): pandas DataFrame.
             dark_mode (bool, optional): Switch to dark mode. Defaults to False.
             grid (bool, optional): Activate grids in plots. Defaults to False.
+            figsize (tuple, optional): Size of the figure. Defaults to (12, 8).
+            dpi (int, optional): Resolution of the figure. Defaults to 300.
             x_label (str, optional): Name of the column name for the `x-axis`. Defaults to None.
             y_label (str, optional): Name of the column name for the `y-axis`. Defaults to None.
             hue (str, optional): Name of the column name for the seperating the results to the uniques once. Defaults to None.
             palette (Union[str, list,  dict], optional): The `str`, `list`, or `dict` of colors or continuous colormap, which defines the color palette. Defaults to None.
+
+
+        !!! note "Appearance-Modes"
+
+            1. Light-Mode without Grid
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/appearance/get_lineplot_805fabb7bbea3a9e807d3c2444bbaa4e.png){: loading=lazy }
+            2. Light-Mode with Grid
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/appearance/get_lineplot_520cb6360c9fb9c61977a303213f1340.png){: loading=lazy }
+            3. Dark-Mode without Grid
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/appearance/get_lineplot_6ef44df80722a1c466d0a4c47b8f2433.png){: loading=lazy }
+            4. Dark-Mode with Grid
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/appearance/get_lineplot_65d5fcb713a18d25b1c1f6b504836776.png){: loading=lazy }
+
+        !!! note "Figuere Size" Due to the default settings of `missingno`, the figure size has to be defined in advance. 
         """
         self.df = df
         self.x_label = x_label
         self.y_label = y_label
         self.hue = hue
         self.palette = palette
+        self.figsize = figsize
+        plt.figure(figsize=self.figsize, dpi=dpi)
         if dark_mode:
-            style.dark_mode(grid=grid)
+            self.style = style.dark_mode(grid=grid)
         else:
-            style.light_mode(grid=grid)
+            self.style = style.light_mode(grid=grid)
         self.reset()
 
     def reset(self) -> None:
@@ -394,6 +413,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
         )
 
     def get_hexagonplot(self, **kwargs) -> None:
+        """Get a hexagon plot."""
         self._product.add_product(
             key=self.get_hexagonplot,
             value=sns.jointplot(
@@ -436,6 +456,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
         )
 
     def get_residualplot(self, **kwargs) -> None:
+        """Get a residual plot."""
         self._product.add_product(
             key=self.get_residualplot,
             value=sns.residplot(
@@ -567,7 +588,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
     def get_complex_pairmapplot(self, **kwargs) -> None:
         """Get a complex pair plot.
 
-        !!! example Note
+        !!! note "About Complex Pair Plots"
             The complex pair consits of three different types of subplots:
 
             1. A distribution plot on the diagonal.
@@ -609,7 +630,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
         self._product.add_product(
             key=self.get_nullity_matrix,
             value=mss.matrix(
-                df=self.df, n=n_columns, p=per_columns, **kwargs
+                df=self.df, n=n_columns, p=per_columns, figsize=self.figsize, **kwargs
             ).get_figure(),
         )
 
@@ -625,7 +646,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
         self._product.add_product(
             key=self.get_nullity_bar,
             value=mss.bar(
-                df=self.df, n=n_columns, p=per_columns, **kwargs
+                df=self.df, n=n_columns, p=per_columns, figsize=self.figsize, **kwargs
             ).get_figure(),
         )
 
@@ -646,7 +667,12 @@ class DesignerDataVisualization(BuilderDataVisualization):
         self._product.add_product(
             key=self.get_nullity_heatmap,
             value=mss.heatmap(
-                df=self.df, n=n_columns, p=per_columns, cmap=cmap, **kwargs
+                df=self.df,
+                n=n_columns,
+                p=per_columns,
+                figsize=self.figsize,
+                cmap=cmap,
+                **kwargs,
             ).get_figure(),
         )
 
@@ -657,7 +683,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
         self._product.add_product(
             key=self.get_nullity_dendrogram,
             value=mss.dendrogram(
-                df=self.df, n=n_columns, p=per_columns, **kwargs
+                df=self.df, n=n_columns, p=per_columns, figsize=self.figsize, **kwargs
             ).get_figure(),
         )
 
@@ -667,6 +693,27 @@ class DataVisualization:
 
     During the execution, `DataVisualization` can construct several product
     variations using the same building steps.
+
+    !!! example "General introduction into using plot-functions!"
+        ```python
+        >>> from ai2business.macros import oneliner as one
+        >>> from ai2business.visualization import data_visualization as dav
+
+        >>> df_dict_years = one.TrendSearch.four_step_search(keyword_list=[ "2017", "2018", "2019", "2020", "2021", ])
+
+        >>> data = dav.DataVisualization()
+        >>> builder = dav.DesignerDataVisualization(df_dict_years["get_interest_over_time"])
+        >>> data.builder = builder
+
+        # Here any kind of plot function can be called
+        >>> data.lineplot()
+        >>> builder.data_figure.save_all_figures(folder=folder)
+        ```
+    !!! tip "Activating hidden functions of the `seaborn`-module!"
+        Due to the seaborn module's complexity, only the significant __four__
+        variables (x_label, y_label, hue, palette) are defined in
+        `DesignerDataVisualization`. However, all other seaborn-module options
+        can be individual activated by`**kwargs` in each function separately.
     """
 
     def __init__(self) -> None:
@@ -708,18 +755,18 @@ class DataVisualization:
             per_columns (float, optional): The cap on the percentage fill of the columns in the filtered DataFrame. Defaults to 0.0.
             cmap (str, optional): The color of the heatmap. Defaults to "seismic".
 
-        !!! example "Note"
+        !!! note "Visualization of nullity results, respectively, missing values!"
 
             Possible missing data will be visualized by:
 
             1. nullity matrix highlights out patterns and structures in data completion.
-                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/get_nullity_heatmap_d53456cea1ca7a7a8e3f15770cca3fd6.png){: loading=lazy }
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/nullity/get_nullity_matrix_bc6141f519e4eea9e6a0d5fe84115d65.png){: loading=lazy }
             2. nullity bar shows the available data as a series of single bars.
-                ![Placeholder]https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/get_nullity_bar_5ea54ad25915e24e0b98236036b0aba0.png){: loading=lazy }
+                ![Placeholder]https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/nullity/get_nullity_bar_9918e972a769781d322ba1e18fe8f86c.png){: loading=lazy }
             3. nullity heatmap point out the correlation between the presence and absence data.
-                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/get_nullity_heatmap_d53456cea1ca7a7a8e3f15770cca3fd6.png){: loading=lazy }
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/nullity/get_nullity_heatmap_d46e69f559bd7b713b7a6c3ceb0f9968.png){: loading=lazy }
             4. nullity dendrogram visualize the correlate variable completion.
-                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/get_nullity_dendrogram_aff668425937a2ff1b2608799ed71ef0.png){: loading=lazy }
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/nullity/get_nullity_dendrogram_15a148832cd43d6d249d56671a0fab6f.png){: loading=lazy }
 
             For more information see: [https://github.com/ResidentMario/missingno](https://github.com/ResidentMario/missingno)
         """
@@ -736,5 +783,42 @@ class DataVisualization:
             n_columns=n_columns, per_columns=per_columns, **kwargs
         )
 
+    @property
+    def initialization_figure(self) -> None:
+        """Initialization of the figure.
+
+        !!! danger "Reminder"
+            It is very important that if figure has to be first deleted,
+            otherwise the figures can be overlaped.
+        """
+        plt.cla()
+        plt.clf()
+
     def lineplot(self, **kwargs) -> None:
+        """Create a given line plot based on seaborn."""
+        self.initialization_figure
         self.builder.get_lineplot(**kwargs)
+
+    def pointplot(self, **kwargs) -> None:
+        """Create a given point plot based on seaborn."""
+        self.initialization_figure
+        self.builder.get_pointplot(**kwargs)
+
+    def scatterplot(self, **kwargs) -> None:
+        """Create a given scatter plot based on seaborn."""
+        self.initialization_figure
+        self.builder.get_scatterplot(**kwargs)
+
+    def swarmplot(self, **kwargs) -> None:
+        """Create a given swarm plot based on seaborn."""
+        self.initialization_figure
+        self.builder.get_swarmplot(**kwargs)
+
+    def distributionplot(self, **kwargs) -> None:
+        """Create a given distribution plot based on seaborn."""
+        self.builder.get_distributionplot(**kwargs)
+
+    def relationalplot(self, **kwargs) -> None:
+        """Create a given relational plot based on seaborn."""
+        self.initialization_figure
+        self.builder.get_relationalplot(**kwargs)

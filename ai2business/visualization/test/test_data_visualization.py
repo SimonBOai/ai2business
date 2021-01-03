@@ -4,12 +4,10 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import seaborn as sns
-
+from ai2business.macros import oneliner as one
 from ai2business.visualization import data_visualization as dav
 
-from ai2business.macros import oneliner as one
-
+import matplotlib.pyplot as plt
 
 df_nan = pd.DataFrame(
     np.random.randn(5, 3),
@@ -41,6 +39,7 @@ def test_list_product_parts():
     data.builder = builder
     data.visual_missing_data()
     result = builder.data_figure.list_product_parts
+
     assert (
         result
         == "Product parts: get_nullity_matrix, get_nullity_bar, get_nullity_heatmap, get_nullity_dendrogram"
@@ -54,11 +53,12 @@ def test_save_all_figures():
     data.builder = builder
     data.visual_missing_data()
     builder.data_figure.save_all_figures(folder="tmp")
+
     assert len(list(Path("tmp").glob("*.png"))) == 4
+
 
 df_dict_years = one.TrendSearch.four_step_search(
     keyword_list=[
-        
         "2017",
         "2018",
         "2019",
@@ -68,30 +68,114 @@ df_dict_years = one.TrendSearch.four_step_search(
 )
 
 
+def test_lineplot_white():
+    # Test lineplot with new data set:
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(df_dict_years["get_interest_over_time"])
+    data.builder = builder
+    data.lineplot()
+    folder = "tmp_white"
+    builder.data_figure.save_all_figures(folder=folder)
+
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_lineplot_dark():
+    # Test lineplot with new data set:
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_years["get_interest_over_time"],
+        dark_mode=True,
+    )
+    data.builder = builder
+    data.lineplot()
+    folder = "tmp_dark"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_lineplot_whitegrid():
+    # Test lineplot with new data set:
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_years["get_interest_over_time"], grid=True
+    )
+    data.builder = builder
+    data.lineplot()
+    folder = "tmp_whitegrid"
+    builder.data_figure.save_all_figures(folder=folder)
+
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_lineplot_darkgrid():
+    # Test lineplot with new data set:
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_years["get_interest_over_time"], dark_mode=True, grid=True
+    )
+    data.builder = builder
+    data.lineplot()
+    folder = "tmp_darkgrid"
+    builder.data_figure.save_all_figures(folder=folder)
+
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
 def test_lineplot():
     # Test lineplot with new data set:
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(df_dict_years["get_interest_over_time"])
     data.builder = builder
     data.lineplot()
-    builder.data_figure.save_all_figures()
+    folder = f"{test_lineplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
 
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
 
 
 df_dict_bigtech = one.TrendSearch.four_step_search(
-    keyword_list=[
-        "Apple",
-        "Microsoft",
-        "Google",
-        "Huawei",
-    ]
+    keyword_list=["Apple", "Google", "Smartphone", "Price"]
 )
+
+
+def test_pointplot():
+    # Test pointplot with new data set:
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_bigtech["get_interest_over_time"],
+        x_label="Apple",
+        y_label="Google",
+    )
+    data.builder = builder
+    data.pointplot()
+    folder = f"{test_pointplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_scatterplot():
+    # Test scatterplot with new data set:
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_bigtech["get_interest_over_time"],
+        x_label="Apple",
+        y_label="Google",
+        hue="Smartphone",
+        palette="ch:r=-.2,d=.3_r",
+    )
+    data.builder = builder
+    data.scatterplot(size="Price")
+    folder = f"{test_scatterplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
 
 df_dict_corona = one.TrendSearch.four_step_search(
     keyword_list=[
         "Corona",
-        "Vacination",
         "Vaccination",
+        "Hope",
         "Fear",
     ]
 )
