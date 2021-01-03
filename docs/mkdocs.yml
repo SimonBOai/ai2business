@@ -113,6 +113,8 @@ nav:
           - Trends-Collector: api/trends_collector_api.md
       - Datasets:
           - Sample Generator: api/sample_generator_api.md
+      - Visualization:
+          - Data Visualization: api/data_visualization_api.md
       - Auto Machine Learning:
           - Deep Learning: api/deep_learning_api.md
 extra_css:
