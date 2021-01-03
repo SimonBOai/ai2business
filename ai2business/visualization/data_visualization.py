@@ -549,12 +549,9 @@ class DesignerDataVisualization(BuilderDataVisualization):
                 x=self.x_label,
                 y=self.y_label,
                 hue=self.hue,
-                palette=self.palette, ** kwargs,
-            )
-            
-            
-            
-            ,
+                palette=self.palette,
+                **kwargs,
+            ),
         )
 
     def get_diagonal_correlationpplot(

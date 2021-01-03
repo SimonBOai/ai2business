@@ -396,13 +396,13 @@ def test_clustermap():
 
     # Select a subset of the networks
     used_networks = [1, 5, 6, 7, 8, 12, 13, 17]
-    used_columns = (df.columns.get_level_values("network").astype(int).isin(used_networks))
+    used_columns = (
+        df.columns.get_level_values("network").astype(int).isin(used_networks)
+    )
     df = df.loc[:, used_columns]
 
     data = dav.DataVisualization()
-    builder = dav.DesignerDataVisualization(
-        df
-    )
+    builder = dav.DesignerDataVisualization(df)
     data.builder = builder
     data.clustermap()
     folder = f"{test_clustermap.__name__}"
