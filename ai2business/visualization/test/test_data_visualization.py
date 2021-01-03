@@ -380,7 +380,7 @@ def test_kdemap():
 def test_heatmap():
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(
-        df_dict_fruits["get_interest_over_time"],
+        df_dict_fruits["get_interest_over_time"].drop(columns="isPartial"),
         x_label="apple",
         y_label="pineapple",
     )
@@ -392,9 +392,16 @@ def test_heatmap():
 
 
 def test_clustermap():
+    df = sns.load_dataset("brain_networks", header=[0, 1, 2], index_col=0)
+
+    # Select a subset of the networks
+    used_networks = [1, 5, 6, 7, 8, 12, 13, 17]
+    used_columns = (df.columns.get_level_values("network").astype(int).isin(used_networks))
+    df = df.loc[:, used_columns]
+
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(
-        df_dict_fruits["get_interest_over_time"],
+        df
     )
     data.builder = builder
     data.clustermap()
@@ -434,7 +441,9 @@ def test_correlation_2():
 def test_pairmap():
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(
-        df_dict_fruits["get_interest_over_time"],
+        df_dict_fruits["get_interest_over_time"].drop(columns="isPartial"),
+        x_label="apple",
+        y_label="pineapple",
     )
     data.builder = builder
     data.pairmap()
@@ -446,7 +455,9 @@ def test_pairmap():
 def test_pairmap_complex():
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(
-        df_dict_fruits["get_interest_over_time"],
+        df_dict_fruits["get_interest_over_time"].drop(columns="isPartial"),
+        x_label="apple",
+        y_label="pineapple",
     )
     data.builder = builder
     data.pairmap(complex=True)

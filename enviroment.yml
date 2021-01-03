@@ -98,7 +98,7 @@ dependencies:
     - matplotlib==3.3.3
     - mccabe==0.6.1
     - mike==0.5.5
-    - missingno==0.4.2
+    - missingno==0.4.0
     - mistune==0.8.4
     - mkdocs==1.1.2
     - mkdocs-exclude==1.0.2
@@ -128,6 +128,7 @@ dependencies:
     - pandocfilters==1.4.3
     - parso==0.8.1
     - pathspec==0.8.1
+    - patsy==0.5.1
     - pbr==5.5.1
     - pexpect==4.8.0
     - pickleshare==0.7.5
@@ -138,6 +139,7 @@ dependencies:
     - protobuf==3.14.0
     - ptyprocess==0.6.0
     - py==1.10.0
+    - pyarrow==2.0.0
     - pyasn1==0.4.8
     - pyasn1-modules==0.2.8
     - pycodestyle==2.6.0
@@ -166,6 +168,7 @@ dependencies:
     - pyzmq==20.0.0
     - qtconsole==5.0.1
     - qtpy==1.9.0
+    - quilt==2.9.15
     - regex==2020.11.13
     - requests==2.25.1
     - requests-oauthlib==1.3.0
@@ -190,6 +193,7 @@ dependencies:
     - sphinxcontrib-jsmath==1.0.1
     - sphinxcontrib-qthelp==1.0.3
     - sphinxcontrib-serializinghtml==1.1.4
+    - statsmodels==0.12.1
     - stem==1.8.0
     - stevedore==3.3.0
     - stopit==1.1.2
@@ -220,6 +224,7 @@ dependencies:
     - widgetsnbextension==3.5.1
     - wrapt==1.12.1
     - xgboost==1.3.0.post0
+    - xlrd==2.0.1
     - xlsxwriter==1.3.7
     - yellowbrick==1.2
     - yfinance==0.1.55

@@ -523,7 +523,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
             key=self.get_cluster_mapplot,
             value=sns.clustermap(
                 data=self.df.corr(method=method, min_periods=min_periods), **kwargs
-            ).get_figure(),
+            ),
         )
 
     def get_heatmapplot(self, **kwargs) -> None:
@@ -546,11 +546,15 @@ class DesignerDataVisualization(BuilderDataVisualization):
             key=self.get_correlationpplot,
             value=sns.relplot(
                 data=self.df.corr(method=method, min_periods=min_periods),
-                x=x_label,
+                x=self.x_label,
                 y=self.y_label,
                 hue=self.hue,
-                palette=self.palette ** kwargs,
-            ).get_figure(),
+                palette=self.palette, ** kwargs,
+            )
+            
+            
+            
+            ,
         )
 
     def get_diagonal_correlationpplot(
