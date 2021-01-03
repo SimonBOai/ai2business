@@ -234,13 +234,13 @@ class DesignerDataVisualization(BuilderDataVisualization):
         !!! note "Appearance-Modes"
 
             1. Light-Mode without Grid
-                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/appearance/get_lineplot_805fabb7bbea3a9e807d3c2444bbaa4e.png){: loading=lazy }
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/images/appearance/get_lineplot_805fabb7bbea3a9e807d3c2444bbaa4e.png){: loading=lazy }
             2. Light-Mode with Grid
-                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/appearance/get_lineplot_520cb6360c9fb9c61977a303213f1340.png){: loading=lazy }
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/images/appearance/get_lineplot_520cb6360c9fb9c61977a303213f1340.png){: loading=lazy }
             3. Dark-Mode without Grid
-                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/appearance/get_lineplot_6ef44df80722a1c466d0a4c47b8f2433.png){: loading=lazy }
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/images/appearance/get_lineplot_6ef44df80722a1c466d0a4c47b8f2433.png){: loading=lazy }
             4. Dark-Mode with Grid
-                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/appearance/get_lineplot_65d5fcb713a18d25b1c1f6b504836776.png){: loading=lazy }
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/images/appearance/get_lineplot_65d5fcb713a18d25b1c1f6b504836776.png){: loading=lazy }
 
         !!! note "Figuere Size" Due to the default settings of `missingno`, the figure size has to be defined in advance.
         """
@@ -759,13 +759,13 @@ class DataVisualization:
             Possible missing data will be visualized by:
 
             1. nullity matrix highlights out patterns and structures in data completion.
-                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/nullity/get_nullity_matrix_bc6141f519e4eea9e6a0d5fe84115d65.png){: loading=lazy }
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_matrix_bc6141f519e4eea9e6a0d5fe84115d65.png){: loading=lazy }
             2. nullity bar shows the available data as a series of single bars.
-                ![Placeholder]https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/nullity/get_nullity_bar_9918e972a769781d322ba1e18fe8f86c.png){: loading=lazy }
+                ![Placeholder]https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_bar_9918e972a769781d322ba1e18fe8f86c.png){: loading=lazy }
             3. nullity heatmap point out the correlation between the presence and absence data.
-                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/nullity/get_nullity_heatmap_d46e69f559bd7b713b7a6c3ceb0f9968.png){: loading=lazy }
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_heatmap_d46e69f559bd7b713b7a6c3ceb0f9968.png){: loading=lazy }
             4. nullity dendrogram visualize the correlate variable completion.
-                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/nullity/get_nullity_dendrogram_15a148832cd43d6d249d56671a0fab6f.png){: loading=lazy }
+                ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_dendrogram_15a148832cd43d6d249d56671a0fab6f.png){: loading=lazy }
 
             For more information see: [https://github.com/ResidentMario/missingno](https://github.com/ResidentMario/missingno)
         """
