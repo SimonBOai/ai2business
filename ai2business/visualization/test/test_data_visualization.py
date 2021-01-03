@@ -4,10 +4,10 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import seaborn as sns
+
 from ai2business.macros import oneliner as one
 from ai2business.visualization import data_visualization as dav
-
-import matplotlib.pyplot as plt
 
 df_nan = pd.DataFrame(
     np.random.randn(5, 3),
@@ -18,9 +18,27 @@ df_nan["four"] = "bar"
 df_nan["five"] = df_nan["one"] > 0
 df_nan = df_nan.reindex(["a", "b", "c", "d", "e", "f", "g", "h"])
 
+df_dict_fruits = one.TrendSearch.four_step_search(
+    keyword_list=[
+        "apple",
+        "pineapple",
+        "super market",
+        "home delivery",
+    ]
+)
+
+df_dict_years = one.TrendSearch.four_step_search(
+    keyword_list=[
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+    ]
+)
+
 
 def test_visual_missing_data():
-    # Test visualization of missing data
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(df_nan)
     data.builder = builder
@@ -47,7 +65,6 @@ def test_list_product_parts():
 
 
 def test_save_all_figures():
-    # Test automatic saving of all figures
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(df_nan)
     data.builder = builder
@@ -57,19 +74,7 @@ def test_save_all_figures():
     assert len(list(Path("tmp").glob("*.png"))) == 4
 
 
-df_dict_years = one.TrendSearch.four_step_search(
-    keyword_list=[
-        "2017",
-        "2018",
-        "2019",
-        "2020",
-        "2021",
-    ]
-)
-
-
 def test_lineplot_white():
-    # Test lineplot with new data set:
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(df_dict_years["get_interest_over_time"])
     data.builder = builder
@@ -95,7 +100,6 @@ def test_lineplot_dark():
 
 
 def test_lineplot_whitegrid():
-    # Test lineplot with new data set:
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(
         df_dict_years["get_interest_over_time"], grid=True
@@ -109,7 +113,6 @@ def test_lineplot_whitegrid():
 
 
 def test_lineplot_darkgrid():
-    # Test lineplot with new data set:
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(
         df_dict_years["get_interest_over_time"], dark_mode=True, grid=True
@@ -125,7 +128,7 @@ def test_lineplot_darkgrid():
 def test_lineplot():
     # Test lineplot with new data set:
     data = dav.DataVisualization()
-    builder = dav.DesignerDataVisualization(df_dict_years["get_interest_over_time"])
+    builder = dav.DesignerDataVisualization(df_dict_fruits["get_interest_over_time"])
     data.builder = builder
     data.lineplot()
     folder = f"{test_lineplot.__name__}"
@@ -134,18 +137,13 @@ def test_lineplot():
     assert len(list(Path(f"{folder}").glob("*.png"))) == 1
 
 
-df_dict_bigtech = one.TrendSearch.four_step_search(
-    keyword_list=["Apple", "Google", "Smartphone", "Price"]
-)
-
-
 def test_pointplot():
     # Test pointplot with new data set:
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(
-        df_dict_bigtech["get_interest_over_time"],
-        x_label="Apple",
-        y_label="Google",
+        df_dict_fruits["get_interest_over_time"],
+        x_label="apple",
+        y_label="pineapple",
     )
     data.builder = builder
     data.pointplot()
@@ -155,27 +153,173 @@ def test_pointplot():
 
 
 def test_scatterplot():
-    # Test scatterplot with new data set:
     data = dav.DataVisualization()
     builder = dav.DesignerDataVisualization(
-        df_dict_bigtech["get_interest_over_time"],
-        x_label="Apple",
-        y_label="Google",
-        hue="Smartphone",
+        df_dict_fruits["get_interest_over_time"],
+        x_label="apple",
+        y_label="pineapple",
+        hue="super market",
         palette="ch:r=-.2,d=.3_r",
     )
     data.builder = builder
-    data.scatterplot(size="Price")
+    data.scatterplot(size="home delivery")
     folder = f"{test_scatterplot.__name__}"
     builder.data_figure.save_all_figures(folder=folder)
     assert len(list(Path(f"{folder}").glob("*.png"))) == 1
 
 
-df_dict_corona = one.TrendSearch.four_step_search(
-    keyword_list=[
-        "Corona",
-        "Vaccination",
-        "Hope",
-        "Fear",
-    ]
-)
+def test_swarmplot():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+        palette="Set2",
+    )
+    data.builder = builder
+    data.swarmplot(
+        size=2,
+        marker="D",
+        edgecolor="gray",
+        alpha=0.25,
+    )
+    folder = f"{test_swarmplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_distributionplot():
+    # Test distributionplot with new data set:
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_related_queries"]["apple"]["top"],
+        palette="dark",
+        x_label="value",
+    )
+    data.builder = builder
+    data.distributionplot(kind="ecdf")
+    folder = f"{test_distributionplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_relationalplot():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+        palette="dark",
+        x_label="apple",
+        y_label="pineapple",
+        hue="home delivery",
+    )
+    data.builder = builder
+    data.relationalplot(col="super market")
+    folder = f"{test_relationalplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_categoryplot():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+        palette="dark",
+        x_label="apple",
+        y_label="pineapple",
+    )
+    data.builder = builder
+    data.categoryplot()
+    folder = f"{test_categoryplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_boxplot():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+    )
+    data.builder = builder
+    data.boxplot()
+    folder = f"{test_boxplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_boxenplot():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+        palette=sns.light_palette("purple"),
+        dark_mode=True,
+        grid=True,
+    )
+    data.builder = builder
+    data.boxplot(multiboxen=True)
+    folder = f"{test_boxenplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_stripplot():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+    )
+    data.builder = builder
+    data.stripplot()
+    folder = f"{test_stripplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+
+def test_hexagonplot():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+        x_label="apple",
+        y_label="pineapple",
+    )
+    data.builder = builder
+    data.hexagonplot(color="#4CB391")
+    folder = f"{test_hexagonplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+def test_histogramplot():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+        x_label="apple",
+        
+        hue="super market"
+    )
+    data.builder = builder
+    data.histogramplot(multiple="home delivery", log_scale=True)
+    folder = f"{test_histogramplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 
+    
+def test_violinplot():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+    )
+    data.builder = builder
+    data.violinplot()
+    folder = f"{test_violinplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+
+def test_residualplot():
+    data = dav.DataVisualization()
+    builder = dav.DesignerDataVisualization(
+        df_dict_fruits["get_interest_over_time"],
+        x_label="apple",
+        y_label="super market"
+    )
+    data.builder = builder
+    data.residualplot(  lowess=True, color="b")
+    folder = f"{test_residualplot.__name__}"
+    builder.data_figure.save_all_figures(folder=folder)
+    assert len(list(Path(f"{folder}").glob("*.png"))) == 1
+    
+    

@@ -1,8 +1,8 @@
 """Test-Environment for seaborn figure style."""
 
-from ai2business.visualization import style
-
 import seaborn as sns
+
+from ai2business.visualization import style
 
 
 def test_light_mode():

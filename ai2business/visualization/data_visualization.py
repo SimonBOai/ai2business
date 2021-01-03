@@ -242,7 +242,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
             4. Dark-Mode with Grid
                 ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/sources/images/appearance/get_lineplot_65d5fcb713a18d25b1c1f6b504836776.png){: loading=lazy }
 
-        !!! note "Figuere Size" Due to the default settings of `missingno`, the figure size has to be defined in advance. 
+        !!! note "Figuere Size" Due to the default settings of `missingno`, the figure size has to be defined in advance.
         """
         self.df = df
         self.x_label = x_label
@@ -250,7 +250,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
         self.hue = hue
         self.palette = palette
         self.figsize = figsize
-        plt.figure(figsize=self.figsize, dpi=dpi)
+        _ = plt.figure(figsize=self.figsize, dpi=dpi)
         if dark_mode:
             self.style = style.dark_mode(grid=grid)
         else:
@@ -339,7 +339,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
                 hue=self.hue,
                 palette=self.palette,
                 **kwargs,
-            ).get_figure(),
+            ),
         )
 
     def get_relationalplot(self, **kwargs) -> None:
@@ -353,7 +353,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
                 hue=self.hue,
                 palette=self.palette,
                 **kwargs,
-            ).get_figure(),
+            ),
         )
 
     def get_categoryplot(self, **kwargs) -> None:
@@ -367,7 +367,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
                 hue=self.hue,
                 palette=self.palette,
                 **kwargs,
-            ).get_figure(),
+            ),
         )
 
     def get_boxplot(self, **kwargs) -> None:
@@ -424,7 +424,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
                 palette=self.palette,
                 kind="hex",
                 **kwargs,
-            ).get_figure(),
+            ),
         )
 
     def get_histogramplot(self, **kwargs) -> None:
@@ -789,7 +789,7 @@ class DataVisualization:
 
         !!! danger "Reminder"
             It is very important that if figure has to be first deleted,
-            otherwise the figures can be overlaped.
+            otherwise the figures can be overlapped.
         """
         plt.cla()
         plt.clf()
@@ -822,3 +822,124 @@ class DataVisualization:
         """Create a given relational plot based on seaborn."""
         self.initialization_figure
         self.builder.get_relationalplot(**kwargs)
+
+    def categoryplot(self, **kwargs) -> None:
+        """Create a given category plot based on seaborn."""
+        self.initialization_figure
+        self.builder.get_categoryplot(**kwargs)
+
+    def boxplot(self, multiboxen: bool = False, **kwargs) -> None:
+        """Create a given box plot based on seaborn.
+
+        Args:
+            multiboxen (bool, optional): Allows to draw multi boxen per object. Defaults to False.
+        """
+        self.initialization_figure
+        if multiboxen:
+            self.builder.get_boxenplot(**kwargs)
+        else:
+            self.builder.get_boxplot(**kwargs)
+
+    def stripplot(self, **kwargs) -> None:
+        """Create a given strip plot based on seaborn."""
+        self.initialization_figure
+        self.builder.get_stripplot(**kwargs)
+
+    def hexagonplot(self, **kwargs) -> None:
+        """Create a given hexagon plot based on seaborn."""
+        self.initialization_figure
+        self.builder.get_hexagonplot(**kwargs)
+        
+    def histogramplot(self, **kwargs) -> None:
+        """Create a given histogram plot based on seaborn."""
+        self.initialization_figure
+        self.builder.get_histogramplot(**kwargs
+
+    def violinplot(self, **kwargs) -> None:
+        """Create a given violin plot based on seaborn."""
+        self.initialization_figure
+        self.builder.get_violinplot(**kwargs)
+
+    def residualplot(self, **kwargs) -> None:
+        """Create a given residual plot based on seaborn."""
+        self.initialization_figure
+        self.builder.get_residualplot(**kwargs)
+
+    def regressionplot(self, map: bool = False, **kwargs) -> None:
+        """Create a given regression plot based on seaborn.
+
+        Args:
+            map (bool, optional): Creates the regression plot as map. Defaults to False.
+        """
+        self.initialization_figure
+        if map:
+            self.builder.get_regression_mapplot(**kwargs)
+        else:
+            self.builder.get_regressionplot(**kwargs)
+
+    def densitymap(self, kde: bool = False, **kwargs) -> None:
+        """Create a given density map based on seaborn.
+        Args:
+            kde (bool, optional): Plots the density as kernel density. Defaults to False.
+        """
+        self.initialization_figure
+
+        if kde:
+            self.builder.get_kerneldensity_mapplot(**kwargs)
+        else:
+            self.builder.get_density_mapplot(**kwargs)
+
+    def clustermap(
+        self, method: str = "pearson", min_periods: int = 1, **kwargs
+    ) -> None:
+        """Create a given cluster map based on seaborn.
+
+        Args:
+            method (str, optional): Method of the correlation type ('pearson', 'kendall', 'spearman' or callable method of correlation). Defaults to "pearson".
+            min_periods (int, optional): Minimum number of observations required per pair of columns to have a valid result. Defaults to 1.
+        """
+        self.initialization_figure
+        self.builder.get_cluster_mapplot(
+            method=method, min_periods=min_periods, **kwargs
+        )
+
+    def heatmap(self, **kwargs) -> None:
+        """Create a given heat map based on seaborn."""
+        self.initialization_figure
+        self.builder.get_heatmapplot(**kwargs)
+
+    def correlationmap(
+        self,
+        diagonal: bool = False,
+        method: str = "pearson",
+        min_periods: int = 1,
+        **kwargs,
+    ) -> None:
+        """Create a given correlation map based on seaborn.
+
+        Args:
+            diagonal (bool, optional): Only the lower diagonal elements will be plotted. Defaults to False.
+            method (str, optional): Method of the correlation type ('pearson', 'kendall', 'spearman' or callable method of correlation). Defaults to "pearson".
+            min_periods (int, optional): Minimum number of observations required per pair of columns to have a valid result. Defaults to 1.
+        """
+        self.initialization_figure
+        if diagonal:
+            self.builder.get_diagonal_correlationpplot(
+                method=method, min_periods=min_periods, **kwargs
+            )
+        else:
+            self.builder.get_correlationpplot(
+                method=method, min_periods=min_periods, **kwargs
+            )
+
+    def pairmap(self, complex: bool = False, **kwargs):
+        """Create a pair map based on seaborn.
+
+        Args:
+            complex (bool, optional): Turn on the `get_complex_pairmapplot`. Defaults to False.
+        """
+        self.initialization_figure
+        if complex:
+            self.builder.get_complex_pairmapplot(**kwargs)
+        else:
+            self.builder.get_pairmapplot(**kwargs)
