@@ -250,7 +250,9 @@ class DesignerDataVisualization(BuilderDataVisualization):
                 ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_lineplot_65d5fcb713a18d25b1c1f6b504836776.png?raw=true){: loading=lazy }
 
 
-        !!! note "Figuere Size" Due to the default settings of `missingno`, the figure size has to be defined in advance.
+        !!! note "Figuere Size"
+
+            Due to the default settings of `missingno`, the figure size has to be defined in advance.
         """
         self.df = df
         self.x_label = x_label
