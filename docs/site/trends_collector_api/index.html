@@ -13,14 +13,14 @@
         <meta name="author" content="AI2Business & coworkers">
       
       
-        <link rel="canonical" href="https://ai2business.github.io/ai2business/trends_collector/">
+        <link rel="canonical" href="https://ai2business.github.io/ai2business/trends_collector_api/">
       
       <link rel="shortcut icon" href="../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.3">
     
     
       
-        <title>Trends collector - AI2Business</title>
+        <title>Trends-Collector - AI2Business</title>
       
     
     
@@ -100,7 +100,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Trends collector
+              Trends-Collector
             
           </span>
         </div>
@@ -210,6 +210,8 @@
         
   
   
+    
+  
 
 
   
@@ -221,7 +223,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../api/finance_collector_api.md" class="md-tabs__link">
+      <a href="../finance_collector_api/" class="md-tabs__link md-tabs__link--active">
         API
       </a>
     </li>
@@ -430,12 +432,14 @@
       
 
 
+  
+
 
   
-  <li class="md-nav__item md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" data-md-state="indeterminate" type="checkbox" id="nav-4" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
     <label class="md-nav__link" for="nav-4">
       API
@@ -454,14 +458,16 @@
           
 
 
+  
+
 
   
     
   
-  <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
     
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" data-md-state="indeterminate" type="checkbox" id="nav-4-1" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1" checked>
     
     <label class="md-nav__link" for="nav-4-1">
       Key Performance Collector
@@ -482,7 +488,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../api/finance_collector_api.md" class="md-nav__link">
+    <a href="../finance_collector_api/" class="md-nav__link">
       Finance-Collector
     </a>
   </li>
@@ -493,11 +499,405 @@
           
 
 
+  
 
-  <li class="md-nav__item">
-    <a href="../api/trends_collector_api.md" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Trends-Collector
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
       Trends-Collector
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api-of-the-trends-collector" class="md-nav__link">
+    API of the Trends Collector
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector" class="md-nav__link">
+    ai2business.kpi_collector.trends_collector
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.BuilderTrendsCollector" class="md-nav__link">
+    BuilderTrendsCollector
+  </a>
+  
+    <nav class="md-nav" aria-label="BuilderTrendsCollector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.BuilderTrendsCollector.trends" class="md-nav__link">
+    trends
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.BuilderTrendsCollector.get_categories" class="md-nav__link">
+    get_categories()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.BuilderTrendsCollector.get_historical_interest" class="md-nav__link">
+    get_historical_interest()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.BuilderTrendsCollector.get_interest_by_region" class="md-nav__link">
+    get_interest_by_region()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.BuilderTrendsCollector.get_interest_over_time" class="md-nav__link">
+    get_interest_over_time()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.BuilderTrendsCollector.get_related_queries" class="md-nav__link">
+    get_related_queries()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.BuilderTrendsCollector.get_related_topics" class="md-nav__link">
+    get_related_topics()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.BuilderTrendsCollector.get_suggestions" class="md-nav__link">
+    get_suggestions()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.BuilderTrendsCollector.get_today_searches" class="md-nav__link">
+    get_today_searches()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.BuilderTrendsCollector.get_top_charts" class="md-nav__link">
+    get_top_charts()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.BuilderTrendsCollector.get_trending_searches" class="md-nav__link">
+    get_trending_searches()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.BuilderTrendsCollector.reset" class="md-nav__link">
+    reset()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.DesignerTrendsCollector" class="md-nav__link">
+    DesignerTrendsCollector
+  </a>
+  
+    <nav class="md-nav" aria-label="DesignerTrendsCollector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.DesignerTrendsCollector.trends" class="md-nav__link">
+    trends
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.DesignerTrendsCollector.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.DesignerTrendsCollector.get_categories" class="md-nav__link">
+    get_categories()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.DesignerTrendsCollector.get_historical_interest" class="md-nav__link">
+    get_historical_interest()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.DesignerTrendsCollector.get_interest_by_region" class="md-nav__link">
+    get_interest_by_region()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.DesignerTrendsCollector.get_interest_over_time" class="md-nav__link">
+    get_interest_over_time()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.DesignerTrendsCollector.get_related_queries" class="md-nav__link">
+    get_related_queries()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.DesignerTrendsCollector.get_related_topics" class="md-nav__link">
+    get_related_topics()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.DesignerTrendsCollector.get_suggestions" class="md-nav__link">
+    get_suggestions()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.DesignerTrendsCollector.get_today_searches" class="md-nav__link">
+    get_today_searches()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.DesignerTrendsCollector.get_top_charts" class="md-nav__link">
+    get_top_charts()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.DesignerTrendsCollector.get_trending_searches" class="md-nav__link">
+    get_trending_searches()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.DesignerTrendsCollector.reset" class="md-nav__link">
+    reset()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendProduct" class="md-nav__link">
+    TrendProduct
+  </a>
+  
+    <nav class="md-nav" aria-label="TrendProduct">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendProduct.list_product_parts" class="md-nav__link">
+    list_product_parts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendProduct.return_product" class="md-nav__link">
+    return_product
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendProduct.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendProduct.add_product" class="md-nav__link">
+    add_product()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendsCollector" class="md-nav__link">
+    TrendsCollector
+  </a>
+  
+    <nav class="md-nav" aria-label="TrendsCollector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendsCollector.builder" class="md-nav__link">
+    builder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendsCollector.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendsCollector.find_categories" class="md-nav__link">
+    find_categories()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendsCollector.find_historical_interest" class="md-nav__link">
+    find_historical_interest()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendsCollector.find_interest_by_region" class="md-nav__link">
+    find_interest_by_region()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendsCollector.find_interest_over_time" class="md-nav__link">
+    find_interest_over_time()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendsCollector.find_related_queries" class="md-nav__link">
+    find_related_queries()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendsCollector.find_related_topics" class="md-nav__link">
+    find_related_topics()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendsCollector.find_suggestions" class="md-nav__link">
+    find_suggestions()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendsCollector.find_today_searches" class="md-nav__link">
+    find_today_searches()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendsCollector.find_top_charts" class="md-nav__link">
+    find_top_charts()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendsCollector.find_trending_searches" class="md-nav__link">
+    find_trending_searches()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai2business.kpi_collector.trends_collector.TrendsCollector.make_wordcloud" class="md-nav__link">
+    make_wordcloud()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    Note:
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -539,7 +939,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../api/sample_generator_api.md" class="md-nav__link">
+    <a href="../sample_generator_api/" class="md-nav__link">
       Sample Generator
     </a>
   </li>
@@ -583,7 +983,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../api/data_visualization_api.md" class="md-nav__link">
+    <a href="../data_visualization_api/" class="md-nav__link">
       Data Visualization
     </a>
   </li>
@@ -627,7 +1027,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../api/deep_learning_api.md" class="md-nav__link">
+    <a href="../deep_learning_api/" class="md-nav__link">
       Deep Learning
     </a>
   </li>
@@ -1044,12 +1444,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/AI2Business/ai2business/edit/main/docs/sources/trends_collector.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/AI2Business/ai2business/edit/main/docs/sources/trends_collector_api.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Trends collector</h1>
+                  <h1>Trends-Collector</h1>
                 
                 <h2 id="api-of-the-trends-collector">API of the Trends Collector</h2>
 <hr />
@@ -2737,6 +3137,41 @@ make_wordcloud<span class="p">(</span><span class="bp">self</span><span class="p
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../finance_collector_api/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Finance-Collector
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../sample_generator_api/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Sample Generator
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

@@ -223,7 +223,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../api/finance_collector_api.md" class="md-tabs__link">
+      <a href="../../finance_collector_api/" class="md-tabs__link">
         API
       </a>
     </li>
@@ -561,7 +561,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../api/finance_collector_api.md" class="md-nav__link">
+    <a href="../../finance_collector_api/" class="md-nav__link">
       Finance-Collector
     </a>
   </li>
@@ -574,7 +574,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../api/trends_collector_api.md" class="md-nav__link">
+    <a href="../../trends_collector_api/" class="md-nav__link">
       Trends-Collector
     </a>
   </li>
@@ -618,7 +618,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../api/sample_generator_api.md" class="md-nav__link">
+    <a href="../../sample_generator_api/" class="md-nav__link">
       Sample Generator
     </a>
   </li>
@@ -662,7 +662,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../api/data_visualization_api.md" class="md-nav__link">
+    <a href="../../data_visualization_api/" class="md-nav__link">
       Data Visualization
     </a>
   </li>
@@ -706,7 +706,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../api/deep_learning_api.md" class="md-nav__link">
+    <a href="../../deep_learning_api/" class="md-nav__link">
       Deep Learning
     </a>
   </li>
@@ -830,12 +830,12 @@
 <p>A dependency between the years is obviously given, even if single event trigger breakouts.</p>
 <div class="highlight"><pre><span></span><code><span class="n">keyword_list</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;2017&quot;</span><span class="p">,</span> <span class="s2">&quot;2018&quot;</span><span class="p">,</span> <span class="s2">&quot;2019&quot;</span><span class="p">,</span> <span class="s2">&quot;2020&quot;</span><span class="p">]</span>
 <span class="n">timeframe</span> <span class="o">=</span> <span class="n">oneliner</span><span class="o">.</span><span class="n">TrendSearch</span><span class="o">.</span><span class="n">four_step_search</span><span class="p">(</span><span class="n">keyword_list</span><span class="o">=</span><span class="n">keyword_list</span><span class="p">)</span>
-<span class="n">timeframe</span><span class="p">[</span><span class="s2">&quot;interest_over_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">timeframe</span><span class="p">[</span><span class="s2">&quot;get_interest_over_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </code></pre></div>
 <p>And the Pearson-correlation shows the negative linear dependency between the current and previous year.</p>
-<div class="highlight"><pre><span></span><code><span class="n">timeframe</span><span class="p">[</span><span class="s2">&quot;interest_over_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="n">timeframe</span><span class="p">[</span><span class="s2">&quot;get_interest_over_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">timeframe</span><span class="p">[</span><span class="s2">&quot;interest_over_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;isPartial&quot;</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">timeframe</span><span class="p">[</span><span class="s2">&quot;get_interest_over_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;isPartial&quot;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
 </code></pre></div>
@@ -907,6 +907,20 @@
             </div>
           </a>
         
+        
+          <a href="../../finance_collector_api/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Finance-Collector
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
         
       </nav>
     </div>
