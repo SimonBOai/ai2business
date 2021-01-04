@@ -770,9 +770,9 @@ class DataVisualization:
             2. nullity bar shows the available data as a series of single bars.
             3. nullity heatmap point out the correlation between the presence and absence data.
             4. nullity dendrogram visualize the correlate variable completion.
-            
+
             For more information see: [https://github.com/ResidentMario/missingno](https://github.com/ResidentMario/missingno)
-        
+
         ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_matrix_bc6141f519e4eea9e6a0d5fe84115d65.png){: loading=lazy }
         ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_bar_9918e972a769781d322ba1e18fe8f86c.png){: loading=lazy }
         ![Placeholder](https://github.com/AI2Business/ai2business/tree/main/docs/images/nullity/get_nullity_heatmap_d46e69f559bd7b713b7a6c3ceb0f9968.png){: loading=lazy }
