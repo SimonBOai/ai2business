@@ -3,3 +3,5 @@ image:
 
 tasks:
   - init: pip install -r ./requirements.txt
+  - init: pip install -r ./dev-requirements.txt
+  - init: pip install -r docs/doc-requirements.txt

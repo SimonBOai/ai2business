@@ -46,6 +46,7 @@ theme:
 markdown_extensions:
   - codehilite
   - admonition
+  - attr_list
   - pymdownx.superfences:
   - pymdownx.emoji:
   - pymdownx.highlight:
@@ -58,6 +59,24 @@ markdown_extensions:
   - pymdownx.tilde:
   - pymdownx.caret:
   - pymdownx.smartsymbols:
+  - pymdownx.magiclink:
+        repo_url_shortener: true
+        repo_url_shorthand: true
+        social_url_shorthand: true
+        social_url_shortener: true
+        user: ai2business
+        repo: ai2business
+  - pymdownx.highlight:
+        extend_pygments_lang:
+          - name: php-inline
+            lang: php
+            options:
+                startinline: true
+          - name: pycon3
+            lang: pycon
+            options:
+                python3: true
+        linenums_style: pymdownx-inline
 
 extra_javascript:
   - https://unpkg.com/mermaid@8.4.4/dist/mermaid.min.js
@@ -74,8 +93,8 @@ plugins:
   - search
   - macros
   - mkdocstrings:
-      watch:
-        - ai2business
+        watch:
+          - ai2business
   - git-revision-date-localized
 
 nav:
@@ -91,9 +110,13 @@ nav:
       - AutoML: tutorials/timeseries_forecast_tutorial.md
   - API:
       - Key Performance Collector:
-          - Finance-Collector: finance_collector.md
-          - Trends-Collector: trends_collector.md
-          - Datasets: datasets.md
-          - AutoML: automl.md
+          - Finance-Collector: finance_collector_api.md
+          - Trends-Collector: trends_collector_api.md
+      - Datasets:
+          - Sample Generator: sample_generator_api.md
+      - Visualization:
+          - Data Visualization: data_visualization_api.md
+      - Auto Machine Learning:
+          - Deep Learning: deep_learning_api.md
 extra_css:
   - css/version-select.css
