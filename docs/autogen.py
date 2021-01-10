@@ -24,7 +24,7 @@ PAGES = {
         "ai2business.visualization.data_visualization.DataVisualization.categoryplot",
         "ai2business.visualization.data_visualization.DataVisualization.boxplot",
         "ai2business.visualization.data_visualization.DataVisualization.stripplot",
-        "ai2business.visualization.data_visualization.DataVisualization.hexagonalplot",
+        "ai2business.visualization.data_visualization.DataVisualization.hexagonplot",
         "ai2business.visualization.data_visualization.DataVisualization.histogramplot",
         "ai2business.visualization.data_visualization.DataVisualization.violinplot",
         "ai2business.visualization.data_visualization.DataVisualization.residualplot",

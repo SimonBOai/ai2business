@@ -104,6 +104,7 @@ nav:
       - Sample Generators: Sample_Generators.md
       - Trend Search: Key_Performance_Collection.md
       - AutoMLRun: AutoML_for_NeuralNetworks.md
+      - Data Visualization: Data_Visualization.md
       - Oneliner: Oneliner.md
   - Tutorials:
       - Trend Search: tutorials/trend_search_tutorial.md
