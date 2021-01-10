@@ -942,6 +942,9 @@ class DataVisualization:
     def boxplot(self, multiboxen: bool = False, **kwargs) -> None:
         """Create a given box plot based on seaborn.
 
+        Args:
+            multiboxen (bool, optional): Allows to draw multi boxen per object. Defaults to False.
+
         !!! example "Box Plot"
             ```python
             >>> from ai2business.visualization import data_visualization as dav
@@ -952,9 +955,6 @@ class DataVisualization:
             >>> builder.data_figure.save_all_figures(folder=folder)
             ```
             ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_boxplot_a0023f9b0bc21741142a69f40baf5c43.png?raw=true){: loading=lazy }
-
-        Args:
-            multiboxen (bool, optional): Allows to draw multi boxen per object. Defaults to False.
         """
         self.initialization_figure
         if multiboxen:
@@ -1045,6 +1045,9 @@ class DataVisualization:
     def regressionplot(self, map: bool = False, **kwargs) -> None:
         """Create a given regression plot based on seaborn.
 
+        Args:
+            map (bool, optional): Creates the regression plot as map. Defaults to False.
+
         !!! example "Regression Plot"
             ```python
             >>> from ai2business.visualization import data_visualization as dav
@@ -1065,8 +1068,6 @@ class DataVisualization:
             ```
             ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_density_mapplot_aa27faf44d09f3cf3e1ca549bfe12d1b.png?raw=true){: loading=lazy }
 
-        Args:
-            map (bool, optional): Creates the regression plot as map. Defaults to False.
         """
         self.initialization_figure
         if map:
@@ -1076,6 +1077,9 @@ class DataVisualization:
 
     def densitymap(self, kde: bool = False, **kwargs) -> None:
         """Create a given density map based on seaborn.
+
+        Args:
+            kde (bool, optional): Plots the density as kernel density. Defaults to False.
 
         !!! example "Density Map Plot"
             ```python
@@ -1096,9 +1100,6 @@ class DataVisualization:
             >>> builder.data_figure.save_all_figures(folder=folder)
             ```
             ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_density_mapplot_aa27faf44d09f3cf3e1ca549bfe12d1b.png?raw=true){: loading=lazy }
-
-        Args:
-            kde (bool, optional): Plots the density as kernel density. Defaults to False.
         """
         self.initialization_figure
 
@@ -1111,6 +1112,11 @@ class DataVisualization:
         self, method: str = "pearson", min_periods: int = 1, **kwargs
     ) -> None:
         """Create a given cluster map based on seaborn.
+
+        Args:
+            method (str, optional): Method of the correlation type ('pearson', 'kendall', 'spearman' or callable method of correlation). Defaults to "pearson".
+            min_periods (int, optional): Minimum number of observations required per pair of columns to have a valid result. Defaults to 1.
+
         !!! example "Cluster Map Plot"
             ```python
             >>> from ai2business.visualization import data_visualization as dav
@@ -1121,11 +1127,6 @@ class DataVisualization:
             >>> builder.data_figure.save_all_figures(folder=folder)
             ```
             ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_cluster_mapplot_212509d11bc11b8d2de8e09a98760a5a.png?raw=true){: loading=lazy }
-
-
-        Args:
-            method (str, optional): Method of the correlation type ('pearson', 'kendall', 'spearman' or callable method of correlation). Defaults to "pearson".
-            min_periods (int, optional): Minimum number of observations required per pair of columns to have a valid result. Defaults to 1.
         """
         self.initialization_figure
         self.builder.get_cluster_mapplot(
@@ -1157,6 +1158,11 @@ class DataVisualization:
     ) -> None:
         """Create a given correlation map based on seaborn.
 
+        Args:
+            diagonal (bool, optional): Only the lower diagonal elements will be plotted. Defaults to False.
+            method (str, optional): Method of the correlation type ('pearson', 'kendall', 'spearman' or callable method of correlation). Defaults to "pearson".
+            min_periods (int, optional): Minimum number of observations required per pair of columns to have a valid result. Defaults to 1.
+
         !!! example "Correlation Plot"
             ```python
             >>> from ai2business.visualization import data_visualization as dav
@@ -1176,12 +1182,6 @@ class DataVisualization:
             >>> builder.data_figure.save_all_figures(folder=folder)
             ```
             ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_correlationplot_227d61e793e336cf86e41ec7b6ec33d6.png?raw=true){: loading=lazy }
-
-
-        Args:
-            diagonal (bool, optional): Only the lower diagonal elements will be plotted. Defaults to False.
-            method (str, optional): Method of the correlation type ('pearson', 'kendall', 'spearman' or callable method of correlation). Defaults to "pearson".
-            min_periods (int, optional): Minimum number of observations required per pair of columns to have a valid result. Defaults to 1.
         """
         self.initialization_figure
         if diagonal:
@@ -1195,6 +1195,9 @@ class DataVisualization:
 
     def pairmap(self, complex: bool = False, **kwargs):
         """Create a pair map based on seaborn.
+
+        Args:
+            complex (bool, optional): Turn on the `get_complex_pairmapplot`. Defaults to False.
 
         !!! example "Pair Plot"
             ```python
@@ -1215,9 +1218,6 @@ class DataVisualization:
             >>> builder.data_figure.save_all_figures(folder=folder)
             ```
             ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_pairmapplot_292a3bb10c014dc2dd57a6a12eb608d3.png?raw=true){: loading=lazy }
-
-        Args:
-            complex (bool, optional): Turn on the `get_complex_pairmapplot`. Defaults to False.
         """
         self.initialization_figure
         if complex:
