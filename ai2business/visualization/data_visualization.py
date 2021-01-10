@@ -829,7 +829,7 @@ class DataVisualization:
         plt.clf()
 
     def lineplot(self, **kwargs) -> None:
-        """Create a given line plot based on seaborn. 
+        """Create a given line plot based on seaborn.
         !!! example "Line Plot"
             ```python
             >>> from ai2business.visualization import data_visualization as dav
@@ -952,7 +952,7 @@ class DataVisualization:
             >>> builder.data_figure.save_all_figures(folder=folder)
             ```
             ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_boxplot_a0023f9b0bc21741142a69f40baf5c43.png?raw=true){: loading=lazy }
-        
+
         Args:
             multiboxen (bool, optional): Allows to draw multi boxen per object. Defaults to False.
         """
@@ -1064,7 +1064,7 @@ class DataVisualization:
             >>> builder.data_figure.save_all_figures(folder=folder)
             ```
             ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_density_mapplot_aa27faf44d09f3cf3e1ca549bfe12d1b.png?raw=true){: loading=lazy }
-        
+
         Args:
             map (bool, optional): Creates the regression plot as map. Defaults to False.
         """
@@ -1121,7 +1121,7 @@ class DataVisualization:
             >>> builder.data_figure.save_all_figures(folder=folder)
             ```
             ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_cluster_mapplot_212509d11bc11b8d2de8e09a98760a5a.png?raw=true){: loading=lazy }
-        
+
 
         Args:
             method (str, optional): Method of the correlation type ('pearson', 'kendall', 'spearman' or callable method of correlation). Defaults to "pearson".
