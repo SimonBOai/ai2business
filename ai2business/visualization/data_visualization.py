@@ -118,16 +118,16 @@ class BuilderDataVisualization(ABC):
         """Abstract method of get_cluster_mapplot."""
 
     @abstractmethod
-    def get_heatmapplot(self) -> None:
-        """Abstract method of get_heatmapp."""
+    def get_heat_mapplot(self) -> None:
+        """Abstract method of get_heat_mapplot."""
 
     @abstractmethod
-    def get_correlationpplot(self) -> None:
-        """Abstract method of get_correlationpplot."""
+    def get_correlationplot(self) -> None:
+        """Abstract method of get_correlationplot."""
 
     @abstractmethod
-    def get_diagonal_correlationpplot(self) -> None:
-        """Abstract method of get_diagonal_correlationpplot."""
+    def get_diagonal_correlationplot(self) -> None:
+        """Abstract method of get_diagonal_correlationplot."""
 
     def get_regression_mapplot(self) -> None:
         """Abstract method of get_marginalplot."""
@@ -409,7 +409,9 @@ class DesignerDataVisualization(BuilderDataVisualization):
         )
 
     def get_boxenplot(self, **kwargs) -> None:
-        """Get a multi box plot."""
+        """Get a multi box plot.
+        ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_boxenplot_56ae2969afd82d78d7585b14e938df29.png?raw=true){: loading=lazy }
+        """
         self._product.add_product(
             key=self.get_boxenplot,
             value=sns.boxenplot(
@@ -538,7 +540,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
         self, method: str = "pearson", min_periods: int = 1, **kwargs
     ) -> None:
         """Get a cluster map plot.
-
+        ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_cluster_mapplot_212509d11bc11b8d2de8e09a98760a5a.png?raw=true){: loading=lazy }
         Args:
             method (str, optional): Method of the correlation type ('pearson', 'kendall', 'spearman' or callable method of correlation). Defaults to "pearson".
             min_periods (int, optional): Minimum number of observations required per pair of columns to have a valid result. Defaults to 1.
@@ -550,24 +552,26 @@ class DesignerDataVisualization(BuilderDataVisualization):
             ),
         )
 
-    def get_heatmapplot(self, **kwargs) -> None:
-        """Get a heatmap plot."""
+    def get_heat_mapplot(self, **kwargs) -> None:
+        """Get a heat map plot.
+        ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_heat_mapplot_6efd63f601845f3b57c63a82a360464d.png?raw=true){: loading=lazy }
+        """
         self._product.add_product(
-            key=self.get_cluster_mapplot,
+            key=self.get_heat_mapplot,
             value=sns.heatmap(data=self.df, **kwargs).get_figure(),
         )
 
-    def get_correlationpplot(
+    def get_correlationplot(
         self, method: str = "pearson", min_periods: int = 1, **kwargs
     ) -> None:
         """Get a correlation map plot.
-
+        ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_correlationplot_227d61e793e336cf86e41ec7b6ec33d6.png?raw=true){: loading=lazy }
         Args:
             method (str, optional): Method of the correlation type ('pearson', 'kendall', 'spearman' or callable method of correlation). Defaults to "pearson".
             min_periods (int, optional): Minimum number of observations required per pair of columns to have a valid result. Defaults to 1.
         """
         self._product.add_product(
-            key=self.get_correlationpplot,
+            key=self.get_correlationplot,
             value=sns.relplot(
                 data=self.df.corr(method=method, min_periods=min_periods),
                 x=self.x_label,
@@ -578,7 +582,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
             ),
         )
 
-    def get_diagonal_correlationpplot(
+    def get_diagonal_correlationplot(
         self, method: str = "pearson", min_periods: int = 1, **kwargs
     ) -> None:
         """Get a correlation map plot with lower non-diagonal elements.
@@ -590,7 +594,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
         _corr = self.df.corr(method=method, min_periods=min_periods)
         _mask = np.triu(np.ones_like(_corr, dtype=bool))
         self._product.add_product(
-            key=self.get_cluster_mapplot,
+            key=self.get_diagonal_correlationplot,
             value=sns.heatmap(data=_corr, mask=_mask, **kwargs).get_figure(),
         )
 
@@ -623,7 +627,7 @@ class DesignerDataVisualization(BuilderDataVisualization):
         grid.map_lower(sns.kdeplot)
         grid.map_diag(sns.kdeplot)
         self._product.add_product(
-            key=self.get_pairmapplot,
+            key=self.get_complex_pairmapplot,
             value=grid,
         )
 
@@ -825,42 +829,130 @@ class DataVisualization:
         plt.clf()
 
     def lineplot(self, **kwargs) -> None:
-        """Create a given line plot based on seaborn."""
+        """Create a given line plot based on seaborn. 
+        !!! example "Line Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.lineplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_lineplot_d1f5c1875c5fac03668674031f8af390.png?raw=true){: loading=lazy }
+        """
         self.initialization_figure
         self.builder.get_lineplot(**kwargs)
 
     def pointplot(self, **kwargs) -> None:
-        """Create a given point plot based on seaborn."""
+        """Create a given point plot based on seaborn.
+        !!! example "Point Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.pointplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_pointplot_3216f41c8e8eb4977ab1870368daea37.png?raw=true){: loading=lazy }
+        """
         self.initialization_figure
         self.builder.get_pointplot(**kwargs)
 
     def scatterplot(self, **kwargs) -> None:
-        """Create a given scatter plot based on seaborn."""
+        """Create a given scatter plot based on seaborn.
+        !!! example "Scatter Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.scatterplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_scatterplot_b14dfb01022e343d587d4ba4b39ee56c.png?raw=true){: loading=lazy }
+        """
         self.initialization_figure
         self.builder.get_scatterplot(**kwargs)
 
     def swarmplot(self, **kwargs) -> None:
-        """Create a given swarm plot based on seaborn."""
+        """Create a given swarm plot based on seaborn.
+        !!! example "Swarm Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.swarmplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_swarmplot_fa34ed63066eb6800f6e4300d3787da2.png?raw=true){: loading=lazy }
+        """
         self.initialization_figure
         self.builder.get_swarmplot(**kwargs)
 
     def distributionplot(self, **kwargs) -> None:
-        """Create a given distribution plot based on seaborn."""
+        """Create a given distribution plot based on seaborn.
+        !!! example "Distribution Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.distributionplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_distributionplot_68a2aea492d392e6f1b81420cfed43ef.png?raw=true){: loading=lazy }
+        """
         self.builder.get_distributionplot(**kwargs)
 
     def relationalplot(self, **kwargs) -> None:
-        """Create a given relational plot based on seaborn."""
+        """Create a given relational plot based on seaborn.
+        !!! example "Relational Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.relationalplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_relationalplot_2ca3df8a2c1238c50f00e3822f3b94f1.png?raw=true){: loading=lazy }
+        """
         self.initialization_figure
         self.builder.get_relationalplot(**kwargs)
 
     def categoryplot(self, **kwargs) -> None:
-        """Create a given category plot based on seaborn."""
+        """Create a given category plot based on seaborn.
+        !!! example "Category Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.categoryplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_categoryplot_3628ede87a6e217e30435bdcd9a9ce3b.png?raw=true){: loading=lazy }
+        """
         self.initialization_figure
         self.builder.get_categoryplot(**kwargs)
 
     def boxplot(self, multiboxen: bool = False, **kwargs) -> None:
         """Create a given box plot based on seaborn.
 
+        !!! example "Box Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.boxplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_boxplot_a0023f9b0bc21741142a69f40baf5c43.png?raw=true){: loading=lazy }
+        
         Args:
             multiboxen (bool, optional): Allows to draw multi boxen per object. Defaults to False.
         """
@@ -871,33 +963,108 @@ class DataVisualization:
             self.builder.get_boxplot(**kwargs)
 
     def stripplot(self, **kwargs) -> None:
-        """Create a given strip plot based on seaborn."""
+        """Create a given strip plot based on seaborn.
+        !!! example "Strip Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.stripplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_stripplot_4ce7af555a14c09c6f48ab7b13990dd7.png?raw=true){: loading=lazy }
+        """
         self.initialization_figure
         self.builder.get_stripplot(**kwargs)
 
     def hexagonplot(self, **kwargs) -> None:
-        """Create a given hexagon plot based on seaborn."""
+        """Create a given hexagon plot based on seaborn.
+        !!! example "Hexagonal Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.hexagonalplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_hexagonplot_bee62ec100c2ea9dc2bc6e71d18cf3d6.png?raw=true){: loading=lazy }
+        """
         self.initialization_figure
         self.builder.get_hexagonplot(**kwargs)
 
     def histogramplot(self, **kwargs) -> None:
-        """Create a given histogram plot based on seaborn."""
+        """Create a given histogram plot based on seaborn.
+        !!! example "Histogram Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.histogramplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_histogramplot_ceed49b02f48ef9f57e863fbcc98f5dd.png?raw=true){: loading=lazy }
+        """
         self.initialization_figure
         self.builder.get_histogramplot(**kwargs)
 
     def violinplot(self, **kwargs) -> None:
-        """Create a given violin plot based on seaborn."""
+        """Create a given violin plot based on seaborn.
+        !!! example "Violin Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.violinplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_violinplot_9956ae30ad1f00a5b5869a4da95754d9.png?raw=true){: loading=lazy }
+        """
         self.initialization_figure
         self.builder.get_violinplot(**kwargs)
 
     def residualplot(self, **kwargs) -> None:
-        """Create a given residual plot based on seaborn."""
+        """Create a given residual plot based on seaborn.
+        !!! example "Residual Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.residualplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_violinplot_9956ae30ad1f00a5b5869a4da95754d9.png?raw=true){: loading=lazy }
+        """
         self.initialization_figure
         self.builder.get_residualplot(**kwargs)
 
     def regressionplot(self, map: bool = False, **kwargs) -> None:
         """Create a given regression plot based on seaborn.
 
+        !!! example "Regression Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.regressionplot(map=False)
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_regressionplot_a1987483cda51c9c884abd44b4def6ef.png?raw=true){: loading=lazy }
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.regressionmapplot(map=True)
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_density_mapplot_aa27faf44d09f3cf3e1ca549bfe12d1b.png?raw=true){: loading=lazy }
+        
         Args:
             map (bool, optional): Creates the regression plot as map. Defaults to False.
         """
@@ -909,6 +1076,27 @@ class DataVisualization:
 
     def densitymap(self, kde: bool = False, **kwargs) -> None:
         """Create a given density map based on seaborn.
+
+        !!! example "Density Map Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.kerneldensitymapplot(map=False)
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_kerneldensity_mapplot_da7caa95343a14497e78afff0fb304fb.png?raw=true){: loading=lazy }
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.densitymapplot(map=True)
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_density_mapplot_aa27faf44d09f3cf3e1ca549bfe12d1b.png?raw=true){: loading=lazy }
+
         Args:
             kde (bool, optional): Plots the density as kernel density. Defaults to False.
         """
@@ -923,6 +1111,17 @@ class DataVisualization:
         self, method: str = "pearson", min_periods: int = 1, **kwargs
     ) -> None:
         """Create a given cluster map based on seaborn.
+        !!! example "Cluster Map Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.clustermapplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_cluster_mapplot_212509d11bc11b8d2de8e09a98760a5a.png?raw=true){: loading=lazy }
+        
 
         Args:
             method (str, optional): Method of the correlation type ('pearson', 'kendall', 'spearman' or callable method of correlation). Defaults to "pearson".
@@ -934,9 +1133,20 @@ class DataVisualization:
         )
 
     def heatmap(self, **kwargs) -> None:
-        """Create a given heat map based on seaborn."""
+        """Create a given heat map based on seaborn.
+        !!! example "Heat Map Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.heatmapplot()
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_heat_mapplot_6efd63f601845f3b57c63a82a360464d.png?raw=true){: loading=lazy }
+        """
         self.initialization_figure
-        self.builder.get_heatmapplot(**kwargs)
+        self.builder.get_heat_mapplot(**kwargs)
 
     def correlationmap(
         self,
@@ -947,6 +1157,27 @@ class DataVisualization:
     ) -> None:
         """Create a given correlation map based on seaborn.
 
+        !!! example "Correlation Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.diagonalcorrelationplot(map=False)
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_diagonal_correlationplot_edcbab55666e77860eebdc5b73d45b6d.png?raw=true){: loading=lazy }
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.correlationplot(map=True)
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_correlationplot_227d61e793e336cf86e41ec7b6ec33d6.png?raw=true){: loading=lazy }
+
+
         Args:
             diagonal (bool, optional): Only the lower diagonal elements will be plotted. Defaults to False.
             method (str, optional): Method of the correlation type ('pearson', 'kendall', 'spearman' or callable method of correlation). Defaults to "pearson".
@@ -954,16 +1185,36 @@ class DataVisualization:
         """
         self.initialization_figure
         if diagonal:
-            self.builder.get_diagonal_correlationpplot(
+            self.builder.get_diagonal_correlationplot(
                 method=method, min_periods=min_periods, **kwargs
             )
         else:
-            self.builder.get_correlationpplot(
+            self.builder.get_correlationplot(
                 method=method, min_periods=min_periods, **kwargs
             )
 
     def pairmap(self, complex: bool = False, **kwargs):
         """Create a pair map based on seaborn.
+
+        !!! example "Pair Plot"
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.complexpairmapplot(map=False)
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_complex_pairmapplot_fb3ba50582340191e6f1b27328d60f7f.png?raw=true){: loading=lazy }
+            ```python
+            >>> from ai2business.visualization import data_visualization as dav
+            >>> data = dav.DataVisualization()
+            >>> builder = dav.DesignerDataVisualization(dataframe)
+            >>> data.builder = builder
+            >>> data.pairmapplot(map=True)
+            >>> builder.data_figure.save_all_figures(folder=folder)
+            ```
+            ![Placeholder](https://github.com/AI2Business/ai2business/blob/main/docs/images/appearance/get_pairmapplot_292a3bb10c014dc2dd57a6a12eb608d3.png?raw=true){: loading=lazy }
 
         Args:
             complex (bool, optional): Turn on the `get_complex_pairmapplot`. Defaults to False.
